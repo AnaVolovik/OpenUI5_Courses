@@ -11,8 +11,18 @@ sap.ui.define([
 		onInit: function () {
 			this.oView = this.getView();
 			this._bDescendingSort = false;
-			this.oProductsTable = this.oView.byId("productsTable");
+			this.oItemsTable = this.getView().byId("itemsTable");
+			this.oModel = this.getOwnerComponent().getModel("items");
 			this.oRouter = this.getOwnerComponent().getRouter();
+
+			this.oModel.read("/zjblessons_base_Items", {
+				success: function(oData) {
+						this.oItemsTable.setModel(new sap.ui.model.json.JSONModel(oData.results));
+				}.bind(this),
+				error: function(oError) {
+						console.error("Ошибка при загрузке данных:", oError);
+				}
+		});
 		},
 
 		onSearch: function (oEvent) {
