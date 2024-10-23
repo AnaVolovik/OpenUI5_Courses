@@ -17,8 +17,7 @@ sap.ui.define([
 			UIComponent.prototype.init.apply(this, arguments);
 			
 			const oDataSourceUri = this.getManifestEntry("sap.app").dataSources.mainService.uri;
-			console.log("OData Source URI:", oDataSourceUri);
-			
+
 			const oModel = new ODataModel(oDataSourceUri, {
 				json: true,
 				loadMetadataAsync: true 

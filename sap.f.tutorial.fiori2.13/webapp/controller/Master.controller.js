@@ -3,8 +3,9 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/Sorter",
-	"sap/m/MessageBox"
-], function (Controller, Filter, FilterOperator, Sorter, MessageBox) {
+	"sap/m/MessageBox",
+	'sap/ui/model/json/JSONModel'
+], function (Controller, Filter, FilterOperator, Sorter, MessageBox, JSONModel) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.fiori2.controller.Master", {
@@ -14,15 +15,6 @@ sap.ui.define([
 			this.oItemsTable = this.getView().byId("itemsTable");
 			this.oModel = this.getOwnerComponent().getModel("items");
 			this.oRouter = this.getOwnerComponent().getRouter();
-
-			this.oModel.read("/zjblessons_base_Items", {
-				success: function(oData) {
-						this.oItemsTable.setModel(new sap.ui.model.json.JSONModel(oData.results));
-				}.bind(this),
-				error: function(oError) {
-						console.error("Ошибка при загрузке данных:", oError);
-				}
-		});
 		},
 
 		onSearch: function (oEvent) {
@@ -30,10 +22,10 @@ sap.ui.define([
 				sQuery = oEvent.getParameter("query");
 
 			if (sQuery && sQuery.length > 0) {
-				oTableSearchState = [new Filter("Name", FilterOperator.Contains, sQuery)];
+				oTableSearchState = [new Filter("ItemID", FilterOperator.Contains, sQuery)];
 			}
 
-			this.oProductsTable.getBinding("items").filter(oTableSearchState, "Application");
+			this.oItemsTable.getBinding("items").filter(oTableSearchState, "Application");
 		},
 
 		onAdd: function () {
