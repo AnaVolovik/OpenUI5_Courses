@@ -2,8 +2,9 @@ sap.ui.define([
 	'sap/ui/core/UIComponent',
 	'sap/ui/model/json/JSONModel',
 	'sap/f/FlexibleColumnLayoutSemanticHelper',
-	'sap/f/library'
-], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary) {
+	'sap/f/library',
+	"sap/ui/model/odata/v2/ODataModel"
+], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary, ODataModel) {
 	'use strict';
 
 	return UIComponent.extend('sap.ui.demo.fiori2.Component', {
@@ -13,23 +14,19 @@ sap.ui.define([
 		},
 
 		init: function () {
-			var oModel,
-				oProductsModel,
-				oRouter;
-
 			UIComponent.prototype.init.apply(this, arguments);
-
-			oModel = new JSONModel();
-			this.setModel(oModel);
-
-			// set products demo model on this sample
-			oProductsModel = new JSONModel(sap.ui.require.toUrl('sap/ui/demo/mock/products.json'));
-			oProductsModel.setSizeLimit(1000);
-			this.setModel(oProductsModel, 'products');
-
-			oRouter = this.getRouter();
-			oRouter.attachBeforeRouteMatched(this._onBeforeRouteMatched, this);
-			oRouter.initialize();
+			
+			const oDataSourceUri = this.getManifestEntry("sap.app").dataSources.mainService.uri;
+			console.log("OData Source URI:", oDataSourceUri);
+			
+			const oModel = new ODataModel(oDataSourceUri, {
+				json: true,
+				loadMetadataAsync: true 
+			});
+			
+			this.setModel(oModel, "items");
+			
+			this.getRouter().initialize();
 		},
 
 		getHelper: function () {
