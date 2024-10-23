@@ -5,6 +5,15 @@
 		"type": "application",
 		"applicationVersion": {
 			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/jetCloud/apps/zjblessons/jblesson02/v01/01.xsodata/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
 		}
 	},
 	"sap.ui5": {
@@ -21,6 +30,16 @@
 				"sap.m": {},
 				"sap.f": {},
 				"sap.uxap": {}
+			}
+		},
+		"models": {
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "None"
+				}
 			}
 		},
 		"config": {
