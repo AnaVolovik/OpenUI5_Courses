@@ -36,12 +36,14 @@ sap.ui.define([
 
 		// Update the close/fullscreen buttons visibility
 		_updateUIElements: function () {
-			var oModel = this.oOwnerComponent.getModel(),
-				oUIState;
-			this.oOwnerComponent.getHelper().then(function(oHelper) {
-				oUIState = oHelper.getCurrentUIState();
-				oModel.setData(oUIState);
-			});
+			var oUIState;
+		
+		    this.oOwnerComponent.getHelper().then(function(oHelper) {
+						oUIState = oHelper.getCurrentUIState();
+
+						var oMasterModel = this.oOwnerComponent.getModel("master");
+						oMasterModel.setData(oUIState);
+				}.bind(this));
 		},
 
 		onExit: function () {
