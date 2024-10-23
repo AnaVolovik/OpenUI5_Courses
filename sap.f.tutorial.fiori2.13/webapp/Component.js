@@ -25,6 +25,9 @@ sap.ui.define([
 			});
 			
 			this.setModel(oModel, "items");
+
+			const oMasterModel = new sap.ui.model.json.JSONModel({});
+			this.setModel(oMasterModel, "master");
 			
 			this.getRouter().initialize();
 		},
