@@ -44,11 +44,10 @@ sap.ui.define([
 		},
 
 		_onBeforeRouteMatched: function(oEvent) {
-			var oModel = this.getModel(),
+			var oModel = this.getModel("master"),
 				sLayout = oEvent.getParameters().arguments.layout,
 				oNextUIState;
 
-			// If there is no layout parameter, query for the default level 0 layout (normally OneColumn)
 			if (!sLayout) {
 				this.getHelper().then(function(oHelper) {
 					oNextUIState = oHelper.getNextUIState(0);
