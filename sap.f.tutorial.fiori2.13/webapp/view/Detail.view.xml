@@ -76,7 +76,7 @@
 		</headerContent>
 
 		<sections>
-			<ObjectPageSection title="General Information">
+			<ObjectPageSection title="Header">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
@@ -91,12 +91,12 @@
 								columnsL="1"
 								columnsM="1">
 								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Text text="{products>ProductId}"/>
-									<m:Label text="Description"/>
-									<m:Text text="{products>Description}"/>
-									<m:Label text="Supplier"/>
-									<m:Text text="{products>SupplierName}"/>
+									<m:Label text="HeaderID"/>
+									<m:Text text="{headerData>HeaderID}"/>
+									<m:Label text="DocumentNumber"/>
+									<m:Text text="{headerData>DocumentNumber}"/>
+									<m:Label text="DocumentDate"/>
+									<m:Text text="{headerData>DocumentDate}"/>
 								</form:content>
 							</form:SimpleForm>
 						</blocks>
@@ -104,24 +104,57 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="Suppliers">
+			<ObjectPageSection title="Material">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<m:Table
-								id="suppliersTable"
-								items="{path : 'products>/ProductCollectionStats/Filters/1/values'}">
-								<m:columns>
-									<m:Column/>
-								</m:columns>
-								<m:items>
-									<m:ColumnListItem type="Navigation" press=".onSupplierPress">
-										<m:cells>
-											<m:ObjectIdentifier text="{products>text}"/>
-										</m:cells>
-									</m:ColumnListItem>
-								</m:items>
-							</m:Table>
+							<form:SimpleForm
+								maxContainerCols="2"
+								editable="false"
+								layout="ResponsiveGridLayout"
+								labelSpanL="12"
+								labelSpanM="12"
+								emptySpanL="0"
+								emptySpanM="0"
+								columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="MaterialID"/>
+									<m:Text text="{materialData>MaterialID}"/>
+									<m:Label text="MaterialText"/>
+									<m:Text text="{materialData>MaterialText}"/>
+									<m:Label text="MaterialDescription"/>
+									<m:Text text="{materialData>MaterialDescription}"/>
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="Group">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm
+								maxContainerCols="2"
+								editable="false"
+								layout="ResponsiveGridLayout"
+								labelSpanL="12"
+								labelSpanM="12"
+								emptySpanL="0"
+								emptySpanM="0"
+								columnsL="1"
+								columnsM="1">
+								<form:content>
+									<m:Label text="GroupID"/>
+									<m:Text text="{groupData>GroupID}"/>
+									<m:Label text="GroupText"/>
+									<m:Text text="{groupData>GroupText}"/>
+									<m:Label text="GroupDescription"/>
+									<m:Text text="{groupData>GroupDescription}"/>
+								</form:content>
+							</form:SimpleForm>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
