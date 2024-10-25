@@ -42,6 +42,10 @@ sap.ui.define([
 			});
 		},
 
+		_calculateAmount: function(price, quantity) {
+			return price * quantity;
+		},
+
 		handleFullScreen: function () {
 			var sNextLayout = this.oModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
 			this.oRouter.navTo("detail", {layout: sNextLayout, product: this._product});

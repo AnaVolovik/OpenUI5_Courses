@@ -70,7 +70,7 @@
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="Amount"/>
-					<m:Text text=""/>
+					<m:Text text="{parts: [{path: 'items>Price'}, {path: 'items>Quantity'}], formatter: '._calculateAmount'}"/>
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>
