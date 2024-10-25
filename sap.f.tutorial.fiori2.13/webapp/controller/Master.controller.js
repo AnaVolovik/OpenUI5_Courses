@@ -41,14 +41,15 @@ sap.ui.define([
 		},
 
 		onListItemPress: function (oEvent) {
-			var productPath = oEvent.getSource().getBindingContext("products").getPath(),
-				product = productPath.split("/").slice(-1).pop(),
+			var itemPath = oEvent.getSource().getBindingContext("items").getPath(),
+				item = itemPath.split("/").slice(-1).pop(),
 				oNextUIState;
+
 			this.getOwnerComponent().getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(1);
 				this.oRouter.navTo("detail", {
 					layout: oNextUIState.layout,
-					product: product
+					item: item
 				});
 			}.bind(this));
 		}

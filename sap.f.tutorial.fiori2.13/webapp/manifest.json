@@ -73,7 +73,7 @@
 					]
 				},
 				{
-					"pattern": "detail/{product}/{layout}",
+					"pattern": "detail/{item}/{layout}",
 					"name": "detail",
 					"target": [
 						"master",
@@ -81,7 +81,7 @@
 					]
 				},
 				{
-					"pattern": "detail/{product}/detailDetail/{supplier}/{layout}",
+					"pattern": "detail/{item}/detailDetail/{supplier}/{layout}",
 					"name": "detailDetail",
 					"target": [
 						"master",

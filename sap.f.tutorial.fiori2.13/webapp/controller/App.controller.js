@@ -7,6 +7,9 @@ sap.ui.define([
 		onInit: function () {
 			this.oOwnerComponent = this.getOwnerComponent();
 			this.oRouter = this.oOwnerComponent.getRouter();
+
+			this.oModel = this.oOwnerComponent.getModel("items");
+			this.oMasterModel = this.oOwnerComponent.getModel("masterModel");
 			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
 		},
 
@@ -18,7 +21,7 @@ sap.ui.define([
 
 			// Save the current route name
 			this.currentRouteName = sRouteName;
-			this.currentProduct = oArguments.product;
+			this.currentItem = oArguments.item;
 			this.currentSupplier = oArguments.supplier;
 		},
 
@@ -27,23 +30,26 @@ sap.ui.define([
 				sLayout = oEvent.getParameter("layout");
 
 			this._updateUIElements();
-
+			
 			// Replace the URL with the new layout if a navigation arrow was used
 			if (bIsNavigationArrow) {
-				this.oRouter.navTo(this.currentRouteName, {layout: sLayout, product: this.currentProduct, supplier: this.currentSupplier}, true);
-			}
+		        this.oRouter.navTo(this.currentRouteName, {
+		            layout: sLayout,
+		            item: this.currentItem,
+		            supplier: this.currentSupplier
+		        }, true); 
+		    }
 		},
 
 		// Update the close/fullscreen buttons visibility
-		_updateUIElements: function () {
-			var oUIState;
-		
-		    this.oOwnerComponent.getHelper().then(function(oHelper) {
-						oUIState = oHelper.getCurrentUIState();
-
-						var oMasterModel = this.oOwnerComponent.getModel("master");
-						oMasterModel.setData(oUIState);
-				}.bind(this));
+		_updateUIElements: function () { 
+		   var oModel = this.getOwnerComponent().getModel("masterModel"), 
+				oUIState;
+			
+		   this.oOwnerComponent.getHelper().then(function(oHelper) { 
+			    oUIState = oHelper.getCurrentUIState(); 
+			    oModel.setData(oUIState); 
+		   }); 
 		},
 
 		onExit: function () {

@@ -8,5 +8,5 @@
 		id="flexibleColumnLayout"
 		stateChange=".onStateChanged"
 		backgroundDesign="Solid"
-		layout="{= ${master>/layout}}"/>
+		layout="{= ${masterModel>/layout}}"/>
 </mvc:View>

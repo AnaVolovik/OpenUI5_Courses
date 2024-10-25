@@ -8,7 +8,8 @@ sap.ui.define([
 			this.oOwnerComponent = this.getOwnerComponent();
 
 			this.oRouter = this.oOwnerComponent.getRouter();
-			this.oModel = this.oOwnerComponent.getModel();
+			this.oModel = this.oOwnerComponent.getModel("items");
+			this.oMasterModel = this.oOwnerComponent.getModel("masterModel");
 
 			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
@@ -31,18 +32,14 @@ sap.ui.define([
 		},
 
 		_onProductMatched: function (oEvent) {
-			this._product = oEvent.getParameter("arguments").product || this._product || "0";
+			this._item = oEvent.getParameter("arguments").item || "0";
+
+			const itemPath = "/" + this._item;
+
 			this.getView().bindElement({
-				path: "/ProductCollection/" + this._product,
-				model: "products"
+				path: itemPath,
+				model: "items"
 			});
-		},
-
-		onEditToggleButtonPress: function() {
-			var oObjectPage = this.getView().byId("ObjectPageLayout"),
-				bCurrentShowFooterState = oObjectPage.getShowFooter();
-
-			oObjectPage.setShowFooter(!bCurrentShowFooterState);
 		},
 
 		handleFullScreen: function () {

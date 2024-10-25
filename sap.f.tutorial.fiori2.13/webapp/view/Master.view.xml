@@ -24,7 +24,7 @@
 					id="itemsTable"
 					inset="false"
 					items="{
-						path: '/zjblessons_base_Items',
+						path: 'items>/zjblessons_base_Items',
 						sorter: {
 							path: 'ItemID'
 						}
@@ -42,10 +42,10 @@
 					<items>
 						<ColumnListItem type="Navigation" press=".onListItemPress">
 							<cells>
-								<ObjectIdentifier title="{ItemID}" text="{HeaderID}"/>
+								<ObjectIdentifier title="{items>ItemID}" text="{items>HeaderID}"/>
 								<ObjectNumber
-									number="{Price}"
-									unit="BYN"
+									number="{items>Price}"
+									unit="EUR"
 								/>
 							</cells>
 						</ColumnListItem>

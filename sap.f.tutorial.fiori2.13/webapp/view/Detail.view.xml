@@ -16,18 +16,13 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<expandedHeading>
-					<m:Title text="{products>Name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+					<m:Title text="{items>ItemID}" wrapping="true" class="sapUiSmallMarginEnd"/>
 				</expandedHeading>
 
 				<snappedHeading>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<f:Avatar
-								src="https://sdk.openui5.org/{products>ProductPicUrl}"
-								displaySize="S"
-								displayShape="Square"
-								class="sapUiTinyMarginEnd"/>
-							<m:Title text="{products>Name}" wrapping="true"/>
+							<m:Title text="{items>ItemID}" wrapping="true"/>
 						</m:FlexBox>
 					</m:FlexBox>
 				</snappedHeading>
@@ -52,44 +47,30 @@
 						tooltip="Close column"
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
-
-				<actions>
-					<m:ToggleButton
-						text="Edit"
-						type="Emphasized"
-						press=".onEditToggleButtonPress"/>
-					<m:Button
-						text="Delete"
-						type="Transparent"/>
-					<m:Button
-						text="Copy"
-						type="Transparent"/>
-					<m:Button
-						icon="sap-icon://action"
-						type="Transparent"/>
-				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
 		<headerContent>
 			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<f:Avatar
-					src="https://sdk.openui5.org/{products>ProductPicUrl}"
-					displaySize="L"
-					displayShape="Square"
-					class="sapUiTinyMarginEnd">
-				</f:Avatar>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Main Category"/>
-					<m:Text text="{products>MainCategory}"/>
+					<m:Label text="MaterialID"/>
+					<m:Text text="{items>MaterialID}"/>
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Subcategory"/>
-					<m:Text text="{products>Category}"/>
+					<m:Label text="GroupID"/>
+					<m:Text text="{items>GroupID}"/>
 				</m:VBox>
 				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 					<m:Label text="Price"/>
-					<m:ObjectNumber number="{products>CurrencyCode} {products>Price}" emphasized="false"/>
+					<m:ObjectNumber number="EUR {items>Price}" emphasized="false"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Quantity"/>
+					<m:Text text="{items>Quantity}"/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Amount"/>
+					<m:Text text=""/>
 				</m:VBox>
 			</m:FlexBox>
 		</headerContent>

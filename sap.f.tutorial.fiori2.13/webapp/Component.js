@@ -14,6 +14,8 @@ sap.ui.define([
 		},
 
 		init: function () {
+			var oRouter;
+
 			UIComponent.prototype.init.apply(this, arguments);
 			
 			const oDataSourceUri = this.getManifestEntry("sap.app").dataSources.mainService.uri;
@@ -26,9 +28,11 @@ sap.ui.define([
 			this.setModel(oModel, "items");
 
 			const oMasterModel = new sap.ui.model.json.JSONModel({});
-			this.setModel(oMasterModel, "master");
+			this.setModel(oMasterModel, "masterModel");
 			
-			this.getRouter().initialize();
+			oRouter = this.getRouter();
+			oRouter.attachBeforeRouteMatched(this._onBeforeRouteMatched, this);
+			oRouter.initialize();
 		},
 
 		getHelper: function () {
@@ -44,7 +48,7 @@ sap.ui.define([
 		},
 
 		_onBeforeRouteMatched: function(oEvent) {
-			var oModel = this.getModel("master"),
+			var oModel = this.getModel("masterModel"),
 				sLayout = oEvent.getParameters().arguments.layout,
 				oNextUIState;
 
