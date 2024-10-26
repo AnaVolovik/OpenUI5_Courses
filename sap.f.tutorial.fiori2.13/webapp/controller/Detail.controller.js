@@ -43,15 +43,16 @@ sap.ui.define([
 			}
 		},
 
-		_loadHeaderData: async function (headerID) {
+		_loadHeaderData: async function (id) {
 			const oModel = this.getView().getModel();
+			const instance = "1000000";
 
 			this.getView().setModel(new sap.ui.model.json.JSONModel({}), "headerData");
     	this.getView().setBindingContext(null, "headerData");
 	
 			try {
 				const oData = await new Promise((resolve, reject) => {
-					oModel.read(`/zjblessons_base_Headers('${headerID}')`, {
+					oModel.read(`/tHeaders(Instance='${instance}',ID='${id}')`, {
 						success: function (data) {
 							resolve(data);
 						},
@@ -116,7 +117,6 @@ sap.ui.define([
 				const groupModel = new sap.ui.model.json.JSONModel(oData);
 				this.getView().setModel(groupModel, "groupData");
 				this.getView().setBindingContext(groupModel.createBindingContext("/"), "groupData");
-				console.log("Group Data:", oData);
 			} catch (error) {
 				console.error("Error fetching Group data:", error);
 			}
@@ -131,8 +131,6 @@ sap.ui.define([
 
 			this.oModel.read("/zjblessons_base_Items", {
 					success: function(oData) {
-						console.log("Fetched Items data:", oData.results);
-	
 						var totalCostEUR = 0;
 
 						if (oData.results && Array.isArray(oData.results)) {
