@@ -79,15 +79,6 @@
 						"master",
 						"detail"
 					]
-				},
-				{
-					"pattern": "detail/{item}/detailDetail/{supplier}/{layout}",
-					"name": "detailDetail",
-					"target": [
-						"master",
-						"detail",
-						"detailDetail"
-					]
 				}
 			],
 			"targets": {
@@ -98,14 +89,6 @@
 				"detail": {
 					"name": "Detail",
 					"controlAggregation": "midColumnPages"
-				},
-				"detailDetail": {
-					"name": "DetailDetail",
-					"controlAggregation": "endColumnPages"
-				},
-				"page2": {
-					"name": "AboutPage",
-					"controlAggregation": "endColumnPages"
 				}
 			}
 		}

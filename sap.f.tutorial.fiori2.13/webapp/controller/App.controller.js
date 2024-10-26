@@ -19,10 +19,8 @@ sap.ui.define([
 
 			this._updateUIElements();
 
-			// Save the current route name
 			this.currentRouteName = sRouteName;
 			this.currentItem = oArguments.item;
-			this.currentSupplier = oArguments.supplier;
 		},
 
 		onStateChanged: function (oEvent) {
@@ -30,8 +28,7 @@ sap.ui.define([
 				sLayout = oEvent.getParameter("layout");
 
 			this._updateUIElements();
-			
-			// Replace the URL with the new layout if a navigation arrow was used
+
 			if (bIsNavigationArrow) {
 		        this.oRouter.navTo(this.currentRouteName, {
 		            layout: sLayout,
@@ -41,7 +38,6 @@ sap.ui.define([
 		    }
 		},
 
-		// Update the close/fullscreen buttons visibility
 		_updateUIElements: function () { 
 		   var oModel = this.getOwnerComponent().getModel("masterModel"), 
 				oUIState;
