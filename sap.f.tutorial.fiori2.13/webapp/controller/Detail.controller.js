@@ -10,7 +10,7 @@ sap.ui.define([
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel("items");
 			this.oMasterModel = this.oOwnerComponent.getModel("masterModel");
-
+			
 			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 		},
@@ -124,6 +124,42 @@ sap.ui.define([
 
 		_calculateAmount: function(price, quantity) {
 			return price * quantity;
+		},
+
+		_onCostButtonPress: function () {
+			var that = this;
+
+			this.oModel.read("/zjblessons_base_Items", {
+					success: function(oData) {
+						console.log("Fetched Items data:", oData.results);
+	
+						var totalCostEUR = 0;
+
+						if (oData.results && Array.isArray(oData.results)) {
+								totalCostEUR = oData.results.reduce(function (sum, item) {
+									var price = parseFloat(item.Price) || 0;
+                  return sum + price;
+								}, 0);
+						}
+	
+						$.ajax({
+								url: "https://www.nbrb.by/api/exrates/rates?periodicity=0",
+								method: "GET",
+								success: function (data) {
+										var exchangeRateEUR = data.find(rate => rate.Cur_Abbreviation === "EUR")?.Cur_OfficialRate || 1;
+										var totalCostBYN = totalCostEUR * exchangeRateEUR; 
+										sap.m.MessageToast.show("Стоимость всех товаров в белорусских рублях: " + totalCostBYN.toFixed(2));
+								},
+								error: function () {
+										sap.m.MessageToast.show("Ошибка при получении курса валюты.");
+								}
+						});
+					},
+					error: function(oError) {
+						console.error("Error fetching data:", oError);
+						sap.m.MessageToast.show("Ошибка при получении данных о товарах.");
+					}
+			});
 		},
 
 		handleFullScreen: function () {

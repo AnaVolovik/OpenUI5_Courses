@@ -47,6 +47,13 @@
 						tooltip="Close column"
 						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions>
+
+				<actions>
+					<m:ToggleButton
+						text="Стоимость BYN"
+						type="Emphasized"
+						press="._onCostButtonPress"/>
+				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
