@@ -8,7 +8,6 @@
 						<VBox >
 							<Label text="{i18n>Name}" labelFor="idName"/>
 							<Input
-								value="{}"
 								id="idName"
 								maxLength="64"
 							/>
@@ -16,7 +15,6 @@
 						<VBox>
 							<Label text="{i18n>Surname}" labelFor="idSurname"/>
 							<Input
-								value="{}"
 								id="idSurname"
 								maxLength="64"
 							/>
@@ -38,15 +36,14 @@
 						<VBox>
 							<Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
 							<Input
-								value="{}"
 								id="idPhoneNumber"
 								type="Tel"
+								liveChange="_onPhoneInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
 							<Label text="{i18n>Email}" labelFor="idEmail"/>
 							<Input
-								value="{}"
 								id="idEmail"
 								type="Email"
 								maxLength="256"
@@ -55,7 +52,6 @@
 						<VBox>
 							<Label text="{i18n>Password}" labelFor="idPassword"/>
 							<Input
-								value="{}"
 								id="idPassword"
 								type="Password"
 								maxLength="64"
@@ -64,7 +60,6 @@
 						<VBox>
 							<Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
 							<Input
-								value="{}"
 								id="idConfirmPassword"
 								type="Password"
 								maxLength="64"
