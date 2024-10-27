@@ -28,6 +28,19 @@ sap.ui.define([
 					oEvent.getSource().setValueState("Error");
 					oEvent.getSource().setValueStateText("Введите номер в международном формате, начиная с +375");
 			}
+		},
+
+		_onEmailInputLiveChange: function(oEvent) {
+			const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/;
+			const sValue = oEvent.getParameter("value");
+
+			if (emailRegex.test(sValue)) {
+					oEvent.getSource().setValueState("None");
+					oEvent.getSource().setValueStateText(""); 
+			} else {
+					oEvent.getSource().setValueState("Error");
+					oEvent.getSource().setValueStateText("Введите корректный адрес электронной почты");
+			}
 		}
 
 	});

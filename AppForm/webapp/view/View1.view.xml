@@ -49,6 +49,7 @@
 								id="idEmail"
 								type="Email"
 								maxLength="256"
+								liveChange="_onEmailInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
