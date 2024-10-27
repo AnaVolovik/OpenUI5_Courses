@@ -41,6 +41,19 @@ sap.ui.define([
 					oEvent.getSource().setValueState("Error");
 					oEvent.getSource().setValueStateText("Введите корректный адрес электронной почты");
 			}
+		},
+
+		_onPasswordInputLiveChange: function(oEvent) {
+			const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/;
+			const sValue = oEvent.getParameter("value");
+
+			if (passwordRegex.test(sValue)) {
+					oEvent.getSource().setValueState("None");
+					oEvent.getSource().setValueStateText(""); 
+			} else {
+					oEvent.getSource().setValueState("Error");
+					oEvent.getSource().setValueStateText("Пароль должен содержать латинские буквы и цифры, и быть длиной не менее 6 символов.");
+			}
 		}
 
 	});

@@ -58,6 +58,7 @@
 								id="idPassword"
 								type="Password"
 								maxLength="64"
+								liveChange="_onPasswordInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
