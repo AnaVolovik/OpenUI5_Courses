@@ -10,6 +10,7 @@
 							<Input
 								id="idName"
 								maxLength="64"
+								liveChange="_onNameInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
@@ -17,6 +18,7 @@
 							<Input
 								id="idSurname"
 								maxLength="64"
+								liveChange="_onNameInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
