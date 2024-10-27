@@ -70,6 +70,14 @@ sap.ui.define([
 					oEvent.getSource().setValueState("Error");
 					oEvent.getSource().setValueStateText("Пароли не совпадают");
 			}
+		},
+
+		_onOpenUsersAgreement: function() {
+			window.open("pdf/UsersAgreement.pdf", "_blank");
+		},
+
+		_onOpenPlatformRules: function() {
+				window.open("pdf/PlatformRules.pdf", "_blank");
 		}
 
 	});

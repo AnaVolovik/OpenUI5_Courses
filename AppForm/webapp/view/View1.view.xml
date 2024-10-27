@@ -71,9 +71,25 @@
 							/>
 						</VBox>
 						<VBox>
-							<CheckBox id="termsCheckbox" 
-								text="{i18n>UserConditions}" 
-								selected="false" />
+							<HBox >
+									<CheckBox
+										id="termsCheckbox"
+										selected="false" />
+									<Text
+										text="Согласен с "
+										class="sapUiSmallMarginTop" />
+									<Link
+										text="условиями пользовательского соглашения"
+										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
+										press="_onOpenUsersAgreement" />
+									<Text
+										text=" и "
+										class="sapUiSmallMarginTop" />
+									<Link
+										text="правилами платформы"
+										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
+										press="_onOpenPlatformRules" />
+							</HBox>
 						</VBox>
 						<Button
 							text="{i18n>RegButton}"
