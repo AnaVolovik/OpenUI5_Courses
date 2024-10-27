@@ -67,7 +67,7 @@
 								id="idConfirmPassword"
 								type="Password"
 								maxLength="64"
-								liveChange="_onRepeatPasswordInputLiveChange"
+								liveChange="_onConfirmPasswordInputLiveChange"
 							/>
 						</VBox>
 						<VBox>
@@ -94,7 +94,7 @@
 						<Button
 							text="{i18n>RegButton}"
 							type="Emphasized"
-							press="onRegister"
+							press="_onRegisterButtonPress"
 							class="sapUiMediumMarginTop"
 						/>
 					</VBox>
