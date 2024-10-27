@@ -74,7 +74,8 @@
 							<HBox >
 									<CheckBox
 										id="termsCheckbox"
-										selected="false" />
+										selected="false"
+										select="_onCheckboxSelect" />
 									<Text
 										text="Согласен с "
 										class="sapUiSmallMarginTop" />
@@ -92,8 +93,10 @@
 							</HBox>
 						</VBox>
 						<Button
+							id="idRegisterButton"
 							text="{i18n>RegButton}"
 							type="Emphasized"
+							enabled="false"
 							press="_onRegisterButtonPress"
 							class="sapUiMediumMarginTop"
 						/>

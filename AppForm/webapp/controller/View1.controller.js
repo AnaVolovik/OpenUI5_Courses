@@ -48,6 +48,13 @@ sap.ui.define([
 				window.open("pdf/PlatformRules.pdf", "_blank");
 		},
 
+		_onCheckboxSelect: function(oEvent) {
+			const oCheckbox = oEvent.getSource();
+			const oRegisterButton = this.getView().byId("idRegisterButton");
+	
+			oRegisterButton.setEnabled(oCheckbox.getSelected());
+		},
+
 		checkField: function(oField, regex, errorMessage) {
 			const value = oField.getValue().trim();
 			if (value === "" || (regex && !regex.test(value))) {
