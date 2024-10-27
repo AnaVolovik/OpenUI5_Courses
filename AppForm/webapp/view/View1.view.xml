@@ -1,9 +1,83 @@
 <mvc:View controllerName="AppForm.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true" xmlns="sap.m">
+	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
 	<App>
 		<pages>
-			<Page title="{i18n>title}">
-				<content></content>
+			<Page title="{i18n>title}" class="sapUiContentPadding">
+				<content>
+					<VBox>
+						<VBox >
+							<Label text="{i18n>Name}" labelFor="idName"/>
+							<Input
+								value="{}"
+								id="idName"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>Surname}" labelFor="idSurname"/>
+							<Input
+								value="{}"
+								id="idSurname"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>City}" labelFor="idCity"/>
+							<Select
+								selectedKey="{idCity}"
+								items= "{
+									path: 'cityModel>/cities'
+								}"
+								width="100%"
+							>
+								<items>
+									<core:Item key="{cityModel>id}" text="{cityModel>name}" />
+								</items>
+							</Select>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
+							<Input
+								value="{}"
+								id="idPhoneNumber"
+								type="Tel"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>Email}" labelFor="idEmail"/>
+							<Input
+								value="{}"
+								id="idEmail"
+								type="Email"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>Password}" labelFor="idPassword"/>
+							<Input
+								value="{}"
+								id="idPassword"
+								type="Password"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
+							<Input
+								value="{}"
+								id="idConfirmPassword"
+								type="Password"
+							/>
+						</VBox>
+						<VBox>
+							<CheckBox id="termsCheckbox" 
+								text="{i18n>UserConditions}" 
+								selected="false" />
+						</VBox>
+						<Button
+							text="{i18n>RegButton}"
+							type="Emphasized"
+							press="onRegister"
+							class="sapUiMediumMarginTop"
+						/>
+					</VBox>
+				</content>
 			</Page>
 		</pages>
 	</App>

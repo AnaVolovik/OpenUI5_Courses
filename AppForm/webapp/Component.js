@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"AppForm/model/models"
-], function(UIComponent, Device, models) {
+	"AppForm/model/models",
+	"sap/ui/model/json/JSONModel"
+], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
 	return UIComponent.extend("AppForm.Component", {
@@ -11,17 +12,23 @@ sap.ui.define([
 			manifest: "json"
 		},
 
-		/**
-		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-		 * @public
-		 * @override
-		 */
 		init: function() {
-			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
 
-			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
+			const oCityModel = new JSONModel({
+				cities: [
+						{ id: "Minsk", name: "Минск" },
+						{ id: "Grodno", name: "Гродно" },
+						{ id: "Brest", name: "Брест" },
+						{ id: "Gomel", name: "Гомель" },
+						{ id: "Mogilev", name: "Могилев" },
+						{ id: "Vitebsk", name: "Витебск" }
+				]
+		});
+
+		this.setModel(oCityModel, "cityModel");
+
+		this.setModel(models.createDeviceModel(), "device");
 		}
 	});
 });
