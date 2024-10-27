@@ -67,6 +67,7 @@
 								id="idConfirmPassword"
 								type="Password"
 								maxLength="64"
+								liveChange="_onRepeatPasswordInputLiveChange"
 							/>
 						</VBox>
 						<VBox>

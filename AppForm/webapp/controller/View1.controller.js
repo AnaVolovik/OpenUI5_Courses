@@ -54,6 +54,22 @@ sap.ui.define([
 					oEvent.getSource().setValueState("Error");
 					oEvent.getSource().setValueStateText("Пароль должен содержать латинские буквы и цифры, и быть длиной не менее 6 символов.");
 			}
+		},
+
+		_onRepeatPasswordInputLiveChange: function(oEvent) {
+			const sPassword = this.getView().byId("idPassword").getValue();
+			const sRepeatPassword = oEvent.getParameter("value");
+
+			if (sRepeatPassword === "") {
+					oEvent.getSource().setValueState("Error");
+					oEvent.getSource().setValueStateText("Повторите пароль");
+			} else if (sRepeatPassword === sPassword) {
+					oEvent.getSource().setValueState("None");
+					oEvent.getSource().setValueStateText(""); 
+			} else {
+					oEvent.getSource().setValueState("Error");
+					oEvent.getSource().setValueStateText("Пароли не совпадают");
+			}
 		}
 
 	});
