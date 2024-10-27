@@ -68,12 +68,16 @@ sap.ui.define([
 		},
 		
 		_onRegisterButtonPress: function() {
+    	const oAppModel = this.getView().getModel("appModel");
+			const oMessageStrip = this.getView().byId("messageStrip");
 			const oName = this.getView().byId("idName");
 			const oSurname = this.getView().byId("idSurname");
 			const oPhone = this.getView().byId("idPhoneNumber");
 			const oEmail = this.getView().byId("idEmail");
 			const oPassword = this.getView().byId("idPassword");
 			const oConfirmPassword = this.getView().byId("idConfirmPassword");
+			const oCheckbox = this.getView().byId("idTermsCheckbox");
+			const oRegisterButton = this.getView().byId("idRegisterButton");
 
 			let bValid = true;
 			let firstInvalidField = null;
@@ -104,7 +108,29 @@ sap.ui.define([
             }
         }, 0);
     	}
-		}
 
+			if (bValid) {
+        oAppModel.setProperty("/busy", true);
+
+        setTimeout(() => {
+            oAppModel.setProperty("/busy", false);
+
+            oName.setValue("");
+            oSurname.setValue("");
+            oPhone.setValue("");
+            oEmail.setValue("");
+            oPassword.setValue("");
+            oConfirmPassword.setValue("");
+            oCheckbox.setSelected(false);
+						oRegisterButton.setEnabled(false);
+
+            oMessageStrip.setText("Регистрация прошла успешно!");
+            oMessageStrip.setType("Success");
+            oMessageStrip.setVisible(true);
+        }, 3000);
+			} else {
+
+			}
+		}
 	});
 });

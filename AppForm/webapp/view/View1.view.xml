@@ -2,7 +2,11 @@
 	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
 	<App>
 		<pages>
-			<Page title="{i18n>title}" class="sapUiContentPadding">
+			<Page
+				title="{i18n>title}"
+				class="sapUiContentPadding"
+				busy="{appModel>/busy}"
+    		busyIndicatorDelay="0">
 				<content>
 					<VBox>
 						<VBox >
@@ -73,7 +77,7 @@
 						<VBox>
 							<HBox >
 									<CheckBox
-										id="termsCheckbox"
+										id="idTermsCheckbox"
 										selected="false"
 										select="_onCheckboxSelect" />
 									<Text
@@ -92,6 +96,14 @@
 										press="_onOpenPlatformRules" />
 							</HBox>
 						</VBox>
+						<MessageStrip
+							id="messageStrip"
+							type="Success"
+							showIcon="true"
+							showCloseButton="true"
+							visible="false"
+							text=""
+						/>
 						<Button
 							id="idRegisterButton"
 							text="{i18n>RegButton}"
