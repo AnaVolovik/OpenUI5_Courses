@@ -104,14 +104,22 @@
 							visible="false"
 							text=""
 						/>
-						<Button
-							id="idRegisterButton"
-							text="{i18n>RegButton}"
-							type="Emphasized"
-							enabled="false"
-							press="_onRegisterButtonPress"
-							class="sapUiMediumMarginTop"
-						/>
+						<HBox alignItems="Center">
+							<Button
+								id="idRegisterButton"
+								text="{i18n>RegButton}"
+								type="Emphasized"
+								enabled="false"
+								press="_onRegisterButtonPress"
+								class="sapUiMediumMarginTop sapUiMediumMarginEnd"
+							/>
+							<Button
+								text="{i18n>CancelButton}"
+								type="Transparent"
+								press="_onCancelButtonPress"
+								class="sapUiMediumMarginTop"
+							/>
+						</HBox>
 					</VBox>
 				</content>
 			</Page>

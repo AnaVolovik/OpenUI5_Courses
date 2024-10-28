@@ -14,7 +14,6 @@ sap.ui.define([
 			this.oCheckbox = this.getView().byId("idTermsCheckbox");
 			this.oRegisterButton = this.getView().byId("idRegisterButton");
 			this.oMessageStrip = this.getView().byId("messageStrip");
-			console.log(this.oAppModel);
 		},
 
 		_onNameInputLiveChange: function(oEvent) {
@@ -83,6 +82,17 @@ sap.ui.define([
 				oField.setValueState("None");
 				return true;
 			}
+		},
+
+		_onCancelButtonPress: function() {
+			this._resetForm();
+			
+			this.oName.setValueState("None");
+			this.oSurname.setValueState("None");
+			this.oPhone.setValueState("None");
+			this.oEmail.setValueState("None");
+			this.oPassword.setValueState("None");
+			this.oConfirmPassword.setValueState("None");
 		},
 		
 		_onRegisterButtonPress: function() {
