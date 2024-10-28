@@ -26,13 +26,13 @@ sap.ui.define([
 		_onPhoneInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldPhone = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPhone");
-			this.checkField(oField, /^\+375\s?\(?\d{2}\)?\s?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, sCheckFieldPhone);
+			this.checkField(oField, /^\+375[-\s]?\(?(29|44|33|25)\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, sCheckFieldPhone);
 		},
 		
 		_onEmailInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldEmail = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldEmail");
-			this.checkField(oField, /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/, sCheckFieldEmail);
+			this.checkField(oField, /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.(ru|com|org|net|by|info|biz|edu|gov|mil|me|co|xyz))+$/, sCheckFieldEmail);
 		},
 		
 		_onPasswordInputLiveChange: function(oEvent) {
@@ -95,8 +95,8 @@ sap.ui.define([
 			const fields = [
         { field: this.oName, regex: /^[А-Яа-яЁё\s-]+$/, message: oResourceBundle.getText("NameFieldMessage")},
         { field: this.oSurname, regex: /^[А-Яа-яЁё\s-]+$/, message: oResourceBundle.getText("NameFieldMessage")},
-        { field: this.oPhone, regex: /^\+375\s?\(?\d{2}\)?\s?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, message: oResourceBundle.getText("PhoneFieldMessage")},
-        { field: this.oEmail, regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.[a-zA-Z]{2,})+$/, message: oResourceBundle.getText("EmailFieldMessage")},
+        { field: this.oPhone, regex: /^\+375[-\s]?\(?(29|44|33|25)\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, message: oResourceBundle.getText("PhoneFieldMessage")},
+        { field: this.oEmail, regex: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.(ru|com|org|net|by|info|biz|edu|gov|mil|me|co|xyz))+$/, message: oResourceBundle.getText("EmailFieldMessage")},
         { field: this.oPassword, regex: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, message: oResourceBundle.getText("PasswordFieldMessage")},
         { field: this.oConfirmPassword, regex: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, message: oResourceBundle.getText("PasswordFieldMessage")}
    		];
