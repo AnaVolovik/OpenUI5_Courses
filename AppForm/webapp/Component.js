@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"AppForm/model/models",
-	"sap/ui/model/json/JSONModel"
+	"sap/ui/model/json/JSONModel",
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
@@ -24,11 +24,15 @@ sap.ui.define([
 						{ id: "Mogilev", name: "Могилев" },
 						{ id: "Vitebsk", name: "Витебск" }
 				]
-		});
+			});
+			this.setModel(oCityModel, "cityModel");
 
-		this.setModel(oCityModel, "cityModel");
+			const oAppModel = new sap.ui.model.json.JSONModel({
+        busy: false
+			});
+			this.setModel(oAppModel, "appModel");
 
-		this.setModel(models.createDeviceModel(), "device");
+			this.setModel(models.createDeviceModel(), "device");
 		}
 	});
 });

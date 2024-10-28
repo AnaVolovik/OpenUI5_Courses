@@ -81,17 +81,17 @@
 										selected="false"
 										select="_onCheckboxSelect" />
 									<Text
-										text="Согласен с "
+										text="{i18n>Agreement}"
 										class="sapUiSmallMarginTop" />
 									<Link
-										text="условиями пользовательского соглашения"
+										text="{i18n>Conditions}"
 										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
 										press="_onOpenUsersAgreement" />
 									<Text
-										text=" и "
+										text="{i18n>And}"
 										class="sapUiSmallMarginTop" />
 									<Link
-										text="правилами платформы"
+										text="{i18n>Rules}"
 										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
 										press="_onOpenPlatformRules" />
 							</HBox>
