@@ -17,8 +17,8 @@ sap.ui.define([
 			this.oMessageStrip = this.getView().byId("messageStrip");
 			this.oPromocode = this.getView().byId("idPromocodeInput");
 
-			const oURLParams = new URLSearchParams(window.location.search);
-			const promocode = oURLParams.get('promocode');
+			const oURLParams = new URLSearchParams(window.location.search),
+						promocode = oURLParams.get('promocode');
 
 			if (promocode) {
 				this.oPromocode.setValue(promocode);
@@ -63,36 +63,35 @@ sap.ui.define([
 		},
 
 		_onNameInputLiveChange: function(oEvent) {
-			const oField = oEvent.getSource();
-			const sCheckFieldNames = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldNames");
+			const oField = oEvent.getSource(),
+						sCheckFieldNames = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldNames");
 			this._checkField(oField, /^[А-Яа-яЁё\s-]+$/, sCheckFieldNames);
 		},
 		
 		_onPhoneInputLiveChange: function(oEvent) {
-			const oField = oEvent.getSource();
-			const sCheckFieldPhone = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPhone");
+			const oField = oEvent.getSource(),
+						sCheckFieldPhone = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPhone");
 			this._checkField(oField, /^\+375[-\s]?\(?(29|44|33|25)\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, sCheckFieldPhone);
 		},
 		
 		_onEmailInputLiveChange: function(oEvent) {
-			const oField = oEvent.getSource();
-			const sCheckFieldEmail = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldEmail");
+			const oField = oEvent.getSource(),
+						sCheckFieldEmail = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldEmail");
 			this._checkField(oField, /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.(ru|com|org|net|by|info|biz|edu|gov|mil|me|co|xyz))+$/, sCheckFieldEmail);
 		},
 		
 		_onPasswordInputLiveChange: function(oEvent) {
-			const oField = oEvent.getSource();
-			const sCheckFieldPassword = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPassword");
+			const oField = oEvent.getSource(),
+						sCheckFieldPassword = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPassword");
 			this._checkField(oField, /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, sCheckFieldPassword);
 		},
 		
 		_onConfirmPasswordInputLiveChange: function(oEvent) {
-			const oField = oEvent.getSource();
-			const sConfirmPassword = oField.getValue().trim();
-			const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-
-    	const sEmptyPasswordText = oResourceBundle.getText("ConfirmPasswordEmpty");
-    	const sPasswordsMismatchText = oResourceBundle.getText("PasswordsDoNotMatch");
+			const oField = oEvent.getSource(),
+						sConfirmPassword = oField.getValue().trim(),
+						oResourceBundle = this.getView().getModel("i18n").getResourceBundle(),
+						sEmptyPasswordText = oResourceBundle.getText("ConfirmPasswordEmpty"),
+						sPasswordsMismatchText = oResourceBundle.getText("PasswordsDoNotMatch");
 	
 			if (sConfirmPassword === "") {
 				oField.setValueState("Error");
@@ -143,11 +142,11 @@ sap.ui.define([
 		},
 		
 		_onRegisterButtonPress: function() {
-    	const oAppModel = this.getView().getModel("appModel");
-			const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+    	const oAppModel = this.getView().getModel("appModel"),
+						oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 
-			let bValid = true;
-			let firstInvalidField = null;
+			let bValid = true,
+					firstInvalidField = null;
 
 			const fields = [
         { field: this.oName, regex: /^[А-Яа-яЁё\s-]+$/, message: oResourceBundle.getText("NameFieldMessage")},
