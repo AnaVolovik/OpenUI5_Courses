@@ -28,7 +28,8 @@
 						<VBox>
 							<Label text="{i18n>City}" labelFor="idCity"/>
 							<Select
-								selectedKey="{idCity}"
+								id="idCity"
+								selectedKey="{Minsk}"
 								items= "{
 									path: 'cityModel>/cities'
 								}"
@@ -72,6 +73,12 @@
 								type="Password"
 								maxLength="64"
 								liveChange="_onConfirmPasswordInputLiveChange"
+							/>
+						</VBox>
+						<VBox>
+							<Label text="{i18n>Promocode}" labelFor="idPromocodeInput"/>
+							<Input
+								id="idPromocodeInput"
 							/>
 						</VBox>
 						<VBox>

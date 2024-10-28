@@ -7,6 +7,7 @@ sap.ui.define([
 		onInit: function() {
 			this.oName = this.getView().byId("idName");
 			this.oSurname = this.getView().byId("idSurname");
+			this.oCity = this.getView().byId("idCity");
 			this.oPhone = this.getView().byId("idPhoneNumber");
 			this.oEmail = this.getView().byId("idEmail");
 			this.oPassword = this.getView().byId("idPassword");
@@ -14,30 +15,75 @@ sap.ui.define([
 			this.oCheckbox = this.getView().byId("idTermsCheckbox");
 			this.oRegisterButton = this.getView().byId("idRegisterButton");
 			this.oMessageStrip = this.getView().byId("messageStrip");
+			this.oPromocode = this.getView().byId("idPromocodeInput");
+
+			const oURLParams = new URLSearchParams(window.location.search);
+			const promocode = oURLParams.get('promocode');
+
+			if (promocode) {
+				this.oPromocode.setValue(promocode);
+				this.oPromocode.setEnabled(false);
+			} else {
+				this.oPromocode.setEnabled(true);
+			}
+		},
+
+		_checkPromocode: function(promocode, oResourceBundle) {
+			const url = "https://www.vocabulary.com/word-of-the-day/";
+
+			return new Promise((resolve, reject) => {
+        $.ajax({
+					url: url,
+					method: "GET",
+					success: (data) => {
+						const wordOfTheDay = this._extractWordOfTheDay(data);
+						let messageText = "";
+
+						if (promocode.toLowerCase() === wordOfTheDay.toLowerCase()) {
+								messageText = oResourceBundle.getText("PromocodeSuccessMessage", [promocode]);
+						} else {
+								messageText = oResourceBundle.getText("PromocodeFailureMessage", [promocode]);
+						}
+
+						resolve(messageText);
+					},
+					error: () => {
+						reject();
+					}
+        });
+    	});
+		},
+
+		_extractWordOfTheDay: function(data) {
+			const tempDiv = document.createElement("div");
+    	tempDiv.innerHTML = data;
+
+			const wordElement = tempDiv.querySelector(".word-of-the-day");
+    	return wordElement ? wordElement.textContent.trim() : null;
 		},
 
 		_onNameInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldNames = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldNames");
-			this.checkField(oField, /^[А-Яа-яЁё\s-]+$/, sCheckFieldNames);
+			this._checkField(oField, /^[А-Яа-яЁё\s-]+$/, sCheckFieldNames);
 		},
 		
 		_onPhoneInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldPhone = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPhone");
-			this.checkField(oField, /^\+375[-\s]?\(?(29|44|33|25)\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, sCheckFieldPhone);
+			this._checkField(oField, /^\+375[-\s]?\(?(29|44|33|25)\)?[-\s]?\d{3}[-\s]?\d{2}[-\s]?\d{2}$/, sCheckFieldPhone);
 		},
 		
 		_onEmailInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldEmail = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldEmail");
-			this.checkField(oField, /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.(ru|com|org|net|by|info|biz|edu|gov|mil|me|co|xyz))+$/, sCheckFieldEmail);
+			this._checkField(oField, /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\.(ru|com|org|net|by|info|biz|edu|gov|mil|me|co|xyz))+$/, sCheckFieldEmail);
 		},
 		
 		_onPasswordInputLiveChange: function(oEvent) {
 			const oField = oEvent.getSource();
 			const sCheckFieldPassword = this.getView().getModel("i18n").getResourceBundle().getText("CheckFieldPassword");
-			this.checkField(oField, /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, sCheckFieldPassword);
+			this._checkField(oField, /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}$/, sCheckFieldPassword);
 		},
 		
 		_onConfirmPasswordInputLiveChange: function(oEvent) {
@@ -72,7 +118,7 @@ sap.ui.define([
 			this.oRegisterButton.setEnabled(oCheckbox.getSelected());
 		},
 
-		checkField: function(oField, regex, errorMessage) {
+		_checkField: function(oField, regex, errorMessage) {
 			const value = oField.getValue().trim();
 			if (value === "" || (regex && !regex.test(value))) {
 				oField.setValueState("Error");
@@ -86,13 +132,14 @@ sap.ui.define([
 
 		_onCancelButtonPress: function() {
 			this._resetForm();
-			
+
 			this.oName.setValueState("None");
 			this.oSurname.setValueState("None");
 			this.oPhone.setValueState("None");
 			this.oEmail.setValueState("None");
 			this.oPassword.setValueState("None");
 			this.oConfirmPassword.setValueState("None");
+			this.oPromocode.setValueState("None");
 		},
 		
 		_onRegisterButtonPress: function() {
@@ -112,7 +159,7 @@ sap.ui.define([
    		];
 
 			for (const { field, regex, message } of fields) {
-        const isValid = this.checkField(field, regex, message);
+        const isValid = this._checkField(field, regex, message);
         bValid &= isValid;
         if (!isValid && !firstInvalidField) {
 					firstInvalidField = field;
@@ -131,26 +178,30 @@ sap.ui.define([
 
 			if (bValid) {
         oAppModel.setProperty("/busy", true);
+				const promocode = this.oPromocode.getValue();
 
-        setTimeout(() => {
-					oAppModel.setProperty("/busy", false);
+				this._checkPromocode(promocode, oResourceBundle).then(messageText => {
+					const successMessage = oResourceBundle.getText("RegistrationSuccessMessage");
 
-					this._resetForm();
-
-					this.oMessageStrip.setText(oResourceBundle.getText("RegistrationSuccessMessage"));
-					this.oMessageStrip.setType("Success");
+        	this.oMessageStrip.setText(successMessage + " " + messageText);
 					this.oMessageStrip.setVisible(true);
-        }, 3000);
+					oAppModel.setProperty("/busy", false);
+					this._resetForm();
+				}).catch(() => {
+					oAppModel.setProperty("/busy", false);
+				});
 			}
 		},
 
 		_resetForm: function() {
 			this.oName.setValue("");
 			this.oSurname.setValue("");
+			this.oCity.setSelectedKey("Minsk")
 			this.oPhone.setValue("");
 			this.oEmail.setValue("");
 			this.oPassword.setValue("");
 			this.oConfirmPassword.setValue("");
+			this.oPromocode.setValue("");
 			this.oCheckbox.setSelected(false);
 			this.oRegisterButton.setEnabled(false);
 		}
