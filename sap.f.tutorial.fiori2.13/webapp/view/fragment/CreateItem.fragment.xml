@@ -1,0 +1,118 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<Dialog 
+		title="Create new Item"
+		class="sapUiContentPadding"
+		beforeOpen="onDialogBeforeOpen">
+		<content>
+			<VBox>
+				<VBox>
+					<Label text="ItemID" labelFor="idItemID" />
+					<Input
+						id="idItemID"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="HeaderID" labelFor="idHeaderID" />
+					<Input
+						id="idHeaderID"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="Instance" labelFor="idInstance" />
+					<Input
+						id="idInstance"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="MaterialID" labelFor="idMaterialID" />
+					<Input
+						id="idMaterialID"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="GroupID" labelFor="idGroupID" />
+					<Input
+						id="idGroupID"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="MaterialText" labelFor="idMaterialText" />
+					<Input
+						id="idMaterialText"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="Quantity" labelFor="idQuantity" />
+					<Input
+						id="idQuantity"
+            type="Number"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="Price" labelFor="idPrice" />
+					<Input
+						id="idPrice"
+            type="Number"
+					/>
+				</VBox>
+				<VBox>
+					<Label text="Created" labelFor="idCreated" />
+					<DatePicker
+						id="idCreated"
+						value="{
+							'type':'sap.ui.model.type.Date',
+							'formatOptions': {
+								'pattern': 'yyyy-MM-dd'
+							}
+						}"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+				</VBox>
+        <VBox>
+					<Label text="CreatedBy" labelFor="idCreatedBy" />
+					<Input
+						id="idCreatedBy"
+					/>
+				</VBox>
+        <VBox>
+					<Label text="Modified" labelFor="idModified" />
+					<DatePicker
+						id="idModified"
+						value="{
+							'type':'sap.ui.model.type.Date',
+							'formatOptions': {
+								'pattern': 'yyyy-MM-dd'
+							}
+						}"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+				</VBox>
+        <VBox>
+					<Label text="ModifiedBy" labelFor="idModifiedBy" />
+					<Input
+						id="idModifiedBy"
+					/>
+				</VBox>
+			</VBox>
+		</content>
+		
+		<beginButton>
+			<Button 
+				text="Save"
+				type="Emphasized"
+				press="onPressSave"
+			/>
+		</beginButton>
+		<endButton>
+			<Button 
+				text="Cancel"
+				type="Transparent"
+				press="onPressCancel"
+			/>
+		</endButton>
+	</Dialog>
+	
+</c:FragmentDefinition>
