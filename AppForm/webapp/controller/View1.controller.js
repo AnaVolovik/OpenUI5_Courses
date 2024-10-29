@@ -182,10 +182,12 @@ sap.ui.define([
 				this._checkPromocode(promocode, oResourceBundle).then(messageText => {
 					const successMessage = oResourceBundle.getText("RegistrationSuccessMessage");
 
-        	this.oMessageStrip.setText(successMessage + " " + messageText);
-					this.oMessageStrip.setVisible(true);
-					oAppModel.setProperty("/busy", false);
-					this._resetForm();
+        	setTimeout(() => {
+            this.oMessageStrip.setText(successMessage + " " + messageText);
+            this.oMessageStrip.setVisible(true);
+            oAppModel.setProperty("/busy", false);
+            this._resetForm();
+        	}, 3000);
 				}).catch(() => {
 					oAppModel.setProperty("/busy", false);
 				});
