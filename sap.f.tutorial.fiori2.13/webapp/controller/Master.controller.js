@@ -4,11 +4,12 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/model/Sorter",
 	"sap/m/MessageBox",
-	'sap/ui/model/json/JSONModel'
-], function (Controller, Filter, FilterOperator, Sorter, MessageBox, JSONModel) {
+	'sap/ui/model/json/JSONModel',
+	"sap/ui/core/Fragment"
+], function (Controller, Filter, FilterOperator, Sorter, MessageBox, JSONModel, Fragment) {
 	"use strict";
 
-	return Controller.extend("sap.ui.demo.fiori2.controller.Master", {
+	return Controller.extend("MasterDetail.controller.Master", {
 		onInit: function () {
 			this.oView = this.getView();
 			this._bDescendingSort = false;
@@ -29,7 +30,21 @@ sap.ui.define([
 		},
 
 		onAdd: function () {
-			MessageBox.information("This functionality is not ready yet.", {title: "Aw, Snap!"});
+			this._loadCreateItem();
+		},
+
+		_loadCreateItem : async function () {
+			if (!this._oDialog) {
+				this._oDialog = await Fragment.load({
+					name: "MasterDetail/view/fragment/CreateItem",
+					controller: this,
+					id: "DialogAddNewRow"
+				}).then(oDialog => {
+					this.getView().addDependent(oDialog);
+					return oDialog;
+				})	
+			}
+			this._oDialog.open();
 		},
 
 		onSort: function () {

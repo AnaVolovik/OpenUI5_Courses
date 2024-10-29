@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary, ODataModel) {
 	'use strict';
 
-	return UIComponent.extend('sap.ui.demo.fiori2.Component', {
+	return UIComponent.extend('MasterDetail.Component', {
 
 		metadata: {
 			manifest: 'json'
