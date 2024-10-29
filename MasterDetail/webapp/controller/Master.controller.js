@@ -36,15 +36,46 @@ sap.ui.define([
 		_loadCreateItem : async function () {
 			if (!this._oDialog) {
 				this._oDialog = await Fragment.load({
-					name: "MasterDetail/view/fragment/CreateItem",
+					name: "MasterDetail.view.fragment.CreateItem",
 					controller: this,
 					id: "DialogAddNewRow"
 				}).then(oDialog => {
-					this.getView().addDependent(oDialog);
+					this.oView.addDependent(oDialog);
 					return oDialog;
-				})	
+				})
 			}
 			this._oDialog.open();
+		},
+
+		onDialogBeforeOpen(oEvent) {
+			const oDialog = oEvent.getSource(),
+						oParams = {
+							ItemID: "0"
+						},
+						oEntry = this.oModel.createEntry("/zjblessons_base_Items", {
+							properties: oParams
+						});
+			
+			oDialog.setBindingContext(oEntry, "items");
+		},
+
+
+		onPressSave() {
+			const oDialog = this._oDialog,
+						oBindingContext = oDialog.getBindingContext("items"),
+						oData = oBindingContext.getObject();
+
+			const oModel = this.getView().getModel("items");
+
+			oData.Quantity = parseFloat(oData.Quantity);
+    	oData.Price = parseFloat(oData.Price);
+      oModel.submitChanges();
+			this._oDialog.close();
+		},
+
+		onPressCancel() {
+			this.oModel.resetChanges()
+			this._oDialog.close();
 		},
 
 		onSort: function () {

@@ -12,36 +12,42 @@
 					<Label text="ItemID" labelFor="idItemID" />
 					<Input
 						id="idItemID"
+						value="{items>ItemID}"
 					/>
 				</VBox>
         <VBox>
 					<Label text="HeaderID" labelFor="idHeaderID" />
 					<Input
 						id="idHeaderID"
+						value="{items>HeaderID}"
 					/>
 				</VBox>
-        <VBox>
+        <!-- <VBox>
 					<Label text="Instance" labelFor="idInstance" />
 					<Input
 						id="idInstance"
+						value="{}"
 					/>
-				</VBox>
+				</VBox> -->
         <VBox>
 					<Label text="MaterialID" labelFor="idMaterialID" />
 					<Input
 						id="idMaterialID"
+						value="{items>MaterialID}"
 					/>
 				</VBox>
         <VBox>
 					<Label text="GroupID" labelFor="idGroupID" />
 					<Input
 						id="idGroupID"
+						value="{items>GroupID}"
 					/>
 				</VBox>
         <VBox>
 					<Label text="MaterialText" labelFor="idMaterialText" />
 					<Input
 						id="idMaterialText"
+						value="{items>MaterialText}"
 					/>
 				</VBox>
         <VBox>
@@ -49,6 +55,7 @@
 					<Input
 						id="idQuantity"
             type="Number"
+						value="{items>Quantity}"
 					/>
 				</VBox>
         <VBox>
@@ -56,6 +63,7 @@
 					<Input
 						id="idPrice"
             type="Number"
+						value="{items>Price}"
 					/>
 				</VBox>
 				<VBox>
@@ -63,6 +71,7 @@
 					<DatePicker
 						id="idCreated"
 						value="{
+							'path':'items>Created',
 							'type':'sap.ui.model.type.Date',
 							'formatOptions': {
 								'pattern': 'yyyy-MM-dd'
@@ -75,6 +84,7 @@
 					<Label text="CreatedBy" labelFor="idCreatedBy" />
 					<Input
 						id="idCreatedBy"
+						value="{items>CreatedBy}"
 					/>
 				</VBox>
         <VBox>
@@ -82,6 +92,7 @@
 					<DatePicker
 						id="idModified"
 						value="{
+							'path':'items>Modified',
 							'type':'sap.ui.model.type.Date',
 							'formatOptions': {
 								'pattern': 'yyyy-MM-dd'
@@ -94,6 +105,7 @@
 					<Label text="ModifiedBy" labelFor="idModifiedBy" />
 					<Input
 						id="idModifiedBy"
+						value="{items>ModifiedBy}"
 					/>
 				</VBox>
 			</VBox>
