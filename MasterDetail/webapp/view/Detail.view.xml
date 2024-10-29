@@ -53,6 +53,14 @@
 						text="Стоимость BYN"
 						type="Emphasized"
 						press="._onCostButtonPress"/>
+					<!-- <m:ToggleButton
+						text="Edit"
+						type="Emphasized"
+						press=".onEditToggleButtonPress"/> -->
+					<m:Button
+						text="Delete"
+						type="Transparent"
+						press=".onDeleteButtonPress"/>
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>

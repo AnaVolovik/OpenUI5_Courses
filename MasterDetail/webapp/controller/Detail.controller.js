@@ -160,6 +160,34 @@ sap.ui.define([
 			});
 		},
 
+		onDeleteButtonPress(oEvent) {
+			const oBindingContext = oEvent.getSource().getBindingContext("items"),
+						sKey = this.oModel.createKey('/zjblessons_base_Items', {
+							ItemID: oBindingContext.getProperty('ItemID'),
+							HeaderID: oBindingContext.getProperty('HeaderID')
+						});
+			
+			const sBoxMessage = "Are you sure you want to delete this item?",
+						sBoxTitle = "Confirm Deletion";
+				
+			sap.m.MessageBox.warning(sBoxMessage, {
+				title: sBoxTitle,
+				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+				onClose: (oAction) => {
+						if (oAction === sap.m.MessageBox.Action.OK) {
+							this.oModel.remove(sKey, {
+									success: () => {
+										sap.m.MessageToast.show("Item deleted successfully.");
+									},
+									error: (oError) => {
+										sap.m.MessageBox.error("Failed to delete item: " + oError.message);
+									}
+							});
+						}
+				}
+			});
+		},
+
 		handleFullScreen: function () {
 			var sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
 			this.oRouter.navTo("detail", {layout: sNextLayout, item: this._item});
