@@ -139,6 +139,7 @@ sap.ui.define([
 			this.oPassword.setValueState("None");
 			this.oConfirmPassword.setValueState("None");
 			this.oPromocode.setValueState("None");
+			this.oPromocode.setEnabled(true);
 		},
 		
 		_onRegisterButtonPress: function() {
