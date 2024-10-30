@@ -52,7 +52,7 @@ sap.ui.define([
 	
 			try {
 				const oData = await new Promise((resolve, reject) => {
-					oModel.read(`/tHeaders(Instance='${instance}',ID='${id}')`, {
+					oModel.read(`/zjblessons_base_Headers(HeaderID='${id}')`, {
 						success: function (data) {
 							resolve(data);
 						},
@@ -186,6 +186,10 @@ sap.ui.define([
 						}
 				}
 			});
+		},
+
+		onEditButtonPress(oEvent) {
+			
 		},
 
 		handleFullScreen: function () {

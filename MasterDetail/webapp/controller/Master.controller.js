@@ -50,9 +50,9 @@ sap.ui.define([
 		onDialogBeforeOpen(oEvent) {
 			const oDialog = oEvent.getSource(),
 						oParams = {
-							ItemID: "0"
+							IntegrationID: ""
 						},
-						oEntry = this.oModel.createEntry("/zjblessons_base_Items", {
+						oEntry = this.oModel.createEntry("/tItems", {
 							properties: oParams
 						});
 			
@@ -67,8 +67,9 @@ sap.ui.define([
 
 			const oModel = this.getView().getModel("items");
 
-			oData.Quantity = parseFloat(oData.Quantity);
-    	oData.Price = parseFloat(oData.Price);
+			oData.Quantity = Number(oData.Quantity);
+    	oData.Price = Number(oData.Price);
+
       oModel.submitChanges();
 			this._oDialog.close();
 		},

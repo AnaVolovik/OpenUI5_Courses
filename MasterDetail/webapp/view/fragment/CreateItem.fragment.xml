@@ -12,7 +12,7 @@
 					<Label text="ItemID" labelFor="idItemID" />
 					<Input
 						id="idItemID"
-						value="{items>ItemID}"
+						value="{items>ID}"
 					/>
 				</VBox>
         <VBox>
@@ -22,32 +22,18 @@
 						value="{items>HeaderID}"
 					/>
 				</VBox>
-        <!-- <VBox>
+        <VBox>
 					<Label text="Instance" labelFor="idInstance" />
 					<Input
 						id="idInstance"
-						value="{}"
+						value="{items>Instance}"
 					/>
-				</VBox> -->
+				</VBox>
         <VBox>
 					<Label text="MaterialID" labelFor="idMaterialID" />
 					<Input
 						id="idMaterialID"
 						value="{items>MaterialID}"
-					/>
-				</VBox>
-        <VBox>
-					<Label text="GroupID" labelFor="idGroupID" />
-					<Input
-						id="idGroupID"
-						value="{items>GroupID}"
-					/>
-				</VBox>
-        <VBox>
-					<Label text="MaterialText" labelFor="idMaterialText" />
-					<Input
-						id="idMaterialText"
-						value="{items>MaterialText}"
 					/>
 				</VBox>
         <VBox>

@@ -53,10 +53,10 @@
 						text="Стоимость BYN"
 						type="Emphasized"
 						press="._onCostButtonPress"/>
-					<!-- <m:ToggleButton
+					<m:ToggleButton
 						text="Edit"
-						type="Emphasized"
-						press=".onEditToggleButtonPress"/> -->
+						type="Transparent"
+						press=".onEditButtonPress"/>
 					<m:Button
 						text="Delete"
 						type="Transparent"
@@ -107,7 +107,7 @@
 								columnsM="1">
 								<form:content>
 									<m:Label text="HeaderID"/>
-									<m:Text text="{headerData>ID}"/>
+									<m:Text text="{headerData>HeaderID}"/>
 									<m:Label text="DocumentNumber"/>
 									<m:Text text="{headerData>DocumentNumber}"/>
 									<m:Label text="DocumentDate"/>
