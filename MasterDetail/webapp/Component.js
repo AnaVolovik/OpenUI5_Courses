@@ -29,7 +29,10 @@ sap.ui.define([
 			
 			this.setModel(oModel, "items");
 
-			const oMasterModel = new sap.ui.model.json.JSONModel({});
+			const oMasterModel = new sap.ui.model.json.JSONModel({
+				isEditable: true,
+				isVisible: false
+			});
 			this.setModel(oMasterModel, "masterModel");
 			
 			oRouter = this.getRouter();
@@ -57,9 +60,9 @@ sap.ui.define([
 		},
 
 		onDialogBeforeOpen(oEvent) {
-			const oModel = this.getModel("items");
-			const oDialog = oEvent.getSource();
-
+			const oModel = this.getModel("items"),
+						oMasterModel = this.getModel("masterModel"),
+						oDialog = oEvent.getSource();
 			if (oDialog.isNewItem) {
         const oDialog = oEvent.getSource(),
 						oParams = {
@@ -70,9 +73,11 @@ sap.ui.define([
 						});
 			
 				oDialog.setBindingContext(oEntry, "items");
+				oMasterModel.setProperty("/isEditable", true);
+				oMasterModel.setProperty("/isVisible", false);
 			} else {
-					//TODO
-					console.log("Открытие диалога для редактирования элемента.");
+				oMasterModel.setProperty("/isEditable", false);
+				oMasterModel.setProperty("/isVisible", true);
 			}
 		},
 
@@ -85,6 +90,7 @@ sap.ui.define([
 
 			oData.Quantity = Number(oData.Quantity);
     	oData.Price = Number(oData.Price);
+			delete oData.Instance;
 
       oModel.submitChanges({
         success: () => {

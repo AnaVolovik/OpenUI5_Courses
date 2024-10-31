@@ -13,6 +13,7 @@
 					<Input
 						id="idItemID"
 						value="{items>ItemID}"
+						editable="{masterModel>/isEditable}"
 					/>
 				</VBox>
         <VBox>
@@ -20,15 +21,17 @@
 					<Input
 						id="idHeaderID"
 						value="{items>HeaderID}"
+						editable="{masterModel>/isEditable}"
 					/>
 				</VBox>
-        <!-- <VBox>
+        <VBox visible="{masterModel>/isVisible}">
 					<Label text="Instance" labelFor="idInstance" />
 					<Input
 						id="idInstance"
-						value="{items>Instance}"
+						value="{Instance}"
+						editable="{masterModel>/isEditable}"
 					/>
-				</VBox> -->
+				</VBox>
         <VBox>
 					<Label text="MaterialID" labelFor="idMaterialID" />
 					<Input
