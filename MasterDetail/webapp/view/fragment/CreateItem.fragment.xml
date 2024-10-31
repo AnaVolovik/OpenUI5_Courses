@@ -12,7 +12,7 @@
 					<Label text="ItemID" labelFor="idItemID" />
 					<Input
 						id="idItemID"
-						value="{items>ID}"
+						value="{items>ItemID}"
 					/>
 				</VBox>
         <VBox>
@@ -22,18 +22,32 @@
 						value="{items>HeaderID}"
 					/>
 				</VBox>
-        <VBox>
+        <!-- <VBox>
 					<Label text="Instance" labelFor="idInstance" />
 					<Input
 						id="idInstance"
 						value="{items>Instance}"
 					/>
-				</VBox>
+				</VBox> -->
         <VBox>
 					<Label text="MaterialID" labelFor="idMaterialID" />
 					<Input
 						id="idMaterialID"
 						value="{items>MaterialID}"
+					/>
+				</VBox>
+				<VBox>
+					<Label text="GroupID" labelFor="idGroupID" />
+					<Input
+						id="idGroupID"
+						value="{items>GroupID}"
+					/>
+				</VBox>
+				<VBox>
+					<Label text="MaterialText" labelFor="idMaterialText" />
+					<Input
+						id="idMaterialText"
+						value="{items>MaterialText}"
 					/>
 				</VBox>
         <VBox>
@@ -63,7 +77,6 @@
 								'pattern': 'yyyy-MM-dd'
 							}
 						}"
-						change="handleChange"
 						class="sapUiSmallMarginBottom"/>
 				</VBox>
         <VBox>
@@ -84,7 +97,6 @@
 								'pattern': 'yyyy-MM-dd'
 							}
 						}"
-						change="handleChange"
 						class="sapUiSmallMarginBottom"/>
 				</VBox>
         <VBox>

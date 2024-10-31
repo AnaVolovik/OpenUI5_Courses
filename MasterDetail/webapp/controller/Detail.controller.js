@@ -10,7 +10,7 @@ sap.ui.define([
 			this.oRouter = this.oOwnerComponent.getRouter();
 			this.oModel = this.oOwnerComponent.getModel("items");
 			this.oMasterModel = this.oOwnerComponent.getModel("masterModel");
-			
+
 			this.oRouter.getRoute("master").attachPatternMatched(this._onProductMatched, this);
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
 		},
@@ -43,16 +43,15 @@ sap.ui.define([
 			}
 		},
 
-		_loadHeaderData: async function (id) {
+		_loadHeaderData: async function (ID) {
 			const oModel = this.getView().getModel();
-			const instance = "1000000";
 
 			this.getView().setModel(new sap.ui.model.json.JSONModel({}), "headerData");
     	this.getView().setBindingContext(null, "headerData");
 	
 			try {
 				const oData = await new Promise((resolve, reject) => {
-					oModel.read(`/zjblessons_base_Headers(HeaderID='${id}')`, {
+					oModel.read(`/zjblessons_base_Headers(HeaderID='${ID}')`, {
 						success: function (data) {
 							resolve(data);
 						},
@@ -178,6 +177,7 @@ sap.ui.define([
 							this.oModel.remove(sKey, {
 									success: () => {
 										sap.m.MessageToast.show("Item deleted successfully.");
+										this.oModel.refresh(true);
 									},
 									error: (oError) => {
 										sap.m.MessageBox.error("Failed to delete item: " + oError.message);
@@ -188,10 +188,29 @@ sap.ui.define([
 			});
 		},
 
-		onEditButtonPress(oEvent) {
-			
+		onEditButtonPress: async function (oEvent) {
+			const oBindingContext = oEvent.getSource().getBindingContext("items"),
+						itemID = oBindingContext.getProperty("ItemID"),
+						headerID = oBindingContext.getProperty("HeaderID"),
+						sPath = `/zjblessons_base_Items(ItemID='${itemID}',HeaderID='${headerID}')`;
+
+			await this.getOwnerComponent()._loadCreateItem(false);
+
+			this._loadData(sPath);
 		},
 
+		_loadData: function (sPath) {
+			this.oModel.read(sPath, {
+					success: () => {
+						const oContext = new sap.ui.model.Context(this.oModel, sPath);
+					 	this.getOwnerComponent()._oDialog.setBindingContext(oContext, "items");
+					},
+					error: (oError) => {
+							console.error("Ошибка при загрузке данных для редактирования:", oError);
+					}
+			});
+		},
+	
 		handleFullScreen: function () {
 			var sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
 			this.oRouter.navTo("detail", {layout: sNextLayout, item: this._item});

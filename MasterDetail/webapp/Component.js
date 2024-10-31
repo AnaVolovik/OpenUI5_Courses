@@ -3,8 +3,9 @@ sap.ui.define([
 	'sap/ui/model/json/JSONModel',
 	'sap/f/FlexibleColumnLayoutSemanticHelper',
 	'sap/f/library',
-	"sap/ui/model/odata/v2/ODataModel"
-], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary, ODataModel) {
+	"sap/ui/model/odata/v2/ODataModel",
+	"sap/ui/core/Fragment"
+], function(UIComponent, JSONModel, FlexibleColumnLayoutSemanticHelper, fioriLibrary, ODataModel, Fragment) {
 	'use strict';
 
 	return UIComponent.extend('MasterDetail.Component', {
@@ -22,7 +23,8 @@ sap.ui.define([
 
 			const oModel = new ODataModel(oDataSourceUri, {
 				json: true,
-				loadMetadataAsync: true 
+				useBatch: true,
+    		defaultBindingMode: "TwoWay"
 			});
 			
 			this.setModel(oModel, "items");
@@ -33,6 +35,73 @@ sap.ui.define([
 			oRouter = this.getRouter();
 			oRouter.attachBeforeRouteMatched(this._onBeforeRouteMatched, this);
 			oRouter.initialize();
+		},
+
+		_loadCreateItem : async function (isNewItem = true) {
+			if (this._oDialog) {
+					this._oDialog.destroy();
+					this._oDialog = null;
+			}
+			this._oDialog = await Fragment.load({
+					name: "MasterDetail.view.fragment.CreateItem",
+					controller: this,
+					id: "DialogAddNewRow"
+			}).then(oDialog => {
+					this.getRootControl().addDependent(oDialog);
+					return oDialog;
+			});
+
+			this._oDialog.isNewItem = isNewItem;
+			
+			this._oDialog.open();
+		},
+
+		onDialogBeforeOpen(oEvent) {
+			const oModel = this.getModel("items");
+			const oDialog = oEvent.getSource();
+
+			if (oDialog.isNewItem) {
+        const oDialog = oEvent.getSource(),
+						oParams = {
+							ItemID: "0"
+						},
+						oEntry = oModel.createEntry("/zjblessons_base_Items", {
+							properties: oParams
+						});
+			
+				oDialog.setBindingContext(oEntry, "items");
+			} else {
+					//TODO
+					console.log("Открытие диалога для редактирования элемента.");
+			}
+		},
+
+		onPressSave() {
+			const oDialog = this._oDialog,
+						oBindingContext = oDialog.getBindingContext("items"),
+						oData = oBindingContext.getObject();
+
+			const oModel = this.getModel("items");
+
+			oData.Quantity = Number(oData.Quantity);
+    	oData.Price = Number(oData.Price);
+
+      oModel.submitChanges({
+        success: () => {
+					oModel.refresh(true);
+					this._oDialog.close();
+        },
+        error: (oError) => {
+					console.error("Ошибка при сохранении:", oError);
+        }
+    	});
+		},
+
+		onPressCancel() {
+			const oModel = this.getModel("items");
+			oModel.resetChanges()
+			this._oDialog.destroy();
+			this._oDialog = null;
 		},
 
 		getHelper: function () {

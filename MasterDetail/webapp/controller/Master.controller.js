@@ -30,53 +30,7 @@ sap.ui.define([
 		},
 
 		onAdd: function () {
-			this._loadCreateItem();
-		},
-
-		_loadCreateItem : async function () {
-			if (!this._oDialog) {
-				this._oDialog = await Fragment.load({
-					name: "MasterDetail.view.fragment.CreateItem",
-					controller: this,
-					id: "DialogAddNewRow"
-				}).then(oDialog => {
-					this.oView.addDependent(oDialog);
-					return oDialog;
-				})
-			}
-			this._oDialog.open();
-		},
-
-		onDialogBeforeOpen(oEvent) {
-			const oDialog = oEvent.getSource(),
-						oParams = {
-							IntegrationID: ""
-						},
-						oEntry = this.oModel.createEntry("/tItems", {
-							properties: oParams
-						});
-			
-			oDialog.setBindingContext(oEntry, "items");
-		},
-
-
-		onPressSave() {
-			const oDialog = this._oDialog,
-						oBindingContext = oDialog.getBindingContext("items"),
-						oData = oBindingContext.getObject();
-
-			const oModel = this.getView().getModel("items");
-
-			oData.Quantity = Number(oData.Quantity);
-    	oData.Price = Number(oData.Price);
-
-      oModel.submitChanges();
-			this._oDialog.close();
-		},
-
-		onPressCancel() {
-			this.oModel.resetChanges()
-			this._oDialog.close();
+			this.getOwnerComponent()._loadCreateItem(true);
 		},
 
 		onSort: function () {
