@@ -35,16 +35,17 @@ sap.ui.define([
 
 		onSort: function () {
 			this._bDescendingSort = !this._bDescendingSort;
-			var oBinding = this.oItemsTable.getBinding("items"),
-				oSorter = new Sorter("ItemID", this._bDescendingSort);
+			const oBinding = this.oItemsTable.getBinding("items"),
+					oSorter = new Sorter("ItemID", this._bDescendingSort);
 
 			oBinding.sort(oSorter);
 		},
 
 		onListItemPress: function (oEvent) {
-			var itemPath = oEvent.getSource().getBindingContext("items").getPath(),
-				item = itemPath.split("/").slice(-1).pop(),
-				oNextUIState;
+			const itemPath = oEvent.getSource().getBindingContext("items").getPath(),
+				item = itemPath.split("/").slice(-1).pop();
+			
+			let oNextUIState;
 
 			this.getOwnerComponent().getHelper().then(function (oHelper) {
 				oNextUIState = oHelper.getNextUIState(1);

@@ -52,7 +52,7 @@
 					<m:ToggleButton
 						text="Стоимость BYN"
 						type="Emphasized"
-						press="._onCostButtonPress"/>
+						press=".onCostButtonPress"/>
 					<m:ToggleButton
 						text="Edit"
 						type="Transparent"

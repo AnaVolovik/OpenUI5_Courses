@@ -125,7 +125,7 @@ sap.ui.define([
 			return price * quantity;
 		},
 
-		_onCostButtonPress: function () {
+		onCostButtonPress: function () {
 			var that = this;
 
 			this.oModel.read("/zjblessons_base_Items", {
@@ -212,17 +212,17 @@ sap.ui.define([
 		},
 	
 		handleFullScreen: function () {
-			var sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
+			const sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/fullScreen");
 			this.oRouter.navTo("detail", {layout: sNextLayout, item: this._item});
 		},
 
 		handleExitFullScreen: function () {
-			var sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
+			const sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/exitFullScreen");
 			this.oRouter.navTo("detail", {layout: sNextLayout, item: this._item});
 		},
 
 		handleClose: function () {
-			var sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
+			const sNextLayout = this.oMasterModel.getProperty("/actionButtonsInfo/midColumn/closeColumn");
 			this.oRouter.navTo("master", {layout: sNextLayout});
 		},
 
