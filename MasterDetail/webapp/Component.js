@@ -94,11 +94,12 @@ sap.ui.define([
 
       oModel.submitChanges({
         success: () => {
+					sap.m.MessageToast.show("Record saved successfully");
 					oModel.refresh(true);
 					this._oDialog.close();
         },
         error: (oError) => {
-					console.error("Ошибка при сохранении:", oError);
+					sap.m.MessageBox.error("Error while saving the record: " + oError.message);
         }
     	});
 		},
