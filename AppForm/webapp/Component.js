@@ -31,10 +31,10 @@ sap.ui.define([
 
 			const oNavButtons = new JSONModel({
 				buttons: [
-						{ id: "Main", name: oResourceBundle.getText("navButtonMain") },
-						{ id: "Registration", name: oResourceBundle.getText("navButtonRegistration") },
-						{ id: "Login", name: oResourceBundle.getText("navButtonLogin") },
-						{ id: "Support", name: oResourceBundle.getText("navButtonSupport") }
+					{ id: "Main", name: oResourceBundle.getText("navButtonMain"), icon: oResourceBundle.getText("iconMain") },
+					{ id: "Registration", name: oResourceBundle.getText("navButtonRegistration"), icon: oResourceBundle.getText("iconRegistr") },
+					{ id: "Login", name: oResourceBundle.getText("navButtonLogin"), icon: oResourceBundle.getText("iconLogin") },
+					{ id: "Support", name: oResourceBundle.getText("navButtonSupport"), icon: oResourceBundle.getText("iconHelp") }
 				]
 			});
 			this.setModel(oNavButtons, "navButtons");

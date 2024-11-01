@@ -4,9 +4,9 @@
 	<Popover
 		id="menuPopover"
 		showHeader="false"
-		contentWidth="320px"
-		contentHeight="500px"
-		placement="Bottom"
+		contentWidth="300px"
+		contentHeight="400px"
+		placement="Left"
 		ariaLabelledBy="master-title">
 		<NavContainer
 			id="navContainer">
@@ -17,6 +17,7 @@
 					id="listMenuItems"
 					items="{navButtons>/buttons}" >
 					<StandardListItem
+						icon="{navButtons>icon}"
 						title="{navButtons>name}"
 						type="Active"
 						press="onMenuItemPress" />
