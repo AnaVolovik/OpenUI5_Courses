@@ -130,14 +130,6 @@ sap.ui.define([
 			}
 		},
 
-		_onOpenUsersAgreement: function() {
-			window.open("src/pdf/UsersAgreement.pdf", "_blank");
-		},
-
-		_onOpenPlatformRules: function() {
-			window.open("src/pdf/PlatformRules.pdf", "_blank");
-		},
-
 		_onCheckboxSelect: function(oEvent) {
 			const oCheckbox = oEvent.getSource();
 			this.oRegisterButton.setEnabled(oCheckbox.getSelected());
@@ -232,6 +224,19 @@ sap.ui.define([
 			this.oPromocode.setValue("");
 			this.oCheckbox.setSelected(false);
 			this.oRegisterButton.setEnabled(false);
+		},
+
+		onTelegramPress: function() {
+			window.open("https://t.me/your_username", "_blank");
+		},
+		
+		onInstagramPress: function() {
+				window.open("https://www.instagram.com/", "_blank");
+		},
+		
+		onYouTubePress: function() {
+				window.open("https://www.youtube.com", "_blank");
 		}
+
 	});
 });

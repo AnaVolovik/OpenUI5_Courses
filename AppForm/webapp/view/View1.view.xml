@@ -9,7 +9,6 @@
 	<App>
 		<pages>
 			<Page
-				class="sapUiContentPadding"
 				busy="{appModel>/busy}"
     		busyIndicatorDelay="0">
 				<headerContent>
@@ -98,16 +97,18 @@
 								text="{i18n>Agreement}"
 								class="sapUiSmallMarginTop" />
 							<Link
-								text="{i18n>Conditions}"
-								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink"
-								press="_onOpenUsersAgreement" />
+								text="{i18n>UsersAgreement}"
+								href="src/pdf/UsersAgreement.pdf"
+								target="_blank"
+								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
 							<Text
 								text="{i18n>And}"
 								class="sapUiSmallMarginTop" />
 							<Link
 								text="{i18n>Rules}"
-								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink"
-								press="_onOpenPlatformRules" />
+								href="src/pdf/PlatformRules.pdf"
+								target="_blank"
+								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
 							<MessageStrip
 								id="messageStrip"
 								type="Success"
@@ -135,6 +136,74 @@
 						</FlexBox>
 					</l:VerticalLayout>
 				</content>
+				<FlexBox
+					class="customFooter"
+					justifyContent="SpaceAround"
+					direction="Row"
+					alignItems="Start"
+					wrap="Wrap"
+					backgroundDesign="Translucent">
+					<VBox alignItems="Center" class="sapUiContentPadding">
+						<Image
+								src="src/img/logo.png"
+								densityAware="true"
+								width="100px"
+								height="80px"
+								alt="App Logo"
+								press="onLogoPress" />
+						<Text	
+							text="{i18n>CompanyDescriptionRow1}"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<Text text="{i18n>CompanyDescriptionRow2}" />
+					</VBox>
+					<VBox class="sapUiContentPadding">
+						<Link
+							text="{i18n>PrivacyPolicyFooter}"
+							href="src/pdf/PrivacyPolicy.pdf"
+							target="_blank"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<Link
+							text="{i18n>UsersAgreementFooter}"
+							href="src/pdf/UsersAgreement.pdf"
+							target="_blank"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<Link
+							text="{i18n>RulesFooter}"
+							href="src/pdf/PlatformRules.pdf"
+							target="_blank"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<Link
+							text="{i18n>RefundPolicyFooter}"
+							href="src/pdf/RefundPolicy.pdf"
+							target="_blank"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+					</VBox>
+					<VBox class="sapUiContentPadding">
+						<Text
+							text="{i18n>Address}"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<Text
+							text="{i18n>Phone}"
+							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+						<HBox>
+							<Button 
+									icon="src/img/telegram.png" 
+									press="onTelegramPress" 
+									type="Transparent"
+									class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd" />
+							<Button 
+									icon="src/img/instagram.png" 
+									press="onInstagramPress" 
+									type="Transparent"
+									class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+							<Button 
+									icon="src/img/youtube.png" 
+									press="onYouTubePress" 
+									type="Transparent"
+									class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+						</HBox>
+					</VBox>
+				</FlexBox>
 			</Page>
 		</pages>
 	</App>

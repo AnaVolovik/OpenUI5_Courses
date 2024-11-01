@@ -3,3 +3,7 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+.customFooter {
+  background-color: #a4caea;
+}
