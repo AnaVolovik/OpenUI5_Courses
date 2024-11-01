@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	'sap/ui/core/Fragment'
+], function(Controller, Fragment) {
 	"use strict";
 
 	return Controller.extend("AppForm.controller.View1", {
@@ -26,6 +27,31 @@ sap.ui.define([
 			} else {
 				this.oPromocode.setEnabled(true);
 			}
+		},
+
+		onLogoPress: async function(oEvent) {
+			const oButton = oEvent.getSource(),
+						oView = this.getView();
+
+			if (!this._pPopover) {
+					this._pPopover = Fragment.load({
+							id: oView.getId(),
+							name: "AppForm.view.fragment.OpenPopover",
+							controller: this
+					}).then(function(oPopover) {
+							oView.addDependent(oPopover);
+							return oPopover;
+					});
+			}
+
+			const oPopover = await this._pPopover;
+			oPopover.openBy(oButton);
+		},
+
+		onMenuItemPress: function(oEvent) {
+			const itemText = oEvent.getSource().getTitle();
+
+			sap.m.MessageToast.show(itemText);
 		},
 
 		_checkPromocode: function(promocode, oResourceBundle) {
@@ -105,11 +131,11 @@ sap.ui.define([
 		},
 
 		_onOpenUsersAgreement: function() {
-			window.open("pdf/UsersAgreement.pdf", "_blank");
+			window.open("src/pdf/UsersAgreement.pdf", "_blank");
 		},
 
 		_onOpenPlatformRules: function() {
-			window.open("pdf/PlatformRules.pdf", "_blank");
+			window.open("src/pdf/PlatformRules.pdf", "_blank");
 		},
 
 		_onCheckboxSelect: function(oEvent) {

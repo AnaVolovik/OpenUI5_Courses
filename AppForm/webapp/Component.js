@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"AppForm/model/models",
-	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/json/JSONModel"
 ], function(UIComponent, Device, models, JSONModel) {
 	"use strict";
 
@@ -15,17 +15,29 @@ sap.ui.define([
 		init: function() {
 			UIComponent.prototype.init.apply(this, arguments);
 
+			const oResourceBundle = this.getModel("i18n").getResourceBundle();
+
 			const oCityModel = new JSONModel({
 				cities: [
-						{ id: "Minsk", name: "Минск" },
-						{ id: "Grodno", name: "Гродно" },
-						{ id: "Brest", name: "Брест" },
-						{ id: "Gomel", name: "Гомель" },
-						{ id: "Mogilev", name: "Могилев" },
-						{ id: "Vitebsk", name: "Витебск" }
+						{ id: "Minsk", name: oResourceBundle.getText("cityMinsk") },
+						{ id: "Grodno", name: oResourceBundle.getText("cityGrodno") },
+						{ id: "Brest", name: oResourceBundle.getText("cityBrest") },
+						{ id: "Gomel", name: oResourceBundle.getText("cityGomel") },
+						{ id: "Mogilev", name: oResourceBundle.getText("cityMogilev") },
+						{ id: "Vitebsk", name: oResourceBundle.getText("cityVitebsk") }
 				]
 			});
 			this.setModel(oCityModel, "cityModel");
+
+			const oNavButtons = new JSONModel({
+				buttons: [
+						{ id: "Main", name: oResourceBundle.getText("navButtonMain") },
+						{ id: "Registration", name: oResourceBundle.getText("navButtonRegistration") },
+						{ id: "Login", name: oResourceBundle.getText("navButtonLogin") },
+						{ id: "Support", name: oResourceBundle.getText("navButtonSupport") }
+				]
+			});
+			this.setModel(oNavButtons, "navButtons");
 
 			const oAppModel = new sap.ui.model.json.JSONModel({
         busy: false

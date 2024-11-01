@@ -23,7 +23,8 @@
 								densityAware="true"
 								width="50px"
 								height="40px"
-								alt="App Logo" />
+								alt="App Logo"
+								press="onLogoPress" />
 						</contentRight>
 					</Bar>
 				</headerContent>
