@@ -184,6 +184,17 @@ sap.ui.define([
         }
     	}
 
+			if (this.oPassword.getValue() !== this.oConfirmPassword.getValue()) {
+        bValid = false;
+        this.oConfirmPassword.setValueState("Error");
+        this.oConfirmPassword.setValueStateText(oResourceBundle.getText("PasswordsDoNotMatchMessage"));
+        if (!firstInvalidField) {
+            firstInvalidField = this.oConfirmPassword;
+        }
+			} else {
+					this.oConfirmPassword.setValueState("None");
+			}
+
 			if (!bValid && firstInvalidField) {
         firstInvalidField.focus();
         setTimeout(() => {
@@ -227,7 +238,7 @@ sap.ui.define([
 		},
 
 		onTelegramPress: function() {
-			window.open("https://t.me/your_username", "_blank");
+			window.open("https://t.me/", "_blank");
 		},
 		
 		onInstagramPress: function() {

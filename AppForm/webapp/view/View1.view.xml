@@ -20,8 +20,8 @@
 							<Image
 								src="src/img/logo.png"
 								densityAware="true"
-								width="50px"
-								height="40px"
+								width="auto"
+								height="60px"
 								alt="App Logo"
 								press="onLogoPress" />
 						</contentRight>
@@ -109,14 +109,15 @@
 								href="src/pdf/PlatformRules.pdf"
 								target="_blank"
 								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-							<MessageStrip
+						</FlexBox>
+						<FlexBox>
+								<MessageStrip
 								id="messageStrip"
 								type="Success"
 								showIcon="true"
 								showCloseButton="true"
 								visible="false"
-								text=""
-							/>
+								text=""	/>
 						</FlexBox>
 						<FlexBox wrap="Wrap">
 							<Button
@@ -149,11 +150,9 @@
 								densityAware="true"
 								width="100px"
 								height="80px"
-								alt="App Logo"
-								press="onLogoPress" />
+								alt="App Logo" />
 						<Text	
-							text="{i18n>CompanyDescriptionRow1}"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+							text="{i18n>CompanyDescriptionRow1}" />
 						<Text text="{i18n>CompanyDescriptionRow2}" />
 					</VBox>
 					<VBox class="sapUiContentPadding">

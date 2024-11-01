@@ -5,8 +5,8 @@
 		id="menuPopover"
 		showHeader="false"
 		contentWidth="300px"
-		contentHeight="400px"
-		placement="Left"
+		contentHeight="340px"
+		placement="Auto"
 		ariaLabelledBy="master-title">
 		<NavContainer
 			id="navContainer">
