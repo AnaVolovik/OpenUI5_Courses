@@ -157,7 +157,6 @@ sap.ui.define([
 			this.oPassword.setValueState("None");
 			this.oConfirmPassword.setValueState("None");
 			this.oPromocode.setValueState("None");
-			this.oPromocode.setEnabled(true);
 		},
 		
 		_onRegisterButtonPress: function() {
@@ -235,6 +234,7 @@ sap.ui.define([
 			this.oPromocode.setValue("");
 			this.oCheckbox.setSelected(false);
 			this.oRegisterButton.setEnabled(false);
+			this.oPromocode.setEnabled(true);
 		},
 
 		onTelegramPress: function() {
