@@ -14,17 +14,17 @@
     		busyIndicatorDelay="0">
 				<headerContent>
 					<Bar>
-							<contentMiddle>
-										<Title text="{i18n>title}" />
-							</contentMiddle>
-							<contentRight>
-								<Image
-									src="src/img/logo.png"
-									densityAware="true"
-									width="50px"
-									height="40px"
-									alt="App Logo" />
-							</contentRight>
+						<contentMiddle>
+							<Title text="{i18n>title}" />
+						</contentMiddle>
+						<contentRight>
+							<Image
+								src="src/img/logo.png"
+								densityAware="true"
+								width="50px"
+								height="40px"
+								alt="App Logo" />
+						</contentRight>
 					</Bar>
 				</headerContent>
 				<content>
@@ -88,35 +88,35 @@
 						<Input
 							id="idPromocodeInput"
 						/>
-						<l:HorizontalLayout>
-								<CheckBox
-									id="idTermsCheckbox"
-									selected="false"
-									select="_onCheckboxSelect" />
-								<Text
-									text="{i18n>Agreement}"
-									class="sapUiSmallMarginTop" />
-								<Link
-									text="{i18n>Conditions}"
-									class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
-									press="_onOpenUsersAgreement" />
-								<Text
-									text="{i18n>And}"
-									class="sapUiSmallMarginTop" />
-								<Link
-									text="{i18n>Rules}"
-									class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
-									press="_onOpenPlatformRules" />
-						</l:HorizontalLayout>
-						<MessageStrip
-							id="messageStrip"
-							type="Success"
-							showIcon="true"
-							showCloseButton="true"
-							visible="false"
-							text=""
-						/>
-						<l:HorizontalLayout>
+						<FlexBox wrap="Wrap">
+							<CheckBox
+								id="idTermsCheckbox"
+								selected="false"
+								select="_onCheckboxSelect" />
+							<Text
+								text="{i18n>Agreement}"
+								class="sapUiSmallMarginTop" />
+							<Link
+								text="{i18n>Conditions}"
+								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink"
+								press="_onOpenUsersAgreement" />
+							<Text
+								text="{i18n>And}"
+								class="sapUiSmallMarginTop" />
+							<Link
+								text="{i18n>Rules}"
+								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink"
+								press="_onOpenPlatformRules" />
+							<MessageStrip
+								id="messageStrip"
+								type="Success"
+								showIcon="true"
+								showCloseButton="true"
+								visible="false"
+								text=""
+							/>
+						</FlexBox>
+						<FlexBox wrap="Wrap">
 							<Button
 								id="idRegisterButton"
 								text="{i18n>RegButton}"
@@ -131,7 +131,7 @@
 								press="_onCancelButtonPress"
 								class="sapUiMediumMarginTop"
 							/>
-						</l:HorizontalLayout>
+						</FlexBox>
 					</l:VerticalLayout>
 				</content>
 			</Page>
