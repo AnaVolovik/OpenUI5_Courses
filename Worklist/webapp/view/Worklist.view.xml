@@ -47,14 +47,14 @@
           icon="{i18n>iAction}"
           visible="true"
           type="Emphasized" 
-          press="onAction1Press" />
+          press="openPopupDescription" />
         <Button 
           text="{i18n>Action2} batch=true" 
           tooltip="{i18n>Action2} batch=true" 
           icon="{i18n>iAction}" 
           visible="true"
           type="Default" 
-          press="onAction2BatchPress" 
+          press="openPopupDescription" 
           enabled="{worklistView>/action2Enabled}" />
         <Button 
           text="{i18n>Action2} batch=false" 
@@ -62,7 +62,7 @@
           icon="{i18n>iAction}" 
           visible="true"
           type="Default" 
-          press="onAction2Press" 
+          press="openPopupDescription" 
           enabled="{worklistView>/action2Enabled}" />
         <SearchField
           id="searchField"
