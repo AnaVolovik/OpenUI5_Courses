@@ -257,22 +257,23 @@ sap.ui.define([
       this._bindTable()
     },
 
-    onAction1Press: async function () {
-      if (!this._PopupDescription) {
-        this._PopupDescription = await sap.ui.core.Fragment.load({
-          name: "zjblessons.Worklist.view.fragment.PopupDescription",
-          controller: this,
-          id: "PopupDescription"
-        }).then(oDialog => {
-          this.getView().addDependent(oDialog);
-          return oDialog;
-        });
-      }
-      this._PopupDescription.open();
-    },
-    
+
     onExecutePress: function () {
       console.log("Execute button pressed");
+      var oAction = this._PopupDescription._Action; 
+
+      if (oAction === 'Action1') {
+        console.log("this is onAction1");
+        this.onAction1Press();
+      } else if (oAction === 'Action2Multi') {
+        console.log("this is onAction2Press");
+        this.onAction2Press();
+      } else if (oAction === 'Action2MultiBatch') {
+        console.log("this is onAction2BatchPress");
+        this.onAction2BatchPress();
+      } else if (oAction === 'PostError') {
+        this.PostError();
+      }
       this._PopupDescription.close();
     },
     
@@ -291,7 +292,45 @@ sap.ui.define([
 
       const bEnabled = bSelected;
       oViewModel.setProperty("/action2Enabled", bEnabled);
-    }
+    },
+
+    openPopupDescription: async function (oEvent, action) {
+      //TODO oEvent
+      if (!this._PopupDescription) {
+        this._PopupDescription = await sap.ui.core.Fragment.load({
+          name: "zjblessons.Worklist.view.fragment.PopupDescription",
+          controller: this,
+          id: "PopupDescription"
+        });
+
+        this._PopupDescription._Action = action;
+        this.getView().addDependent(this._PopupDescription);
+
+        this._PopupDescription.open();
+      } else {
+        this._PopupDescription._Action = action;
+        this._PopupDescription.open();
+      }
+    },
+
+    onAction1Press: function(oEvent) {
+      var action = "Action1";
+      this.openPopupDescription(oEvent, action);
+
+    },
+
+    onAction2Press: function(oEvent) {
+      var action = "Action2Multi";
+      this.openPopupDescription(oEvent, action);
+
+    },
+    
+    onAction2BatchPress: function(oEvent) {
+      var action = "Action2MultiBatch";
+      this.openPopupDescription(oEvent, action);
+
+    },
+
 
   });
   }
