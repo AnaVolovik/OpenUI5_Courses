@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog title="{i18n>popupTitle}" 
+    contentWidth="300px" 
+    contentHeight="200px" 
+  >
+    <Page showHeader="false" class="sapUiContentPadding">
+      <content>
+        <Input id="iDescription" />
+      </content>
+      <footer>
+        <Toolbar>
+          <ToolbarSpacer/>
+          <Button text="{i18n>btnExecute}" press="onExecutePress" type="Default"/>
+          <Button text="{i18n>btnCancel}" press="onCancelPress" type="Default"/>
+        </Toolbar>
+      </footer>
+    </Page>
+  </Dialog>
+</core:FragmentDefinition>
