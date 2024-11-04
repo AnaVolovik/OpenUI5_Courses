@@ -16,7 +16,8 @@ sap.ui.define([
     onInit : function () {
       const oViewModel = new JSONModel({
         sCount: '0',
-        sIconTHKey: 'All'
+        sIconTHKey: 'All',
+        action2Enabled: false
       });
       this.setModel(oViewModel, "worklistView");
 
@@ -281,9 +282,15 @@ sap.ui.define([
     },
 
     onMultiSelectPress: function() {
-      const oTable = this.byId("table"),
-            bSelected = oTable.getMode() === "MultiSelect" ? false : true;
+      const oTable = this.byId("table");
+      const bSelected = oTable.getMode() === "MultiSelect" ? false : true;
+
       oTable.setMode(bSelected ? "MultiSelect" : "None");
+
+      const oViewModel = this.getView().getModel("worklistView");
+
+      const bEnabled = bSelected;
+      oViewModel.setProperty("/action2Enabled", bEnabled);
     }
 
   });
