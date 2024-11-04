@@ -16,7 +16,7 @@ sap.ui.define([
             const oDateFormat = DateFormat.getDateInstance({
                 style: "medium"
             });
-            return oDateFormat.format(new Date(oDate));
+            return oDateFormat.format(oDate);
         }
         return "";
     }

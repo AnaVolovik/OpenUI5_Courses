@@ -62,7 +62,10 @@ sap.ui.define([
             text: '{DocumentNumber}'
           }),
           new sap.m.Text({
-            text: '{DocumentDate}'
+            text: {
+              path: 'DocumentDate',
+              formatter: this.formatter.formatDate.bind(this.formatter)
+            }
           }),
           new sap.m.Text({
             text: '{PlantText}'
@@ -74,7 +77,10 @@ sap.ui.define([
             text: '{Description}'
           }),
           new sap.m.Text({
-            text: '{Created}'
+            text: {
+              path: 'Created',
+              formatter: this.formatter.formatDate.bind(this.formatter)
+            }
           }),
           new sap.m.Switch({
             state: "{= ${Version} === 'D'}",
