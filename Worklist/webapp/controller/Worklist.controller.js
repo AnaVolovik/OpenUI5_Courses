@@ -159,7 +159,7 @@ sap.ui.define([
         }).then(oDialog => {
           this.getView().addDependent(oDialog);
           return oDialog;
-        })	
+        })
       }
       this._oDialog.open();
     },
@@ -251,8 +251,32 @@ sap.ui.define([
 
       this.getModel('worklistView').setProperty('/sIconTHKey', sSelectedKey);
       this._bindTable()
+    },
+
+    onAction1Press: async function () {
+      if (!this._PopupDescription) {
+        this._PopupDescription = await sap.ui.core.Fragment.load({
+          name: "zjblessons.Worklist.view.fragment.PopupDescription",
+          controller: this,
+          id: "PopupDescription"
+        }).then(oDialog => {
+          this.getView().addDependent(oDialog);
+          return oDialog;
+        });
+      }
+      this._PopupDescription.open();
+    },
+    
+    onExecutePress: function () {
+      console.log("Execute button pressed");
+      this._PopupDescription.close();
+    },
+    
+    onCancelPress: function () {
+      console.log("Cancel button pressed");
+      this._PopupDescription.close();
     }
 
   });
-}
+  }
 );
