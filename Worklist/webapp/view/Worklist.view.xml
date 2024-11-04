@@ -22,11 +22,16 @@
     itemPress="onItemSelect"
     growing="true"
     growingThreshold="15"
-    growingScrollToLoad="true">
+    growingScrollToLoad="true"
+    mode="MultiSelect">
 
     <headerToolbar>
       <Toolbar height="80px">
         <Title id="tableHeader"  text="({= ${worklistView>/sCount}})"/>
+        <Button
+          icon="{i18n>iMultiSelect}"
+          type="Ghost"
+          press="onMultiSelectPress" />
         <VBox class="sapUiSmallMargin">
           <Label text="{i18n>filterDateRange}" labelFor="idFilterDocumentDate"/>
             <DateRangeSelection

@@ -19,6 +19,9 @@ sap.ui.define([
         sIconTHKey: 'All'
       });
       this.setModel(oViewModel, "worklistView");
+
+      const oTable = this.byId("table");
+      oTable.setMode("None");
     },
 
     onBeforeRendering: function () {
@@ -275,6 +278,12 @@ sap.ui.define([
     onCancelPress: function () {
       console.log("Cancel button pressed");
       this._PopupDescription.close();
+    },
+
+    onMultiSelectPress: function() {
+      const oTable = this.byId("table"),
+            bSelected = oTable.getMode() === "MultiSelect" ? false : true;
+      oTable.setMode(bSelected ? "MultiSelect" : "None");
     }
 
   });
