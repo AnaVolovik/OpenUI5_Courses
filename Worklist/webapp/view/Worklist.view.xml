@@ -36,6 +36,29 @@
               change="_onDateRangeChange"/>
         </VBox>
         <ToolbarSpacer />
+        <Button 
+            text="{i18n>Action1}" 
+            tooltip="{i18n>Action1}" 
+            icon="{i18n>iAction}" 
+            visible="true"
+            type="Emphasized" 
+            press="onAction1Press" />
+        <Button 
+            text="{i18n>Action2} batch=true" 
+            tooltip="{i18n>Action2} batch=true" 
+            icon="{i18n>iAction}" 
+            visible="true"
+            type="Default" 
+            press="onAction2BatchPress" 
+            />
+        <Button 
+            text="{i18n>Action2} batch=false" 
+            tooltip="{i18n>Action2} batch=false" 
+            icon="{i18n>iAction}" 
+            visible="true"
+            type="Default" 
+            press="onAction2Press" 
+            />
         <SearchField
           id="searchField"
           tooltip="{i18n>worklistSearchTooltip}"
