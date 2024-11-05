@@ -257,7 +257,8 @@ sap.ui.define([
     },
 
     onExecutePress: function () {
-      const oAction = this._PopupDescription._Action; 
+      const oAction = this._PopupDescription._Action,
+            iDescription = sap.ui.core.Fragment.byId("PopupDescription","iDescription");
 
       if (oAction === 'Action1') {
         this.onAction1Press();
@@ -265,9 +266,12 @@ sap.ui.define([
         this.onAction2Press();
       } else if (oAction === 'Action2MultiBatch') {
         this.onAction2BatchPress();
-      } else if (oAction === 'PostError') {
-        this.PostError();
       }
+      
+      if (iDescription) {
+        iDescription.setValue("");
+      }
+
       this._PopupDescription.close();
     },
     
@@ -289,7 +293,7 @@ sap.ui.define([
 
     openPopupDescription: async function (oEvent) {
       const oButton = oEvent.getSource(),
-          sAction = oButton.data("action");
+            sAction = oButton.data("action");
 
       if (!this._PopupDescription) {
         this._PopupDescription = await sap.ui.core.Fragment.load({
@@ -312,7 +316,34 @@ sap.ui.define([
 
     onAction1Press: function() {
       const iParameters = {},
-            iDescription = sap.ui.core.Fragment.byId("PopupDescription","iDescription");
+            iDescription = sap.ui.core.Fragment.byId("PopupDescription","iDescription"),
+            inputValue = iDescription.getValue();
+
+      if (inputValue === '1' || inputValue === '2') {
+        const errorCritical = this.getModel("i18n").getResourceBundle().getText("errorCriticalPopup"),
+              errorMessage = this.getModel("i18n").getResourceBundle().getText("errorPopupMsg");
+
+        sap.m.MessageBox.error((errorCritical + ": " + errorMessage), {
+          title: errorCritical
+        });
+        return;
+      } else if (inputValue === '3') {
+          const errorExecute = this.getModel("i18n").getResourceBundle().getText("errorExecute");
+
+          sap.m.MessageToast.show(errorExecute, {
+            duration: 3000,
+            autoClose: true
+          });
+          return;
+      } else if (isNaN(inputValue) || inputValue.length > 50) {
+        const errorTitle = this.getModel("i18n").getResourceBundle().getText("errorPopup"),
+              errorMessage = this.getModel("i18n").getResourceBundle().getText("errorPopupMsg");
+
+        sap.m.MessageBox.error((errorTitle + ": " + errorMessage), {
+          title: errorTitle
+        });
+        return;
+      }
 
       iParameters.ActionExec = {
         ActionID: "Action1",
@@ -327,7 +358,18 @@ sap.ui.define([
       const iParameters = {},
             iDescription = sap.ui.core.Fragment.byId("PopupDescription", "iDescription"),
             oTable = this.byId("table"),
-            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject());
+            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject()),
+            inputValue = iDescription.getValue();
+      
+      if (isNaN(inputValue) || inputValue.length > 50) {
+        const errorTitle = this.getModel("i18n").getResourceBundle().getText("errorPopup"),
+              errorMessage = this.getModel("i18n").getResourceBundle().getText("errorPopupMsg");
+
+        sap.m.MessageBox.error((errorTitle + ": " + errorMessage), {
+          title: errorTitle
+        });
+        return;
+      }
       
       iParameters.ActionExec = {
         ActionID: "Action2Multi",
@@ -343,8 +385,19 @@ sap.ui.define([
       const iParameters = {},
             iDescription = sap.ui.core.Fragment.byId("PopupDescription", "iDescription"),
             oTable = this.byId("table"),
-            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject());
-      
+            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject()),
+            inputValue = iDescription.getValue();
+
+      if (isNaN(inputValue) || inputValue.length > 50) {
+        const errorTitle = this.getModel("i18n").getResourceBundle().getText("errorPopup"),
+              errorMessage = this.getModel("i18n").getResourceBundle().getText("errorPopupMsg");
+
+        sap.m.MessageBox.error((errorTitle + ": " + errorMessage), {
+          title: errorTitle
+        });
+        return;
+      }
+
       iParameters.ActionExec = {
         ActionID: "Action2MultiBatch",
         iParam1: iDescription.getValue(),
@@ -394,10 +447,12 @@ sap.ui.define([
 
         this.getModel().submitChanges({
           success: () => {
-              console.log("Изменения успешно отправлены на сервер");
+            const successMessage = this.getResourceBundle().getText("successMsgToast");
+            sap.m.MessageToast.show(successMessage);
           },
-          error: (oError) => {
-              console.error("Ошибка при отправке изменений:", oError);
+          error: () => {
+            const errorMessage = this.getResourceBundle().getText("errorMsgToast");
+            sap.m.MessageToast.show(errorMessage);
           }
         });
       } else {
@@ -416,10 +471,12 @@ sap.ui.define([
 
             this.getModel().submitChanges({
               success: () => {
-                console.log("Изменения успешно отправлены на сервер для выбранных записей с батчем");
+                const successMessage = this.getResourceBundle().getText("successMsgToast");
+                sap.m.MessageToast.show(successMessage);
               },
-              error: (oError) => {
-                console.error("Ошибка при отправке изменений с батчем для выбранных записей:", oError);
+              error: () => {
+                const errorMessage = this.getResourceBundle().getText("errorMsgToast");
+                sap.m.MessageToast.show(errorMessage);
               }
             });
           } else {
@@ -434,10 +491,12 @@ sap.ui.define([
 
                 this.getModel().update(sPath, { Description: entries[index].Description }, {
                   success: () => {
-                    console.log(`Изменение успешно отправлено на сервер для элемента с ID ${entries[index].HeaderID}`);
+                    const successMessage = this.getResourceBundle().getText("successMsgToast");
+                    sap.m.MessageToast.show(successMessage);
                   },
-                  error: (oError) => {
-                    console.error(`Ошибка при отправке изменения для элемента с ID ${entries[index].HeaderID}:`, oError);
+                  error: () => {
+                    const errorMessage = this.getResourceBundle().getText("errorMsgToast");
+                    sap.m.MessageToast.show(errorMessage);
                   }
                 });
               }
