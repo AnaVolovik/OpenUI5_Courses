@@ -125,12 +125,12 @@ sap.ui.define([
           onClose: (oAction) => {
             if (oAction === sap.m.MessageBox.Action.OK) {
               this.getModel().remove(sKey, {
-                  success: (oData) => {
-                    console.log('Delete successful:', oData);
-                  },
-                  error: (oError) => {
-                    console.error('Delete failed:', oError);
-                  }
+                success: (oData) => {
+                  console.log('Delete successful:', oData);
+                },
+                error: (oError) => {
+                  console.error('Delete failed:', oError);
+                }
               });
             } else {
               console.log('Delete action canceled');
@@ -169,13 +169,13 @@ sap.ui.define([
 
     onDialogBeforeOpen(oEvent) {
       const oDialog = oEvent.getSource(),
-          oParams = {
-            Version: "A",
-            HeaderID: "0"
-          },
-          oEntry = this.getModel().createEntry("/zjblessons_base_Headers", {
-            properties: oParams
-          });
+            oParams = {
+              Version: "A",
+              HeaderID: "0"
+            },
+            oEntry = this.getModel().createEntry("/zjblessons_base_Headers", {
+              properties: oParams
+            });
 
       oDialog.setBindingContext(oEntry);
     },
@@ -204,7 +204,7 @@ sap.ui.define([
         success: () => {
           this.getModel().read(sPath, {
             success: (oData) => {
-                this.getModel().setProperty(`${sPath}/Version`, oData.Version);
+              this.getModel().setProperty(`${sPath}/Version`, oData.Version);
             }
           });
         }
@@ -212,19 +212,18 @@ sap.ui.define([
     },
 
     onSearch(oEvent) {
-      const sValue = oEvent.getParameter('query');
-
+      const sValue = oEvent.getParameter('newValue');
       this._searchHandler(sValue);
     },
 
     _searchHandler(sValue) {
       const oTable = this.getView().byId('table'),
             oFilter = new Filter({
-                filters: [
-                    new Filter('DocumentNumber', FilterOperator.Contains, sValue),
-                    new Filter('PlantText', FilterOperator.EQ, sValue)
-                ],
-                and: false
+              filters: [
+                  new Filter('DocumentNumber', FilterOperator.Contains, sValue),
+                  new Filter('PlantText', FilterOperator.EQ, sValue)
+              ],
+              and: false
             });
 
       oTable.getBinding('items').filter(oFilter);

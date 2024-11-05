@@ -77,7 +77,7 @@
         <SearchField
           id="searchField"
           tooltip="{i18n>worklistSearchTooltip}"
-          search="onSearch"
+          liveChange="onSearch"
           width="auto">
         </SearchField>
         <Button
