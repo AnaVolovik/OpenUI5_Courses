@@ -1,135 +1,135 @@
 <mvc:View controllerName="AppForm.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
-	<App>
-		<pages>
-			<Page
-				title="{i18n>title}"
-				class="sapUiContentPadding"
-				busy="{appModel>/busy}"
-    		busyIndicatorDelay="0">
-				<content>
-					<VBox>
-						<VBox >
-							<Label text="{i18n>Name}" labelFor="idName"/>
-							<Input
-								id="idName"
-								maxLength="64"
-								liveChange="_onNameInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>Surname}" labelFor="idSurname"/>
-							<Input
-								id="idSurname"
-								maxLength="64"
-								liveChange="_onNameInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>City}" labelFor="idCity"/>
-							<Select
-								id="idCity"
-								selectedKey="{Minsk}"
-								items= "{
-									path: 'cityModel>/cities'
-								}"
-								width="100%"
-							>
-								<items>
-									<core:Item key="{cityModel>id}" text="{cityModel>name}" />
-								</items>
-							</Select>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
-							<Input
-								id="idPhoneNumber"
-								type="Tel"
-								liveChange="_onPhoneInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>Email}" labelFor="idEmail"/>
-							<Input
-								id="idEmail"
-								type="Email"
-								maxLength="256"
-								liveChange="_onEmailInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>Password}" labelFor="idPassword"/>
-							<Input
-								id="idPassword"
-								type="Password"
-								maxLength="64"
-								liveChange="_onPasswordInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
-							<Input
-								id="idConfirmPassword"
-								type="Password"
-								maxLength="64"
-								liveChange="_onConfirmPasswordInputLiveChange"
-							/>
-						</VBox>
-						<VBox>
-							<Label text="{i18n>Promocode}" labelFor="idPromocodeInput"/>
-							<Input
-								id="idPromocodeInput"
-							/>
-						</VBox>
-						<VBox>
-							<HBox >
-									<CheckBox
-										id="idTermsCheckbox"
-										selected="false"
-										select="_onCheckboxSelect" />
-									<Text
-										text="{i18n>Agreement}"
-										class="sapUiSmallMarginTop" />
-									<Link
-										text="{i18n>Conditions}"
-										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
-										press="_onOpenUsersAgreement" />
-									<Text
-										text="{i18n>And}"
-										class="sapUiSmallMarginTop" />
-									<Link
-										text="{i18n>Rules}"
-										class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
-										press="_onOpenPlatformRules" />
-							</HBox>
-						</VBox>
-						<MessageStrip
-							id="messageStrip"
-							type="Success"
-							showIcon="true"
-							showCloseButton="true"
-							visible="false"
-							text=""
-						/>
-						<HBox alignItems="Center">
-							<Button
-								id="idRegisterButton"
-								text="{i18n>RegButton}"
-								type="Emphasized"
-								enabled="false"
-								press="_onRegisterButtonPress"
-								class="sapUiMediumMarginTop sapUiMediumMarginEnd"
-							/>
-							<Button
-								text="{i18n>CancelButton}"
-								type="Transparent"
-								press="_onCancelButtonPress"
-								class="sapUiMediumMarginTop"
-							/>
-						</HBox>
-					</VBox>
-				</content>
-			</Page>
-		</pages>
-	</App>
+  displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core">
+  <App>
+    <pages>
+      <Page
+        title="{i18n>title}"
+        class="sapUiContentPadding"
+        busy="{appModel>/busy}"
+        busyIndicatorDelay="0">
+        <content>
+          <VBox>
+            <VBox >
+              <Label text="{i18n>Name}" labelFor="idName"/>
+              <Input
+                id="idName"
+                maxLength="64"
+                liveChange="_onNameInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>Surname}" labelFor="idSurname"/>
+              <Input
+                id="idSurname"
+                maxLength="64"
+                liveChange="_onNameInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>City}" labelFor="idCity"/>
+              <Select
+                id="idCity"
+                selectedKey="{Minsk}"
+                items= "{
+                  path: 'cityModel>/cities'
+                }"
+                width="100%"
+              >
+                <items>
+                  <core:Item key="{cityModel>id}" text="{cityModel>name}" />
+                </items>
+              </Select>
+            </VBox>
+            <VBox>
+              <Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
+              <Input
+                id="idPhoneNumber"
+                type="Tel"
+                liveChange="_onPhoneInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>Email}" labelFor="idEmail"/>
+              <Input
+                id="idEmail"
+                type="Email"
+                maxLength="256"
+                liveChange="_onEmailInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>Password}" labelFor="idPassword"/>
+              <Input
+                id="idPassword"
+                type="Password"
+                maxLength="64"
+                liveChange="_onPasswordInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
+              <Input
+                id="idConfirmPassword"
+                type="Password"
+                maxLength="64"
+                liveChange="_onConfirmPasswordInputLiveChange"
+              />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>Promocode}" labelFor="idPromocodeInput"/>
+              <Input
+                id="idPromocodeInput"
+              />
+            </VBox>
+            <VBox>
+              <HBox >
+                <CheckBox
+                  id="idTermsCheckbox"
+                  selected="false"
+                  select="_onCheckboxSelect" />
+                <Text
+                  text="{i18n>Agreement}"
+                  class="sapUiSmallMarginTop" />
+                <Link
+                  text="{i18n>Conditions}"
+                  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
+                  press="_onOpenUsersAgreement" />
+                <Text
+                  text="{i18n>And}"
+                  class="sapUiSmallMarginTop" />
+                <Link
+                  text="{i18n>Rules}"
+                  class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd"
+                  press="_onOpenPlatformRules" />
+              </HBox>
+            </VBox>
+            <MessageStrip
+              id="messageStrip"
+              type="Success"
+              showIcon="true"
+              showCloseButton="true"
+              visible="false"
+              text=""
+            />
+            <HBox alignItems="Center">
+              <Button
+                id="idRegisterButton"
+                text="{i18n>RegButton}"
+                type="Emphasized"
+                enabled="false"
+                press="_onRegisterButtonPress"
+                class="sapUiMediumMarginTop sapUiMediumMarginEnd"
+              />
+              <Button
+                text="{i18n>CancelButton}"
+                type="Transparent"
+                press="_onCancelButtonPress"
+                class="sapUiMediumMarginTop"
+              />
+            </HBox>
+          </VBox>
+        </content>
+      </Page>
+    </pages>
+  </App>
 </mvc:View>
