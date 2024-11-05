@@ -1,209 +1,209 @@
 <mvc:View
-	controllerName="AppForm.controller.View1"
-	xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core"
-	xmlns:l="sap.ui.layout">
-	<App>
-		<pages>
-			<Page
-				busy="{appModel>/busy}"
-    		busyIndicatorDelay="0">
-				<headerContent>
-					<Bar>
-						<contentMiddle>
-							<Title text="{i18n>title}" />
-						</contentMiddle>
-						<contentRight>
-							<Image
-								src="src/img/logo.png"
-								densityAware="true"
-								width="auto"
-								height="60px"
-								alt="App Logo"
-								press="onLogoPress" />
-						</contentRight>
-					</Bar>
-				</headerContent>
-				<content>
-					<l:VerticalLayout
-						class="sapUiContentPadding"
-						width="100%"
-					>
-						<Label text="{i18n>Name}" labelFor="idName"/>
-						<Input
-							id="idName"
-							maxLength="64"
-							liveChange="_onNameInputLiveChange"
-						/>
-						<Label text="{i18n>Surname}" labelFor="idSurname"/>
-						<Input
-							id="idSurname"
-							maxLength="64"
-							liveChange="_onNameInputLiveChange"
-						/>
-						<Label text="{i18n>City}" labelFor="idCity"/>
-						<Select
-							id="idCity"
-							selectedKey="{Minsk}"
-							items= "{
-								path: 'cityModel>/cities'
-							}"
-							width="100%"
-						>
-							<items>
-								<core:Item key="{cityModel>id}" text="{cityModel>name}" />
-							</items>
-						</Select>
-						<Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
-						<Input
-							id="idPhoneNumber"
-							type="Tel"
-							liveChange="_onPhoneInputLiveChange"
-						/>
-						<Label text="{i18n>Email}" labelFor="idEmail"/>
-						<Input
-							id="idEmail"
-							type="Email"
-							maxLength="256"
-							liveChange="_onEmailInputLiveChange"
-						/>
-						<Label text="{i18n>Password}" labelFor="idPassword"/>
-						<Input
-							id="idPassword"
-							type="Password"
-							maxLength="64"
-							liveChange="_onPasswordInputLiveChange"
-						/>
-						<Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
-						<Input
-							id="idConfirmPassword"
-							type="Password"
-							maxLength="64"
-							liveChange="_onConfirmPasswordInputLiveChange"
-						/>
-						<Label text="{i18n>Promocode}" labelFor="idPromocodeInput"/>
-						<Input
-							id="idPromocodeInput"
-						/>
-						<FlexBox wrap="Wrap">
-							<CheckBox
-								id="idTermsCheckbox"
-								selected="false"
-								select="_onCheckboxSelect" />
-							<Text
-								text="{i18n>Agreement}"
-								class="sapUiSmallMarginTop" />
-							<Link
-								text="{i18n>UsersAgreement}"
-								href="src/pdf/UsersAgreement.pdf"
-								target="_blank"
-								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-							<Text
-								text="{i18n>And}"
-								class="sapUiSmallMarginTop" />
-							<Link
-								text="{i18n>Rules}"
-								href="src/pdf/PlatformRules.pdf"
-								target="_blank"
-								class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						</FlexBox>
-						<FlexBox>
-								<MessageStrip
-								id="messageStrip"
-								type="Success"
-								showIcon="true"
-								showCloseButton="true"
-								visible="false"
-								text=""	/>
-						</FlexBox>
-						<FlexBox wrap="Wrap">
-							<Button
-								id="idRegisterButton"
-								text="{i18n>RegButton}"
-								type="Emphasized"
-								enabled="false"
-								press="_onRegisterButtonPress"
-								class="sapUiMediumMarginTop sapUiMediumMarginEnd"
-							/>
-							<Button
-								text="{i18n>CancelButton}"
-								type="Transparent"
-								press="_onCancelButtonPress"
-								class="sapUiMediumMarginTop"
-							/>
-						</FlexBox>
-					</l:VerticalLayout>
-				</content>
-				<FlexBox
-					class="customFooter"
-					justifyContent="SpaceAround"
-					direction="Row"
-					alignItems="Start"
-					wrap="Wrap"
-					backgroundDesign="Translucent">
-					<VBox alignItems="Center" class="sapUiContentPadding">
-						<Image
-								src="src/img/logo.png"
-								densityAware="true"
-								width="100px"
-								height="80px"
-								alt="App Logo" />
-						<Text	
-							text="{i18n>CompanyDescriptionRow1}" />
-						<Text text="{i18n>CompanyDescriptionRow2}" />
-					</VBox>
-					<VBox class="sapUiContentPadding">
-						<Link
-							text="{i18n>PrivacyPolicyFooter}"
-							href="src/pdf/PrivacyPolicy.pdf"
-							target="_blank"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						<Link
-							text="{i18n>UsersAgreementFooter}"
-							href="src/pdf/UsersAgreement.pdf"
-							target="_blank"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						<Link
-							text="{i18n>RulesFooter}"
-							href="src/pdf/PlatformRules.pdf"
-							target="_blank"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						<Link
-							text="{i18n>RefundPolicyFooter}"
-							href="src/pdf/RefundPolicy.pdf"
-							target="_blank"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-					</VBox>
-					<VBox class="sapUiContentPadding">
-						<Text
-							text="{i18n>Address}"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						<Text
-							text="{i18n>Phone}"
-							class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
-						<HBox>
-							<Button 
-									icon="src/img/telegram.png" 
-									press="onTelegramPress" 
-									type="Transparent"
-									class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd" />
-							<Button 
-									icon="src/img/instagram.png" 
-									press="onInstagramPress" 
-									type="Transparent"
-									class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
-							<Button 
-									icon="src/img/youtube.png" 
-									press="onYouTubePress" 
-									type="Transparent"
-									class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
-						</HBox>
-					</VBox>
-				</FlexBox>
-			</Page>
-		</pages>
-	</App>
+  controllerName="AppForm.controller.View1"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  xmlns:mvc="sap.ui.core.mvc"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout">
+  <App>
+    <pages>
+      <Page
+        busy="{appModel>/busy}"
+        busyIndicatorDelay="0">
+        <headerContent>
+          <Bar>
+            <contentMiddle>
+              <Title text="{i18n>title}" />
+            </contentMiddle>
+            <contentRight>
+              <Image
+                src="src/img/logo.png"
+                densityAware="true"
+                width="auto"
+                height="60px"
+                alt="App Logo"
+                press="onLogoPress" />
+            </contentRight>
+          </Bar>
+        </headerContent>
+        <content>
+          <l:VerticalLayout
+            class="sapUiContentPadding"
+            width="100%"
+          >
+            <Label text="{i18n>Name}" labelFor="idName"/>
+            <Input
+              id="idName"
+              maxLength="64"
+              liveChange="_onNameInputLiveChange"
+            />
+            <Label text="{i18n>Surname}" labelFor="idSurname"/>
+            <Input
+              id="idSurname"
+              maxLength="64"
+              liveChange="_onNameInputLiveChange"
+            />
+            <Label text="{i18n>City}" labelFor="idCity"/>
+            <Select
+              id="idCity"
+              selectedKey="{Minsk}"
+              items= "{
+                path: 'cityModel>/cities'
+              }"
+              width="100%"
+            >
+              <items>
+                <core:Item key="{cityModel>id}" text="{cityModel>name}" />
+              </items>
+            </Select>
+            <Label text="{i18n>PhoneNumber}" labelFor="idPhoneNumber"/>
+            <Input
+              id="idPhoneNumber"
+              type="Tel"
+              liveChange="_onPhoneInputLiveChange"
+            />
+            <Label text="{i18n>Email}" labelFor="idEmail"/>
+            <Input
+              id="idEmail"
+              type="Email"
+              maxLength="256"
+              liveChange="_onEmailInputLiveChange"
+            />
+            <Label text="{i18n>Password}" labelFor="idPassword"/>
+            <Input
+              id="idPassword"
+              type="Password"
+              maxLength="64"
+              liveChange="_onPasswordInputLiveChange"
+            />
+            <Label text="{i18n>ConfirmPassword}" labelFor="idConfirmPassword"/>
+            <Input
+              id="idConfirmPassword"
+              type="Password"
+              maxLength="64"
+              liveChange="_onConfirmPasswordInputLiveChange"
+            />
+            <Label text="{i18n>Promocode}" labelFor="idPromocodeInput"/>
+            <Input
+              id="idPromocodeInput"
+            />
+            <FlexBox wrap="Wrap">
+              <CheckBox
+                id="idTermsCheckbox"
+                selected="false"
+                select="_onCheckboxSelect" />
+              <Text
+                text="{i18n>Agreement}"
+                class="sapUiSmallMarginTop" />
+              <Link
+                text="{i18n>UsersAgreement}"
+                href="src/pdf/UsersAgreement.pdf"
+                target="_blank"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+              <Text
+                text="{i18n>And}"
+                class="sapUiSmallMarginTop" />
+              <Link
+                text="{i18n>Rules}"
+                href="src/pdf/PlatformRules.pdf"
+                target="_blank"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            </FlexBox>
+            <FlexBox>
+              <MessageStrip
+              id="messageStrip"
+              type="Success"
+              showIcon="true"
+              showCloseButton="true"
+              visible="false"
+              text="" />
+            </FlexBox>
+            <FlexBox wrap="Wrap">
+              <Button
+                id="idRegisterButton"
+                text="{i18n>RegButton}"
+                type="Emphasized"
+                enabled="false"
+                press="_onRegisterButtonPress"
+                class="sapUiMediumMarginTop sapUiMediumMarginEnd"
+              />
+              <Button
+                text="{i18n>CancelButton}"
+                type="Transparent"
+                press="_onCancelButtonPress"
+                class="sapUiMediumMarginTop"
+              />
+            </FlexBox>
+          </l:VerticalLayout>
+        </content>
+        <FlexBox
+          class="customFooter"
+          justifyContent="SpaceAround"
+          direction="Row"
+          alignItems="Start"
+          wrap="Wrap"
+          backgroundDesign="Translucent">
+          <VBox alignItems="Center" class="sapUiContentPadding">
+            <Image
+              src="src/img/logo.png"
+              densityAware="true"
+              width="100px"
+              height="80px"
+              alt="App Logo" />
+            <Text	
+              text="{i18n>CompanyDescriptionRow1}" />
+            <Text text="{i18n>CompanyDescriptionRow2}" />
+          </VBox>
+          <VBox class="sapUiContentPadding">
+            <Link
+              text="{i18n>PrivacyPolicyFooter}"
+              href="src/pdf/PrivacyPolicy.pdf"
+              target="_blank"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            <Link
+              text="{i18n>UsersAgreementFooter}"
+              href="src/pdf/UsersAgreement.pdf"
+              target="_blank"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            <Link
+              text="{i18n>RulesFooter}"
+              href="src/pdf/PlatformRules.pdf"
+              target="_blank"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            <Link
+              text="{i18n>RefundPolicyFooter}"
+              href="src/pdf/RefundPolicy.pdf"
+              target="_blank"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+          </VBox>
+          <VBox class="sapUiContentPadding">
+            <Text
+              text="{i18n>Address}"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            <Text
+              text="{i18n>Phone}"
+              class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd wrapLink" />
+            <HBox>
+              <Button 
+                icon="src/img/telegram.png" 
+                press="onTelegramPress" 
+                type="Transparent"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMarginEnd" />
+              <Button 
+                icon="src/img/instagram.png" 
+                press="onInstagramPress" 
+                type="Transparent"
+                class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+              <Button 
+                icon="src/img/youtube.png" 
+                press="onYouTubePress" 
+                type="Transparent"
+                class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+            </HBox>
+          </VBox>
+        </FlexBox>
+      </Page>
+    </pages>
+  </App>
 </mvc:View>
