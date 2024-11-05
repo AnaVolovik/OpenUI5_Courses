@@ -1,179 +1,179 @@
 <mvc:View
-	controllerName="sap.ui.demo.fiori2.controller.Detail"
-	xmlns="sap.uxap"
-	xmlns:m="sap.m"
-	xmlns:f="sap.f"
-	xmlns:form="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc">
-	<ObjectPageLayout
-		id="ObjectPageLayout"
-		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
-		preserveHeaderStateOnScroll="false"
-		headerContentPinnable="true"
-		isChildPage="true"
-		upperCaseAnchorBar="false">
-		<headerTitle>
-			<ObjectPageDynamicHeaderTitle>
-				<expandedHeading>
-					<m:Title text="{items>ItemID}" wrapping="true" class="sapUiSmallMarginEnd"/>
-				</expandedHeading>
+  controllerName="sap.ui.demo.fiori2.controller.Detail"
+  xmlns="sap.uxap"
+  xmlns:m="sap.m"
+  xmlns:f="sap.f"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+  <ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+    <headerTitle>
+      <ObjectPageDynamicHeaderTitle>
+        <expandedHeading>
+          <m:Title text="{items>ItemID}" wrapping="true" class="sapUiSmallMarginEnd"/>
+        </expandedHeading>
 
-				<snappedHeading>
-					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
-						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-							<m:Title text="{items>ItemID}" wrapping="true"/>
-						</m:FlexBox>
-					</m:FlexBox>
-				</snappedHeading>
+        <snappedHeading>
+          <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+            <m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+              <m:Title text="{items>ItemID}" wrapping="true"/>
+            </m:FlexBox>
+          </m:FlexBox>
+        </snappedHeading>
 
-				<navigationActions>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://full-screen"
-						press=".handleFullScreen"
-						tooltip="Enter Full Screen Mode"
-						visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://exit-full-screen"
-						press=".handleExitFullScreen"
-						tooltip="Exit Full Screen Mode"
-						visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
-					<m:OverflowToolbarButton
-						type="Transparent"
-						icon="sap-icon://decline"
-						press=".handleClose"
-						tooltip="Close column"
-						visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
-				</navigationActions>
+        <navigationActions>
+          <m:OverflowToolbarButton
+            type="Transparent"
+            icon="sap-icon://full-screen"
+            press=".handleFullScreen"
+            tooltip="Enter Full Screen Mode"
+            visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+          <m:OverflowToolbarButton
+            type="Transparent"
+            icon="sap-icon://exit-full-screen"
+            press=".handleExitFullScreen"
+            tooltip="Exit Full Screen Mode"
+            visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+          <m:OverflowToolbarButton
+            type="Transparent"
+            icon="sap-icon://decline"
+            press=".handleClose"
+            tooltip="Close column"
+            visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+        </navigationActions>
 
-				<actions>
-					<m:ToggleButton
-						text="Стоимость BYN"
-						type="Emphasized"
-						press="._onCostButtonPress"/>
-				</actions>
-			</ObjectPageDynamicHeaderTitle>
-		</headerTitle>
+        <actions>
+          <m:ToggleButton
+            text="Стоимость BYN"
+            type="Emphasized"
+            press="._onCostButtonPress"/>
+        </actions>
+      </ObjectPageDynamicHeaderTitle>
+    </headerTitle>
 
-		<headerContent>
-			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="MaterialID"/>
-					<m:Text text="{items>MaterialID}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="GroupID"/>
-					<m:Text text="{items>GroupID}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Price"/>
-					<m:ObjectNumber number="EUR {items>Price}" emphasized="false"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Quantity"/>
-					<m:Text text="{items>Quantity}"/>
-				</m:VBox>
-				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
-					<m:Label text="Amount"/>
-					<m:Text text="{parts: [{path: 'items>Price'}, {path: 'items>Quantity'}], formatter: '._calculateAmount'}"/>
-				</m:VBox>
-			</m:FlexBox>
-		</headerContent>
+    <headerContent>
+      <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+        <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+          <m:Label text="MaterialID"/>
+          <m:Text text="{items>MaterialID}"/>
+        </m:VBox>
+        <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+          <m:Label text="GroupID"/>
+          <m:Text text="{items>GroupID}"/>
+        </m:VBox>
+        <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+          <m:Label text="Price"/>
+          <m:ObjectNumber number="EUR {items>Price}" emphasized="false"/>
+        </m:VBox>
+        <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+          <m:Label text="Quantity"/>
+          <m:Text text="{items>Quantity}"/>
+        </m:VBox>
+        <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+          <m:Label text="Amount"/>
+          <m:Text text="{parts: [{path: 'items>Price'}, {path: 'items>Quantity'}], formatter: '._calculateAmount'}"/>
+        </m:VBox>
+      </m:FlexBox>
+    </headerContent>
 
-		<sections>
-			<ObjectPageSection title="Header">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="HeaderID"/>
-									<m:Text text="{headerData>ID}"/>
-									<m:Label text="DocumentNumber"/>
-									<m:Text text="{headerData>DocumentNumber}"/>
-									<m:Label text="DocumentDate"/>
-									<m:Text text="{headerData>DocumentDate}"/>
-								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
+    <sections>
+      <ObjectPageSection title="Header">
+        <subSections>
+          <ObjectPageSubSection>
+            <blocks>
+              <form:SimpleForm
+                maxContainerCols="2"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanL="12"
+                labelSpanM="12"
+                emptySpanL="0"
+                emptySpanM="0"
+                columnsL="1"
+                columnsM="1">
+                <form:content>
+                  <m:Label text="HeaderID"/>
+                  <m:Text text="{headerData>ID}"/>
+                  <m:Label text="DocumentNumber"/>
+                  <m:Text text="{headerData>DocumentNumber}"/>
+                  <m:Label text="DocumentDate"/>
+                  <m:Text text="{headerData>DocumentDate}"/>
+                </form:content>
+              </form:SimpleForm>
+            </blocks>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
 
-			<ObjectPageSection title="Material">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="MaterialID"/>
-									<m:Text text="{materialData>MaterialID}"/>
-									<m:Label text="MaterialText"/>
-									<m:Text text="{materialData>MaterialText}"/>
-									<m:Label text="MaterialDescription"/>
-									<m:Text text="{materialData>MaterialDescription}"/>
-								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
+      <ObjectPageSection title="Material">
+        <subSections>
+          <ObjectPageSubSection>
+            <blocks>
+              <form:SimpleForm
+                maxContainerCols="2"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanL="12"
+                labelSpanM="12"
+                emptySpanL="0"
+                emptySpanM="0"
+                columnsL="1"
+                columnsM="1">
+                <form:content>
+                  <m:Label text="MaterialID"/>
+                  <m:Text text="{materialData>MaterialID}"/>
+                  <m:Label text="MaterialText"/>
+                  <m:Text text="{materialData>MaterialText}"/>
+                  <m:Label text="MaterialDescription"/>
+                  <m:Text text="{materialData>MaterialDescription}"/>
+                </form:content>
+              </form:SimpleForm>
+            </blocks>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
 
-			<ObjectPageSection title="Group">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="GroupID"/>
-									<m:Text text="{groupData>GroupID}"/>
-									<m:Label text="GroupText"/>
-									<m:Text text="{groupData>GroupText}"/>
-									<m:Label text="GroupDescription"/>
-									<m:Text text="{groupData>GroupDescription}"/>
-								</form:content>
-							</form:SimpleForm>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-		</sections>
+      <ObjectPageSection title="Group">
+        <subSections>
+          <ObjectPageSubSection>
+            <blocks>
+              <form:SimpleForm
+                maxContainerCols="2"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanL="12"
+                labelSpanM="12"
+                emptySpanL="0"
+                emptySpanM="0"
+                columnsL="1"
+                columnsM="1">
+                <form:content>
+                  <m:Label text="GroupID"/>
+                  <m:Text text="{groupData>GroupID}"/>
+                  <m:Label text="GroupText"/>
+                  <m:Text text="{groupData>GroupText}"/>
+                  <m:Label text="GroupDescription"/>
+                  <m:Text text="{groupData>GroupDescription}"/>
+                </form:content>
+              </form:SimpleForm>
+            </blocks>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+    </sections>
 
-		<footer>
-			<m:OverflowToolbar>
-				<m:ToolbarSpacer/>
-				<m:Button type="Accept" text="Save"/>
-				<m:Button type="Reject" text="Cancel"/>
-			</m:OverflowToolbar>
-		</footer>
-	</ObjectPageLayout>
+    <footer>
+      <m:OverflowToolbar>
+        <m:ToolbarSpacer/>
+        <m:Button type="Accept" text="Save"/>
+        <m:Button type="Reject" text="Cancel"/>
+      </m:OverflowToolbar>
+    </footer>
+  </ObjectPageLayout>
 </mvc:View>
