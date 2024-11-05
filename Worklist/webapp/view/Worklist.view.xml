@@ -1,7 +1,8 @@
 <mvc:View
   controllerName="zjblessons.Worklist.controller.Worklist"
   xmlns="sap.m"
-  xmlns:mvc="sap.ui.core.mvc">
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core">
 
 <Page>
   <customHeader>
@@ -47,15 +48,11 @@
           icon="{i18n>iAction}"
           visible="true"
           type="Emphasized" 
-          press="openPopupDescription" />
-        <Button 
-          text="{i18n>Action2} batch=true" 
-          tooltip="{i18n>Action2} batch=true" 
-          icon="{i18n>iAction}" 
-          visible="true"
-          type="Default" 
-          press="openPopupDescription" 
-          enabled="{worklistView>/action2Enabled}" />
+          press="openPopupDescription">
+            <customData>
+              <core:CustomData key="action" value="Action1" writeToDom="true"/>
+            </customData>
+        </Button>
         <Button 
           text="{i18n>Action2} batch=false" 
           tooltip="{i18n>Action2} batch=false" 
@@ -63,7 +60,23 @@
           visible="true"
           type="Default" 
           press="openPopupDescription" 
-          enabled="{worklistView>/action2Enabled}" />
+          enabled="{worklistView>/action2Enabled}">
+            <customData>
+              <core:CustomData key="action" value="Action2Multi" writeToDom="true"/>
+            </customData>
+        </Button>
+        <Button 
+          text="{i18n>Action2} batch=true" 
+          tooltip="{i18n>Action2} batch=true" 
+          icon="{i18n>iAction}" 
+          visible="true"
+          type="Default" 
+          press="openPopupDescription" 
+          enabled="{worklistView>/action2Enabled}">
+            <customData>
+              <core:CustomData key="action" value="Action2MultiBatch" writeToDom="true"/>
+            </customData>
+        </Button>
         <SearchField
           id="searchField"
           tooltip="{i18n>worklistSearchTooltip}"

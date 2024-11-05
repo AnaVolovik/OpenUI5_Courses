@@ -115,11 +115,11 @@ sap.ui.define([
             }),
             sPath = oBindingContext.getPath(),
             sVersion = this.getModel().getProperty(`${sPath}/Version`);
-          
+
       if (sVersion === 'D') {
         const sBoxMessage = this.getResourceBundle().getText("MessageBoxMessage"),
               sBoxTitle = this.getResourceBundle().getText("MessageBoxTitle");
-        
+
         sap.m.MessageBox.confirm(sBoxMessage, {
           title: sBoxTitle,
           onClose: (oAction) => {
@@ -137,7 +137,6 @@ sap.ui.define([
             }
           }
         });
-        
       } else {
         const sMessageToast = this.getResourceBundle().getText("AlertToastMessage");
         sap.m.MessageToast.show(sMessageToast);
@@ -257,19 +256,14 @@ sap.ui.define([
       this._bindTable()
     },
 
-
     onExecutePress: function () {
-      console.log("Execute button pressed");
-      var oAction = this._PopupDescription._Action; 
+      const oAction = this._PopupDescription._Action; 
 
       if (oAction === 'Action1') {
-        console.log("this is onAction1");
         this.onAction1Press();
       } else if (oAction === 'Action2Multi') {
-        console.log("this is onAction2Press");
         this.onAction2Press();
       } else if (oAction === 'Action2MultiBatch') {
-        console.log("this is onAction2BatchPress");
         this.onAction2BatchPress();
       } else if (oAction === 'PostError') {
         this.PostError();
@@ -278,7 +272,6 @@ sap.ui.define([
     },
     
     onCancelPress: function () {
-      console.log("Cancel button pressed");
       this._PopupDescription.close();
     },
 
@@ -294,43 +287,183 @@ sap.ui.define([
       oViewModel.setProperty("/action2Enabled", bEnabled);
     },
 
-    openPopupDescription: async function (oEvent, action) {
-      //TODO oEvent
+    openPopupDescription: async function (oEvent) {
+      const oButton = oEvent.getSource(),
+          sAction = oButton.data("action");
+
       if (!this._PopupDescription) {
         this._PopupDescription = await sap.ui.core.Fragment.load({
-          name: "zjblessons.Worklist.view.fragment.PopupDescription",
-          controller: this,
-          id: "PopupDescription"
+            name: "zjblessons.Worklist.view.fragment.PopupDescription",
+            controller: this,
+            id: "PopupDescription"
         });
 
-        this._PopupDescription._Action = action;
+        this._PopupDescription._Source = oButton;
+        this._PopupDescription._Action = sAction;
         this.getView().addDependent(this._PopupDescription);
 
         this._PopupDescription.open();
       } else {
-        this._PopupDescription._Action = action;
+        this._PopupDescription._Source = oButton;
+        this._PopupDescription._Action = sAction;
         this._PopupDescription.open();
       }
     },
 
-    onAction1Press: function(oEvent) {
-      var action = "Action1";
-      this.openPopupDescription(oEvent, action);
+    onAction1Press: function() {
+      const iParameters = {},
+            iDescription = sap.ui.core.Fragment.byId("PopupDescription","iDescription");
 
+      iParameters.ActionExec = {
+        ActionID: "Action1",
+        iParam1: iDescription.getValue()
+      };
+      iParameters.fnCallBackAfterSubmit = this.execActionCallBack.bind(this);
+
+      this.performAction(iParameters);
     },
 
-    onAction2Press: function(oEvent) {
-      var action = "Action2Multi";
-      this.openPopupDescription(oEvent, action);
+    onAction2Press: function() {
+      const iParameters = {},
+            iDescription = sap.ui.core.Fragment.byId("PopupDescription", "iDescription"),
+            oTable = this.byId("table"),
+            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject());
+      
+      iParameters.ActionExec = {
+        ActionID: "Action2Multi",
+        iParam1: iDescription.getValue(),
+        SelectedItems: aSelectedItems
+      };
+      iParameters.fnCallBackAfterSubmit = this.execActionCallBack.bind(this);
 
+      this.performAction(iParameters);
     },
     
-    onAction2BatchPress: function(oEvent) {
-      var action = "Action2MultiBatch";
-      this.openPopupDescription(oEvent, action);
+    onAction2BatchPress: function() {
+      const iParameters = {},
+            iDescription = sap.ui.core.Fragment.byId("PopupDescription", "iDescription"),
+            oTable = this.byId("table"),
+            aSelectedItems = oTable.getSelectedItems().map(item => item.getBindingContext().getObject());
+      
+      iParameters.ActionExec = {
+        ActionID: "Action2MultiBatch",
+        iParam1: iDescription.getValue(),
+        SelectedItems: aSelectedItems
+      };
+      iParameters.fnCallBackAfterSubmit = this.execActionCallBack.bind(this);
 
+      this.performAction(iParameters);
     },
 
+    performAction: function(iParameters) {
+      switch (iParameters.ActionExec.ActionID) {
+        case "Action1":
+          this.updateDescriptions(iParameters.ActionExec.iParam1);
+          break;
+        case "Action2Multi":
+          this.updateDescriptions(iParameters.ActionExec.iParam1, false, iParameters.ActionExec.SelectedItems);
+          break;
+        case "Action2MultiBatch":
+          this.updateDescriptions(iParameters.ActionExec.iParam1, true, iParameters.ActionExec.SelectedItems);
+          break;
+      }
+
+      if (iParameters.fnCallBackAfterSubmit) {
+        iParameters.fnCallBackAfterSubmit({ Success: true });
+      }
+    },
+
+    updateDescriptions: function(newDescription, isBatch = false, selectedItems = []) {
+      const oModel = this.getView().getModel(),
+            aData = oModel.oData;
+
+      const entries = Object.keys(aData).map(key => ({
+        HeaderID: key.replace("zjblessons_base_Headers('", "").replace("')", ""),
+        ...aData[key]
+      }));
+
+      if (!selectedItems.length) {
+        for (let i = 0; i < entries.length; i++) {
+          entries[i].Description = newDescription;
+        }
+
+        entries.forEach(entry => {
+          const sPath = `/zjblessons_base_Headers('${entry.HeaderID}')`;
+          this.getModel().setProperty(`${sPath}/Description`, entry.Description);
+        });
+
+        this.getModel().submitChanges({
+          success: () => {
+              console.log("Изменения успешно отправлены на сервер");
+          },
+          error: (oError) => {
+              console.error("Ошибка при отправке изменений:", oError);
+          }
+        });
+      } else {
+          if (isBatch) {
+            const oModel = this.getView().getModel();
+            oModel.setUseBatch(isBatch);
+
+            selectedItems.forEach(item => {
+              const index = entries.findIndex(data => data.HeaderID === item.HeaderID);
+              if (index !== -1) {
+                entries[index].Description = newDescription;
+                const sPath = `/zjblessons_base_Headers('${entries[index].HeaderID}')`;
+                this.getModel().setProperty(`${sPath}/Description`, entries[index].Description);
+              }
+            });
+
+            this.getModel().submitChanges({
+              success: () => {
+                console.log("Изменения успешно отправлены на сервер для выбранных записей с батчем");
+              },
+              error: (oError) => {
+                console.error("Ошибка при отправке изменений с батчем для выбранных записей:", oError);
+              }
+            });
+          } else {
+            const oModel = this.getView().getModel();
+            oModel.setUseBatch(isBatch);
+
+            selectedItems.forEach(item => {
+              const index = entries.findIndex(data => data.HeaderID === item.HeaderID);
+              if (index !== -1) {
+                entries[index].Description = newDescription;
+                const sPath = `/zjblessons_base_Headers('${entries[index].HeaderID}')`;
+
+                this.getModel().update(sPath, { Description: entries[index].Description }, {
+                  success: () => {
+                    console.log(`Изменение успешно отправлено на сервер для элемента с ID ${entries[index].HeaderID}`);
+                  },
+                  error: (oError) => {
+                    console.error(`Ошибка при отправке изменения для элемента с ID ${entries[index].HeaderID}:`, oError);
+                  }
+                });
+              }
+            });
+          }
+      }
+    },
+
+    execActionCallBack: function(iParameters){
+      if (this._PopupDescription !== undefined) {this._PopupDescription.setBusy(false);}
+      if (iParameters.Success === false) {return;}
+      this.resetSelections();
+      this.onActionComplete();
+    },
+
+    resetSelections: function() {
+      const oTable = this.byId("table");
+      if (oTable) {
+        oTable.removeSelections(true);
+      }
+    },
+
+    onActionComplete: function() {
+      this.resetSelections();
+      this._bindTable();
+    },
 
   });
   }
