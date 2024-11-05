@@ -1,35 +1,35 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+  "sap/ui/core/mvc/Controller"
 ], function (Controller) {
-	"use strict";
+  "use strict";
 
-	return Controller.extend("zjblessons.Worklist.controller.BaseController", {
+  return Controller.extend("zjblessons.Worklist.controller.BaseController", {
 
-		getRouter : function () {
-			return sap.ui.core.UIComponent.getRouterFor(this);
-		},
+    getRouter : function () {
+      return sap.ui.core.UIComponent.getRouterFor(this);
+    },
 
-		getModel : function (sName) {
-			return this.getView().getModel(sName);
-		},
+    getModel : function (sName) {
+      return this.getView().getModel(sName);
+    },
 
-		setModel : function (oModel, sName) {
-			return this.getView().setModel(oModel, sName);
-		},
+    setModel : function (oModel, sName) {
+      return this.getView().setModel(oModel, sName);
+    },
 
-		getResourceBundle : function () {
-			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
-		},
+    getResourceBundle : function () {
+      return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+    },
 
-		onShareEmailPress : function () {
-			var oViewModel = (this.getModel("objectView") || this.getModel("worklistView"));
-			sap.m.URLHelper.triggerEmail(
-				null,
-				oViewModel.getProperty("/shareSendEmailSubject"),
-				oViewModel.getProperty("/shareSendEmailMessage")
-			);
-		}
-	});
+    onShareEmailPress : function () {
+      var oViewModel = (this.getModel("objectView") || this.getModel("worklistView"));
+      sap.m.URLHelper.triggerEmail(
+        null,
+        oViewModel.getProperty("/shareSendEmailSubject"),
+        oViewModel.getProperty("/shareSendEmailMessage")
+      );
+    }
+  });
 
 }
 );
