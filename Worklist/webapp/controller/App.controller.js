@@ -1,34 +1,34 @@
 sap.ui.define([
-	"zjblessons/Worklist/controller/BaseController",
-	"sap/ui/model/json/JSONModel"
+  "zjblessons/Worklist/controller/BaseController",
+  "sap/ui/model/json/JSONModel"
 ], function (BaseController, JSONModel) {
-	"use strict";
+  "use strict";
 
-	return BaseController.extend("zjblessons.Worklist.controller.App", {
+  return BaseController.extend("zjblessons.Worklist.controller.App", {
 
-		onInit : function () {
-			var oViewModel,
-				fnSetAppNotBusy,
-				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
+    onInit : function () {
+      var oViewModel,
+          fnSetAppNotBusy,
+          iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
 
-			oViewModel = new JSONModel({
-				busy : true,
-				delay : 0
-			});
-			this.setModel(oViewModel, "appView");
+      oViewModel = new JSONModel({
+        busy : true,
+        delay : 0
+      });
+      this.setModel(oViewModel, "appView");
 
-			fnSetAppNotBusy = function() {
-				oViewModel.setProperty("/busy", false);
-				oViewModel.setProperty("/delay", iOriginalBusyDelay);
-			};
+      fnSetAppNotBusy = function() {
+        oViewModel.setProperty("/busy", false);
+        oViewModel.setProperty("/delay", iOriginalBusyDelay);
+      };
 
-			this.getOwnerComponent().getModel().metadataLoaded().
-					then(fnSetAppNotBusy);
-			this.getOwnerComponent().getModel().attachMetadataFailed(fnSetAppNotBusy);
+      this.getOwnerComponent().getModel().metadataLoaded().
+          then(fnSetAppNotBusy);
+      this.getOwnerComponent().getModel().attachMetadataFailed(fnSetAppNotBusy);
 
-			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
-		}
-	});
+      this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+    }
+  });
 
 }
 );

@@ -1,6 +1,6 @@
 <c:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:c="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:c="sap.ui.core"
 >
   <c:Item
     text="{PlantText}"

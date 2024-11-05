@@ -1,87 +1,87 @@
 <mvc:View
-	controllerName="zjblessons.Worklist.controller.Worklist"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+  controllerName="zjblessons.Worklist.controller.Worklist"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
 
 <Page>
-	<customHeader>
-			<Toolbar>
-				<content>
-					<IconTabHeader selectedKey="{= ${worklistView>/sIconTHKey}}" select="onIconTabHeaderSelect">
-						<items>
-							<IconTabFilter key="All" text="{i18n>tabHeaderFilterAll}"/>
-							<IconTabFilter key="Deactivated" text="{i18n>tabHeaderFilterDeactivated}"/>
-						</items>
-					</IconTabHeader>
-				</content>
-			</Toolbar>
-	</customHeader>
-	<Table
-		id="table"
-		width="auto"
-		itemPress="onItemSelect"
-		growing="true"
-		growingThreshold="15"
-		growingScrollToLoad="true">
+  <customHeader>
+    <Toolbar>
+      <content>
+        <IconTabHeader selectedKey="{= ${worklistView>/sIconTHKey}}" select="onIconTabHeaderSelect">
+          <items>
+            <IconTabFilter key="All" text="{i18n>tabHeaderFilterAll}"/>
+            <IconTabFilter key="Deactivated" text="{i18n>tabHeaderFilterDeactivated}"/>
+          </items>
+        </IconTabHeader>
+      </content>
+    </Toolbar>
+  </customHeader>
+  <Table
+    id="table"
+    width="auto"
+    itemPress="onItemSelect"
+    growing="true"
+    growingThreshold="15"
+    growingScrollToLoad="true">
 
-		<headerToolbar>
-			<Toolbar height="80px">
-				<Title id="tableHeader"  text="({= ${worklistView>/sCount}})"/>
-				<VBox class="sapUiSmallMargin">
-					<Label text="{i18n>filterDateRange}" labelFor="idFilterDocumentDate"/>
-						<DateRangeSelection
-							id="idFilterDocumentDate"
-							class="idFilterDocumentDate"
-							width="300px"
-							change="_onDateRangeChange"/>
-				</VBox>
-				<ToolbarSpacer />
-				<SearchField
-					id="searchField"
-					tooltip="{i18n>worklistSearchTooltip}"
-					search="onSearch"
-					width="auto">
-				</SearchField>
-				<Button
-					icon="{i18n>iCreate}"
-					type="Emphasized"
-					press="onPressCreate"
-				/>
-				<Button
-					icon="{i18n>iRefresh}"
-					type="Transparent"
-					press="onPressRefresh"
-				/>
-			</Toolbar>
-		</headerToolbar>
+    <headerToolbar>
+      <Toolbar height="80px">
+        <Title id="tableHeader"  text="({= ${worklistView>/sCount}})"/>
+        <VBox class="sapUiSmallMargin">
+          <Label text="{i18n>filterDateRange}" labelFor="idFilterDocumentDate"/>
+            <DateRangeSelection
+              id="idFilterDocumentDate"
+              class="idFilterDocumentDate"
+              width="300px"
+              change="_onDateRangeChange"/>
+        </VBox>
+        <ToolbarSpacer />
+        <SearchField
+          id="searchField"
+          tooltip="{i18n>worklistSearchTooltip}"
+          search="onSearch"
+          width="auto">
+        </SearchField>
+        <Button
+          icon="{i18n>iCreate}"
+          type="Emphasized"
+          press="onPressCreate"
+        />
+        <Button
+          icon="{i18n>iRefresh}"
+          type="Transparent"
+          press="onPressRefresh"
+        />
+      </Toolbar>
+    </headerToolbar>
 
-		<columns>
-			<Column>
-					<Text text="{i18n>DocumentNumber}" />
-			</Column>
-			<Column>
-					<Text text="{i18n>DocumentDate}" />
-			</Column>
-			<Column>
-					<Text text="{i18n>PlantText}" />
-			</Column>
-			<Column>
-					<Text text="{i18n>RegionText}" />
-			</Column>
-			<Column>
-					<Text text="{i18n>Description}" />
-			</Column>
-			<Column>
-					<Text text="{i18n>Created}" />
-			</Column>
-			<Column width="7%">
-					<Text text="" />
-			</Column>
-			<Column width="5%">
-					<Text text="" />
-			</Column>
-		</columns>
-	</Table>
+    <columns>
+      <Column>
+        <Text text="{i18n>DocumentNumber}" />
+      </Column>
+      <Column>
+        <Text text="{i18n>DocumentDate}" />
+      </Column>
+      <Column>
+        <Text text="{i18n>PlantText}" />
+      </Column>
+      <Column>
+        <Text text="{i18n>RegionText}" />
+      </Column>
+      <Column>
+        <Text text="{i18n>Description}" />
+      </Column>
+      <Column>
+        <Text text="{i18n>Created}" />
+      </Column>
+      <Column width="7%">
+        <Text text="" />
+      </Column>
+      <Column width="5%">
+        <Text text="" />
+      </Column>
+    </columns>
+  </Table>
 </Page>
 
 </mvc:View>
