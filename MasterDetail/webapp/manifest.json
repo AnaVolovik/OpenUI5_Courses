@@ -1,96 +1,96 @@
 {
-	"_version": "1.12.0",
-	"sap.app": {
-		"id": "MasterDetail",
-		"type": "application",
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"dataSources": {
-			"mainService": {
-				"uri": "/jetCloud/apps/zjblessons/jblesson02/v01/01.xsodata/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0"
-				}
-			}
-		}
-	},
-	"sap.ui5": {
-		"rootView": {
-			"viewName": "MasterDetail.view.App",
-			"type": "XML",
-			"async": true,
-			"id": "fcl"
-		},
-		"dependencies": {
-			"minUI5Version": "1.98.0",
-			"libs": {
-				"sap.ui.core": {},
-				"sap.m": {},
-				"sap.f": {},
-				"sap.uxap": {}
-			}
-		},
-		"models": {
-			"": {
-				"dataSource": "mainService",
-				"preload": true,
-				"settings": {
-					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "None"
-				}
-			}
-		},
-		"config": {
-			"fullWidth": true
-		},
-		"routing": {
-			"config": {
-				"routerClass": "sap.f.routing.Router",
-				"type": "View",
-				"viewType": "XML",
-				"path": "MasterDetail.view",
-				"controlId": "flexibleColumnLayout",
-				"transition": "slide",
-				"bypassed": {
-				},
-				"async": true
-			},
-			"routes": [
-				{
-					"pattern": "page2",
-					"name": "page2",
-					"target": "page2",
-					"layout": "EndColumnFullScreen"
-				},
-				{
-					"pattern": ":layout:",
-					"name": "master",
-					"target": [
-						"master",
-						"detail"
-					]
-				},
-				{
-					"pattern": "detail/{item}/{layout}",
-					"name": "detail",
-					"target": [
-						"master",
-						"detail"
-					]
-				}
-			],
-			"targets": {
-				"master": {
-					"name": "Master",
-					"controlAggregation": "beginColumnPages"
-				},
-				"detail": {
-					"name": "Detail",
-					"controlAggregation": "midColumnPages"
-				}
-			}
-		}
-	}
+  "_version": "1.12.0",
+  "sap.app": {
+    "id": "MasterDetail",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/jetCloud/apps/zjblessons/jblesson02/v01/01.xsodata/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "MasterDetail.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "fcl"
+    },
+    "dependencies": {
+      "minUI5Version": "1.98.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.f": {},
+        "sap.uxap": {}
+      }
+    },
+    "models": {
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "None"
+        }
+      }
+    },
+    "config": {
+      "fullWidth": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "MasterDetail.view",
+        "controlId": "flexibleColumnLayout",
+        "transition": "slide",
+        "bypassed": {
+        },
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "page2",
+          "name": "page2",
+          "target": "page2",
+          "layout": "EndColumnFullScreen"
+        },
+        {
+          "pattern": ":layout:",
+          "name": "master",
+          "target": [
+            "master",
+            "detail"
+          ]
+        },
+        {
+          "pattern": "detail/{item}/{layout}",
+          "name": "detail",
+          "target": [
+            "master",
+            "detail"
+          ]
+        }
+      ],
+      "targets": {
+        "master": {
+          "name": "Master",
+          "controlAggregation": "beginColumnPages"
+        },
+        "detail": {
+          "name": "Detail",
+          "controlAggregation": "midColumnPages"
+        }
+      }
+    }
+  }
 }

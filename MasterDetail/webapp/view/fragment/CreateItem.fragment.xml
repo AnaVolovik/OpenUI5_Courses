@@ -1,131 +1,131 @@
 <c:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:c="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:c="sap.ui.core"
 >
-	<Dialog 
-		title="Create new Item"
-		class="sapUiContentPadding"
-		beforeOpen="onDialogBeforeOpen">
-		<content>
-			<VBox>
-				<VBox>
-					<Label text="ItemID" labelFor="idItemID" />
-					<Input
-						id="idItemID"
-						value="{items>ItemID}"
-						editable="{masterModel>/isEditable}"
-					/>
-				</VBox>
+  <Dialog 
+    title="Create new Item"
+    class="sapUiContentPadding"
+    beforeOpen="onDialogBeforeOpen">
+    <content>
+      <VBox>
         <VBox>
-					<Label text="HeaderID" labelFor="idHeaderID" />
-					<Input
-						id="idHeaderID"
-						value="{items>HeaderID}"
-						editable="{masterModel>/isEditable}"
-					/>
-				</VBox>
+          <Label text="ItemID" labelFor="idItemID" />
+          <Input
+            id="idItemID"
+            value="{items>ItemID}"
+            editable="{masterModel>/isEditable}"
+          />
+        </VBox>
+        <VBox>
+          <Label text="HeaderID" labelFor="idHeaderID" />
+          <Input
+            id="idHeaderID"
+            value="{items>HeaderID}"
+            editable="{masterModel>/isEditable}"
+          />
+        </VBox>
         <VBox visible="{masterModel>/isVisible}">
-					<Label text="Instance" labelFor="idInstance" />
-					<Input
-						id="idInstance"
-						value="{Instance}"
-						editable="{masterModel>/isEditable}"
-					/>
-				</VBox>
+          <Label text="Instance" labelFor="idInstance" />
+          <Input
+            id="idInstance"
+            value="{Instance}"
+            editable="{masterModel>/isEditable}"
+          />
+        </VBox>
         <VBox>
-					<Label text="MaterialID" labelFor="idMaterialID" />
-					<Input
-						id="idMaterialID"
-						value="{items>MaterialID}"
-					/>
-				</VBox>
-				<VBox>
-					<Label text="GroupID" labelFor="idGroupID" />
-					<Input
-						id="idGroupID"
-						value="{items>GroupID}"
-					/>
-				</VBox>
-				<VBox>
-					<Label text="MaterialText" labelFor="idMaterialText" />
-					<Input
-						id="idMaterialText"
-						value="{items>MaterialText}"
-					/>
-				</VBox>
+          <Label text="MaterialID" labelFor="idMaterialID" />
+          <Input
+            id="idMaterialID"
+            value="{items>MaterialID}"
+          />
+        </VBox>
         <VBox>
-					<Label text="Quantity" labelFor="idQuantity" />
-					<Input
-						id="idQuantity"
+          <Label text="GroupID" labelFor="idGroupID" />
+          <Input
+            id="idGroupID"
+            value="{items>GroupID}"
+          />
+        </VBox>
+        <VBox>
+          <Label text="MaterialText" labelFor="idMaterialText" />
+          <Input
+            id="idMaterialText"
+            value="{items>MaterialText}"
+          />
+        </VBox>
+        <VBox>
+          <Label text="Quantity" labelFor="idQuantity" />
+          <Input
+            id="idQuantity"
             type="Number"
-						value="{items>Quantity}"
-					/>
-				</VBox>
+            value="{items>Quantity}"
+          />
+        </VBox>
         <VBox>
-					<Label text="Price" labelFor="idPrice" />
-					<Input
-						id="idPrice"
+          <Label text="Price" labelFor="idPrice" />
+          <Input
+            id="idPrice"
             type="Number"
-						value="{items>Price}"
-					/>
-				</VBox>
-				<VBox>
-					<Label text="Created" labelFor="idCreated" />
-					<DatePicker
-						id="idCreated"
-						value="{
-							'path':'items>Created',
-							'type':'sap.ui.model.type.Date',
-							'formatOptions': {
-								'pattern': 'yyyy-MM-dd'
-							}
-						}"
-						class="sapUiSmallMarginBottom"/>
-				</VBox>
+            value="{items>Price}"
+          />
+        </VBox>
         <VBox>
-					<Label text="CreatedBy" labelFor="idCreatedBy" />
-					<Input
-						id="idCreatedBy"
-						value="{items>CreatedBy}"
-					/>
-				</VBox>
+          <Label text="Created" labelFor="idCreated" />
+          <DatePicker
+            id="idCreated"
+            value="{
+              'path':'items>Created',
+              'type':'sap.ui.model.type.Date',
+              'formatOptions': {
+                'pattern': 'yyyy-MM-dd'
+              }
+            }"
+            class="sapUiSmallMarginBottom"/>
+        </VBox>
         <VBox>
-					<Label text="Modified" labelFor="idModified" />
-					<DatePicker
-						id="idModified"
-						value="{
-							'path':'items>Modified',
-							'type':'sap.ui.model.type.Date',
-							'formatOptions': {
-								'pattern': 'yyyy-MM-dd'
-							}
-						}"
-						class="sapUiSmallMarginBottom"/>
-				</VBox>
+          <Label text="CreatedBy" labelFor="idCreatedBy" />
+          <Input
+            id="idCreatedBy"
+            value="{items>CreatedBy}"
+          />
+        </VBox>
         <VBox>
-					<Label text="ModifiedBy" labelFor="idModifiedBy" />
-					<Input
-						id="idModifiedBy"
-						value="{items>ModifiedBy}"
-					/>
-				</VBox>
-			</VBox>
-		</content>
-		
-		<beginButton>
-			<Button 
-				text="Save"
-				type="Emphasized"
-				press="onPressSave"
-			/>
-		</beginButton>
-		<endButton>
-			<Button 
-				text="Cancel"
-				type="Transparent"
-				press="onPressCancel"
-			/>
-		</endButton>
-	</Dialog>
-	
+          <Label text="Modified" labelFor="idModified" />
+          <DatePicker
+            id="idModified"
+            value="{
+              'path':'items>Modified',
+              'type':'sap.ui.model.type.Date',
+              'formatOptions': {
+                'pattern': 'yyyy-MM-dd'
+              }
+            }"
+            class="sapUiSmallMarginBottom"/>
+        </VBox>
+        <VBox>
+          <Label text="ModifiedBy" labelFor="idModifiedBy" />
+          <Input
+            id="idModifiedBy"
+            value="{items>ModifiedBy}"
+          />
+        </VBox>
+      </VBox>
+    </content>
+    
+    <beginButton>
+      <Button 
+        text="Save"
+        type="Emphasized"
+        press="onPressSave"
+      />
+    </beginButton>
+    <endButton>
+      <Button 
+        text="Cancel"
+        type="Transparent"
+        press="onPressCancel"
+      />
+    </endButton>
+  </Dialog>
+  
 </c:FragmentDefinition>
