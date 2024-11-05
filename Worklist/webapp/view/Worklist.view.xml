@@ -21,9 +21,6 @@
     id="table"
     width="auto"
     itemPress="onItemSelect"
-    growing="true"
-    growingThreshold="15"
-    growingScrollToLoad="true"
     mode="MultiSelect">
 
     <headerToolbar>
@@ -58,7 +55,7 @@
           tooltip="{i18n>Action2} batch=false" 
           icon="{i18n>iAction}" 
           visible="true"
-          type="Default" 
+          type="Default"
           press="openPopupDescription" 
           enabled="{worklistView>/action2Enabled}">
             <customData>

@@ -260,6 +260,8 @@ sap.ui.define([
       const oAction = this._PopupDescription._Action,
             iDescription = sap.ui.core.Fragment.byId("PopupDescription","iDescription");
 
+      this._PopupDescription.setBusy(true);
+
       if (oAction === 'Action1') {
         this.onAction1Press();
       } else if (oAction === 'Action2Multi') {
@@ -267,15 +269,14 @@ sap.ui.define([
       } else if (oAction === 'Action2MultiBatch') {
         this.onAction2BatchPress();
       }
-      
+
       if (iDescription) {
         iDescription.setValue("");
       }
-
-      this._PopupDescription.close();
     },
     
     onCancelPress: function () {
+      this._PopupDescription.setBusy(false);
       this._PopupDescription.close();
     },
 
@@ -301,7 +302,7 @@ sap.ui.define([
             controller: this,
             id: "PopupDescription"
         });
-
+        
         this._PopupDescription._Source = oButton;
         this._PopupDescription._Action = sAction;
         this.getView().addDependent(this._PopupDescription);
@@ -310,6 +311,7 @@ sap.ui.define([
       } else {
         this._PopupDescription._Source = oButton;
         this._PopupDescription._Action = sAction;
+
         this._PopupDescription.open();
       }
     },
@@ -435,6 +437,13 @@ sap.ui.define([
         ...aData[key]
       }));
 
+      const showMessage = (isSuccess) => {
+        const message = isSuccess 
+          ? this.getResourceBundle().getText("successMsgToast") 
+          : this.getResourceBundle().getText("errorMsgToast");
+        sap.m.MessageToast.show(message);
+      };
+
       if (!selectedItems.length) {
         for (let i = 0; i < entries.length; i++) {
           entries[i].Description = newDescription;
@@ -447,13 +456,9 @@ sap.ui.define([
 
         this.getModel().submitChanges({
           success: () => {
-            const successMessage = this.getResourceBundle().getText("successMsgToast");
-            sap.m.MessageToast.show(successMessage);
+            showMessage(true);
           },
-          error: () => {
-            const errorMessage = this.getResourceBundle().getText("errorMsgToast");
-            sap.m.MessageToast.show(errorMessage);
-          }
+          error: () => showMessage(false)
         });
       } else {
           if (isBatch) {
@@ -471,13 +476,9 @@ sap.ui.define([
 
             this.getModel().submitChanges({
               success: () => {
-                const successMessage = this.getResourceBundle().getText("successMsgToast");
-                sap.m.MessageToast.show(successMessage);
+                showMessage(true);
               },
-              error: () => {
-                const errorMessage = this.getResourceBundle().getText("errorMsgToast");
-                sap.m.MessageToast.show(errorMessage);
-              }
+              error: () => showMessage(false)
             });
           } else {
             const oModel = this.getView().getModel();
@@ -491,13 +492,9 @@ sap.ui.define([
 
                 this.getModel().update(sPath, { Description: entries[index].Description }, {
                   success: () => {
-                    const successMessage = this.getResourceBundle().getText("successMsgToast");
-                    sap.m.MessageToast.show(successMessage);
+                    showMessage(true);
                   },
-                  error: () => {
-                    const errorMessage = this.getResourceBundle().getText("errorMsgToast");
-                    sap.m.MessageToast.show(errorMessage);
-                  }
+                  error: () => showMessage(false)
                 });
               }
             });
@@ -505,11 +502,15 @@ sap.ui.define([
       }
     },
 
-    execActionCallBack: function(iParameters){
-      if (this._PopupDescription !== undefined) {this._PopupDescription.setBusy(false);}
+    execActionCallBack: function(iParameters) {
       if (iParameters.Success === false) {return;}
       this.resetSelections();
       this.onActionComplete();
+
+      setTimeout(() => {
+        if (this._PopupDescription !== undefined) {this._PopupDescription.setBusy(false);}
+        this._PopupDescription.close();
+      }, 2000);
     },
 
     resetSelections: function() {
