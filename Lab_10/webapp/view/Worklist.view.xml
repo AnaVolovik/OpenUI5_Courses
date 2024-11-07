@@ -6,7 +6,7 @@
   <Page>
     <customHeader>
       <Toolbar>
-        <Title text="{i18n>countItems}" />
+        <Title text="{= ${i18n>countItems} + ' (' + ${worklistView>/sCount} + ')'}" />
       </Toolbar>
     </customHeader>
     <content>
