@@ -1,45 +1,35 @@
-/* global document */
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "sap/ui/Device",
-    "Lab_10/Lab_10/controller/ErrorHandler"
-  ], function (UIComponent, Device, ErrorHandler) {
-    "use strict";
+  "sap/ui/core/UIComponent",
+  "sap/ui/Device"
+], function (UIComponent, Device) {
+  "use strict";
 
-    return UIComponent.extend("Lab_10.Lab_10.Component", {
+  return UIComponent.extend("Lab_10.Lab_10.Component", {
 
-      metadata : {
-        manifest: "json"
-      },
+    metadata : {
+      manifest: "json"
+    },
 
-      init : function () {
-        UIComponent.prototype.init.apply(this, arguments);
+    init : function () {
+      UIComponent.prototype.init.apply(this, arguments);
 
-        this._oErrorHandler = new ErrorHandler(this);
+      this.getRouter().initialize();
+    },
 
-        this.getRouter().initialize();
-      },
-
-      destroy : function () {
-        this._oErrorHandler.destroy();
-
-        UIComponent.prototype.destroy.apply(this, arguments);
-      },
-
-      getContentDensityClass : function() {
-        if (this._sContentDensityClass === undefined) {
-          if (jQuery(document.body).hasClass("sapUiSizeCozy") || jQuery(document.body).hasClass("sapUiSizeCompact")) {
-            this._sContentDensityClass = "";
-          } else if (!Device.support.touch) {
-            this._sContentDensityClass = "sapUiSizeCompact";
-          } else {
-            this._sContentDensityClass = "sapUiSizeCozy";
-          }
+    getContentDensityClass : function() {
+      if (this._sContentDensityClass === undefined) {
+        if (jQuery(document.body).hasClass("sapUiSizeCozy") || jQuery(document.body).hasClass("sapUiSizeCompact")) {
+          this._sContentDensityClass = "";
+        } else if (!Device.support.touch) {
+          this._sContentDensityClass = "sapUiSizeCompact";
+        } else {
+          this._sContentDensityClass = "sapUiSizeCozy";
         }
-        return this._sContentDensityClass;
       }
+      return this._sContentDensityClass;
+    }
 
-    });
+  });
 
-  }
+}
 );
