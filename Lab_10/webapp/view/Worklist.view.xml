@@ -46,7 +46,7 @@
         </columns>
 
         <items>
-          <ColumnListItem>
+          <ColumnListItem highlight="{= ${DocumentNumber} ? ${DocumentNumber}.indexOf('DocumentNumber') !== -1 ? 'Success' : 'Error' : 'Error' }">
             <cells>
               <Text text="{DocumentNumber}" />
               <Text text="{
