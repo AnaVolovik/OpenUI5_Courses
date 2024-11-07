@@ -1,10 +1,8 @@
 sap.ui.define([
   "Lab_10/Lab_10/controller/BaseController",
   "sap/ui/model/json/JSONModel",
-  "Lab_10/Lab_10/model/formatter",
-  "sap/ui/model/Filter",
-  "sap/ui/model/FilterOperator"
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+  "Lab_10/Lab_10/model/formatter"
+], function (BaseController, JSONModel, formatter) {
   "use strict";
 
   return BaseController.extend("Lab_10.Lab_10.controller.Worklist", {
@@ -14,7 +12,8 @@ sap.ui.define([
     onInit : function () {
 
       const oViewModel = new JSONModel({
-        sCount: '0'
+        sCount: '0',
+        isBusy: false
       });
       this.setModel(oViewModel, "worklistView");
 
@@ -54,6 +53,9 @@ sap.ui.define([
             oBinding = oTable.getBinding("items"),
             bGrouped = oTable.getBinding("items").isGrouped();
 
+      const oViewModel = this.getView().getModel("worklistView");
+      oViewModel.setProperty("/isBusy", true);
+
       if (bGrouped) {
         const oDefaultSorter = new sap.ui.model.Sorter("DocumentNumber", true);
         oBinding.sort([oDefaultSorter]);
@@ -61,6 +63,8 @@ sap.ui.define([
         const oSorter = new sap.ui.model.Sorter("RegionText", true, true);
         oBinding.sort([oSorter]);
       }
+
+      oViewModel.setProperty("/isBusy", false);
     }
 
   });

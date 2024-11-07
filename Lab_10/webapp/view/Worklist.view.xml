@@ -15,6 +15,7 @@
       <Table
         id="table"
         backgroundDesign="Translucent"
+        busy="{worklistView/isBusy}"
         items="{
           path: '/zjblessons_base_Headers',
           sorter: {
