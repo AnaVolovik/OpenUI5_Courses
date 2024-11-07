@@ -41,7 +41,7 @@ sap.ui.define([
     },
 
 
-    onPressUpdateBinding (oEvent) {
+    onChangeDescription (oEvent) {
       const oBindingContext = oEvent.getSource().getBindingContext(),
             sNewValue = oEvent.getParameter("newValue");
 

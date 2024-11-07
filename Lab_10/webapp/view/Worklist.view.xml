@@ -59,7 +59,7 @@
               <Input
                 value=""
                 placeholder="{Description}"
-                liveChange="onPressUpdateBinding" />
+                liveChange="onChangeDescription" />
               <Text text="{
                 path: 'Created',
                 formatter: '.formatter.formatDate'}"
