@@ -7,6 +7,8 @@
     <customHeader>
       <Toolbar>
         <Title text="{= ${i18n>countItems} + ' (' + ${worklistView>/sCount} + ')'}" />
+        <ToolbarSpacer />
+        <Button text="{i18n>toggleGroup}" press="onGroupRegionText" />
       </Toolbar>
     </customHeader>
     <content>

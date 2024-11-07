@@ -49,6 +49,20 @@ sap.ui.define([
       oBindingContext.getModel().refresh(true);
     },
 
+    onGroupRegionText () {
+      const oTable = this.byId("table"),
+            oBinding = oTable.getBinding("items"),
+            bGrouped = oTable.getBinding("items").isGrouped();
+
+      if (bGrouped) {
+        const oDefaultSorter = new sap.ui.model.Sorter("DocumentNumber", true);
+        oBinding.sort([oDefaultSorter]);
+      } else {
+        const oSorter = new sap.ui.model.Sorter("RegionText", true, true);
+        oBinding.sort([oSorter]);
+      }
+    }
+
   });
 }
 );
