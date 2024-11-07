@@ -17,6 +17,9 @@ sap.ui.define([
         sCount: '0'
       });
       this.setModel(oViewModel, "worklistView");
+
+      const oModel = this.getOwnerComponent().getModel();
+      oModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneWay);
     },
 
     onBeforeRendering: function () {
@@ -37,6 +40,14 @@ sap.ui.define([
       }
     },
 
+
+    onPressUpdateBinding (oEvent) {
+      const oBindingContext = oEvent.getSource().getBindingContext(),
+            sNewValue = oEvent.getParameter("newValue");
+
+      oBindingContext.getModel().setProperty("Description", sNewValue, oBindingContext);
+      oBindingContext.getModel().refresh(true);
+    },
 
   });
 }

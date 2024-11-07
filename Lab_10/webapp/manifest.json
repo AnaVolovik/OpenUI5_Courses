@@ -63,6 +63,7 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
+        "defaultBindingMode": "TwoWay",
         "defaultCountMode": "None"
       }
     },
