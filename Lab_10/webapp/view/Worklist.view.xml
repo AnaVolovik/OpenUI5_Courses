@@ -12,7 +12,14 @@
     <content>
       <Table
         id="table"
-        backgroundDesign="Translucent">
+        backgroundDesign="Translucent"
+        items="{
+          path: '/zjblessons_base_Headers',
+          sorter: {
+            path: 'DocumentNumber',
+            descending: true
+          }
+        }" >
 
         <columns>
           <Column>
@@ -34,6 +41,25 @@
             <Text text="{i18n>Created}" />
           </Column>
         </columns>
+
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{DocumentNumber}" />
+              <Text text="{
+                path: 'DocumentDate',
+                formatter: '.formatter.formatDate'}"
+              />
+              <Text text="{PlantText}" />
+              <Text text="{RegionText}" />
+              <Text text="{Description}" />
+              <Text text="{
+                path: 'Created',
+                formatter: '.formatter.formatDate'}"
+              />
+            </cells>
+          </ColumnListItem>
+        </items>
       </Table>
     </content>
   </Page>
