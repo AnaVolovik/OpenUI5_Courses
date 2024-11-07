@@ -3,6 +3,39 @@
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
 
-  <Page ></Page>
+  <Page>
+    <customHeader>
+      <Toolbar>
+        <Title text="{i18n>countItems}" />
+      </Toolbar>
+    </customHeader>
+    <content>
+      <Table
+        id="table"
+        backgroundDesign="Translucent">
+
+        <columns>
+          <Column>
+            <Text text="{i18n>DocumentNumber}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>DocumentDate}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>PlantText}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>RegionText}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>Description}" />
+          </Column>
+          <Column>
+            <Text text="{i18n>Created}" />
+          </Column>
+        </columns>
+      </Table>
+    </content>
+  </Page>
 
 </mvc:View>
