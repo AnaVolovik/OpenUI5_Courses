@@ -60,8 +60,7 @@
               <Text text="{RegionText}" />
               <Text text="{Description}" />
               <Input
-                value=""
-                placeholder="{Description}"
+                value="{Description}"
                 liveChange="onChangeDescription" />
               <Text text="{
                 path: 'Created',
