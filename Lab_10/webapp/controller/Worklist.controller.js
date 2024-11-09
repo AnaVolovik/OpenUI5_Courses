@@ -4,7 +4,8 @@ sap.ui.define([
   "Lab_10/Lab_10/model/formatter",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
+  "sap/ui/model/Sorter",
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator, Sorter) {
   "use strict";
 
   return BaseController.extend("Lab_10.Lab_10.controller.Worklist", {
@@ -45,7 +46,7 @@ sap.ui.define([
           const oTable = this.byId("table"),
                 oBinding = oTable.getBinding("items");
 
-          const oDefaultSorter = new sap.ui.model.Sorter("DocumentNumber", false);
+          const oDefaultSorter = new Sorter("DocumentNumber", false);
           oBinding.sort([oDefaultSorter]);
 
           this._getTableCounter(oJsonModel);
@@ -122,11 +123,13 @@ sap.ui.define([
       oViewModel.setProperty("/isBusy", true);
 
       if (bGrouped) {
-        const oDefaultSorter = new sap.ui.model.Sorter("DocumentNumber", false);
+        const oDefaultSorter = new Sorter("DocumentNumber", false);
         oBinding.sort([oDefaultSorter]);
       } else {
-        const oSorter = new sap.ui.model.Sorter("RegionText", false, true);
-        oBinding.sort([oSorter]);
+        const oSorterRegionText = new Sorter("RegionText", false, true),
+              oSorterPlantText = new Sorter("PlantText", false);
+
+        oBinding.sort([oSorterRegionText, oSorterPlantText]);
       }
 
       oViewModel.setProperty("/isBusy", false);
