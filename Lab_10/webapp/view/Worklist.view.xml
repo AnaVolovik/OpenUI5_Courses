@@ -7,6 +7,13 @@
     <customHeader>
       <Toolbar>
         <Title text="{= ${i18n>countItems} + ' (' + ${worklistView>/sCount} + ')'}" />
+        <IconTabHeader selectedKey="{= ${worklistView>/sIconTHKey}}" select="onIconTabHeaderSelect">
+          <items>
+            <IconTabFilter key="All" text="{i18n>tabHeaderAll}"/>
+            <IconTabFilter key="FilteredAnd" text="{i18n>tabHeaderFilterAnd}"/>
+            <IconTabFilter key="FilteredOr" text="{i18n>tabHeaderFilterOr}"/>
+          </items>
+        </IconTabHeader>
         <ToolbarSpacer />
         <Button text="{i18n>toggleGroup}" press="onGroupRegionText" />
       </Toolbar>

@@ -1,8 +1,10 @@
 sap.ui.define([
   "Lab_10/Lab_10/controller/BaseController",
   "sap/ui/model/json/JSONModel",
-  "Lab_10/Lab_10/model/formatter"
-], function (BaseController, JSONModel, formatter) {
+  "Lab_10/Lab_10/model/formatter",
+  "sap/ui/model/Filter",
+  "sap/ui/model/FilterOperator",
+], function (BaseController, JSONModel, formatter, Filter, FilterOperator) {
   "use strict";
 
   return BaseController.extend("Lab_10.Lab_10.controller.Worklist", {
@@ -15,6 +17,7 @@ sap.ui.define([
 
       const oViewModel = new JSONModel({
         sCount: "0",
+        sIconTHKey: 'All',
         isBusy: true
       });
       this.setModel(oViewModel, "worklistView");
@@ -65,6 +68,39 @@ sap.ui.define([
         const iCount = oModelData.length;
         this.getView().getModel("worklistView").setProperty("/sCount", iCount);
       }
+    },
+
+    onIconTabHeaderSelect(oEvent) {
+      const sSelectedKey = oEvent.getParameter("selectedKey"),
+            oTable = this.byId("table"),
+            oBinding = oTable.getBinding("items");
+
+      this.getModel("worklistView").setProperty("/sIconTHKey", sSelectedKey);
+
+      let aFilters = [],
+          oCombinedFilter;
+
+      aFilters.push(new Filter("DocumentNumber", sap.ui.model.FilterOperator.Contains, "DocumentNumber"));
+      aFilters.push(new Filter("PlantText", sap.ui.model.FilterOperator.StartsWith, "Plant"));
+
+      if (sSelectedKey === 'FilteredAnd') {
+        oCombinedFilter = new Filter({
+          filters: aFilters,
+          and: true
+        });
+      }
+      else if (sSelectedKey === 'FilteredOr') {
+        oCombinedFilter = new Filter({
+            filters: aFilters,
+            and: false
+        });
+      }
+      else {
+        oBinding.filter([]);
+        return;
+      }
+
+      oBinding.filter(oCombinedFilter);
     },
 
     onChangeDescription (oEvent) {
