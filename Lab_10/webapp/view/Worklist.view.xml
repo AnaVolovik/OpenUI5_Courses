@@ -17,11 +17,7 @@
         backgroundDesign="Translucent"
         busy="{worklistView/isBusy}"
         items="{
-          path: '/zjblessons_base_Headers',
-          sorter: {
-            path: 'DocumentNumber',
-            descending: true
-          }
+          path: 'myJsonModel>/'
         }" >
 
         <columns>
@@ -49,21 +45,21 @@
         </columns>
 
         <items>
-          <ColumnListItem highlight="{= ${DocumentNumber} ? ${DocumentNumber}.indexOf('DocumentNumber') !== -1 ? 'Success' : 'Error' : 'Error' }">
+          <ColumnListItem highlight="{= ${myJsonModel>DocumentNumber} ? ${myJsonModel>DocumentNumber}.indexOf('DocumentNumber') !== -1 ? 'Success' : 'Error' : 'Error' }">
             <cells>
-              <Text text="{DocumentNumber}" />
+              <Text text="{myJsonModel>DocumentNumber}" />
               <Text text="{
-                path: 'DocumentDate',
+                path: 'myJsonModel>DocumentDate',
                 formatter: '.formatter.formatDate'}"
               />
-              <Text text="{PlantText}" />
-              <Text text="{RegionText}" />
-              <Text text="{Description}" />
+              <Text text="{myJsonModel>PlantText}" />
+              <Text text="{myJsonModel>RegionText}" />
+              <Text text="{myJsonModel>Description}" />
               <Input
-                value="{Description}"
-                liveChange="onChangeDescription" />
+                value="{myJsonModel>Description}"
+                change="onChangeDescription" />
               <Text text="{
-                path: 'Created',
+                path: 'myJsonModel>Created',
                 formatter: '.formatter.formatDate'}"
               />
             </cells>
