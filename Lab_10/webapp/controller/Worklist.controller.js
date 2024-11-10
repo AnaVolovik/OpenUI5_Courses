@@ -75,7 +75,6 @@ sap.ui.define([
             oBinding = oTable.getBinding("items");
 
       if (oBinding) {
-        oJsonModel.setDefaultBindingMode(sap.ui.model.BindingMode.TwoWay);
         const iCount = oModelData.length;
         this.getView().getModel("worklistView").setProperty("/sCount", iCount);
       }
