@@ -29,6 +29,12 @@ sap.ui.define([
             this.oJsonModel = new sap.ui.model.json.JSONModel(oData.results);
             this.oJsonModel.setDefaultBindingMode(sap.ui.model.BindingMode.OneWay);
 
+            const aData = this.oJsonModel.getData();
+            aData.forEach((item, index) => {
+              item.order = index + 1;
+            });
+            this.oJsonModel.setData(aData);
+
             this.getView().setModel(this.oJsonModel, "myJsonModel");
 
             resolve(this.oJsonModel);
@@ -43,11 +49,7 @@ sap.ui.define([
 
       oDataPromise
         .then((oJsonModel) => {
-          const oTable = this.byId("table"),
-                oBinding = oTable.getBinding("items");
-
-          const oDefaultSorter = new Sorter("DocumentNumber", false);
-          oBinding.sort([oDefaultSorter]);
+          this._setDefaultSorting();
 
           this._getTableCounter(oJsonModel);
 
@@ -57,6 +59,14 @@ sap.ui.define([
           oViewModel.setProperty("/isBusy", false);
           console.error("Error during data fetch:", oError);
         });
+    },
+
+    _setDefaultSorting() {
+      const oTable = this.byId("table"),
+            oBinding = oTable.getBinding("items");
+
+      const oDefaultSorter = new sap.ui.model.Sorter("order", false);
+      oBinding.sort([oDefaultSorter]);
     },
 
     _getTableCounter(oJsonModel) {
@@ -123,7 +133,7 @@ sap.ui.define([
       oViewModel.setProperty("/isBusy", true);
 
       if (bGrouped) {
-        const oDefaultSorter = new Sorter("DocumentNumber", false);
+        const oDefaultSorter = new Sorter("order", false);
         oBinding.sort([oDefaultSorter]);
       } else {
         const oSorterRegionText = new Sorter("RegionText", false, true),
@@ -133,8 +143,75 @@ sap.ui.define([
       }
 
       oViewModel.setProperty("/isBusy", false);
-    }
+    },
 
+    onDropSelectedItem(oEvent) {
+      const oDroppedItem = oEvent.getParameter("droppedControl"),
+            oDraggedItem = oEvent.getParameter("draggedControl"),
+            sDropPosition = oEvent.getParameter("dropPosition"),
+            oModel = this.getView().getModel("myJsonModel"),
+            aData = oModel.getProperty("/");
+  
+      const sDraggedItemPath = oDraggedItem.getBindingContext("myJsonModel").getPath(),
+            sDroppedItemPath = oDroppedItem.getBindingContext("myJsonModel").getPath();
+  
+      const oDraggedData = oModel.getProperty(sDraggedItemPath),
+            oDroppedData = oModel.getProperty(sDroppedItemPath);
+  
+      const iDraggedOrder = oDraggedData.order,
+            iDroppedOrder = oDroppedData.order;
+
+      let iNewOrder;
+
+      if (iDraggedOrder === iDroppedOrder) return;
+
+      sDropPosition === "After" ? iNewOrder = iDroppedOrder + 1 : iNewOrder = iDroppedOrder;
+
+      aData.forEach((item) => {
+        oDraggedData.order = iNewOrder;
+
+        if (iDraggedOrder < iDroppedOrder && sDropPosition === "After") {
+          if (item.order > iDraggedOrder && item.order <= iDroppedOrder + 1) {
+            item.order -= 1;
+          }
+          else if (item.order > iDroppedOrder) {
+            item.order += 0;
+          }
+
+        } else if (iDraggedOrder < iDroppedOrder && sDropPosition === "Before") {
+          if (item.order > iDraggedOrder && item.order <= iDroppedOrder) {
+            item.order -= 1;
+          }
+          else if (item.order > iDroppedOrder) {
+            item.order += 0;
+          }
+        }
+
+        else {
+          if (iDraggedOrder > iDroppedOrder && sDropPosition === "After") {
+            if (item.order > iDraggedOrder && item.order <= iDroppedOrder) {
+              item.order -= 1;
+            }
+            else if (item.order > iDroppedOrder) {
+              item.order += 1;
+            }
+
+          } else if (iDraggedOrder > iDroppedOrder && sDropPosition === "Before") {
+              if (item.order > iDraggedOrder && item.order < iDroppedOrder) {
+                item.order -= 1;
+              }
+              else if (item.order >= iDroppedOrder) {
+                item.order += 1;
+              }
+          }
+        }
+      }
+      );
+
+      oModel.setProperty("/", aData);
+
+      this._setDefaultSorting();
+    }
   });
 }
 );
