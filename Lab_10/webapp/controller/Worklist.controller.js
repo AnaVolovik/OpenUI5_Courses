@@ -185,10 +185,8 @@ sap.ui.define([
           else if (item.order > iDroppedOrder) {
             item.order += 0;
           }
-        }
 
-        else {
-          if (iDraggedOrder > iDroppedOrder && sDropPosition === "After") {
+        } else if (iDraggedOrder > iDroppedOrder && sDropPosition === "After") {
             if (item.order > iDraggedOrder && item.order <= iDroppedOrder) {
               item.order -= 1;
             }
@@ -196,17 +194,15 @@ sap.ui.define([
               item.order += 1;
             }
 
-          } else if (iDraggedOrder > iDroppedOrder && sDropPosition === "Before") {
-              if (item.order > iDraggedOrder && item.order < iDroppedOrder) {
-                item.order -= 1;
-              }
-              else if (item.order >= iDroppedOrder) {
-                item.order += 1;
-              }
-          }
+        } else if (iDraggedOrder > iDroppedOrder && sDropPosition === "Before") {
+            if (item.order > iDraggedOrder && item.order < iDroppedOrder) {
+              item.order -= 1;
+            }
+            else if (item.order >= iDroppedOrder) {
+              item.order += 1;
+            }
         }
-      }
-      );
+      });
 
       oModel.setProperty("/", aData);
 
