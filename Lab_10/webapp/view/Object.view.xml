@@ -1,0 +1,24 @@
+<mvc:View 
+  controllerName="Lab_10.Lab_10.controller.Object"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <Page >
+    <customHeader>
+      <Bar>
+        <contentLeft>
+          <Button
+            type="Transparent"
+            press="onNavBack"
+            icon="{i18n>iNavBack}"
+            width="2%"
+          />
+          <Title
+            text="{CreatedByFullName}"
+          />
+        </contentLeft>
+      </Bar>
+    </customHeader>
+  </Page>
+
+</mvc:View>

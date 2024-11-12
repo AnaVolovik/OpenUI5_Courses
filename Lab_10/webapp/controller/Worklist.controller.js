@@ -206,7 +206,17 @@ sap.ui.define([
       oModel.setProperty("/", aData);
 
       this._setDefaultSorting();
-    }
+    },
+
+    onPressNavToAvatarInfo(oEvent) {
+      const oSelectedItem = oEvent.getSource(),
+            oBindingContext = oSelectedItem.getBindingContext("myJsonModel"),
+            sHeaderID = oBindingContext.getProperty('HeaderID');
+
+      this.getRouter().navTo('object', {
+        objectId: sHeaderID
+      })
+    },
   });
 }
 );

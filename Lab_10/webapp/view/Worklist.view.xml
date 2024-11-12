@@ -59,6 +59,9 @@
           <Column>
             <Text text="{i18n>Created}" />
           </Column>
+          <Column width="7%">
+            <Text text="{i18n>AvatarInfo}" />
+          </Column>
         </columns>
 
         <items>
@@ -79,6 +82,10 @@
               <Text text="{
                 path: 'myJsonModel>Created',
                 formatter: '.formatter.formatDate'}"
+              />
+              <Button
+                icon="{i18n>iNavToAvatar}"
+                press="onPressNavToAvatarInfo"
               />
             </cells>
           </ColumnListItem>
