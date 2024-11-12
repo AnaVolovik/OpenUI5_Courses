@@ -12,16 +12,12 @@ sap.ui.define([
     formatter: formatter,
 
     onInit : function () {
-      const oModel = this.getOwnerComponent().getModel(),
-            sPath = "/zjblessons_base_Headers";
-
       const oViewModel = new JSONModel({
         isBusy: true
       });
       this.setModel(oViewModel, "objectView");
 
       this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
-
     },
 
     onNavBack : function() {
@@ -35,7 +31,7 @@ sap.ui.define([
     },
 
     _onObjectMatched : function (oEvent) {
-      const sObjectId =  oEvent.getParameter("arguments").objectId;
+      const sObjectId = oEvent.getParameter("arguments").objectId;
       
       this.getModel().metadataLoaded().then( function() {
         const sObjectPath = this.getModel().createKey("zjblessons_base_Headers", {
@@ -72,8 +68,13 @@ sap.ui.define([
       if (!oElementBinding.getBoundContext()) {
         return;
       }
-    }
+    },
 
+    onAvatarPress: function(oEvent) {
+      const oBindingContext = oEvent.getSource().getBindingContext();
+      const sCreatedBy = oBindingContext.getProperty("CreatedBy");
+      sap.m.MessageToast.show(sCreatedBy);
+    }
 
   });
 

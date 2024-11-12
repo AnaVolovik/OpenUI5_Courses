@@ -67,6 +67,11 @@
         "defaultCountMode": "None"
       }
     },
+    "resources": {
+      "css": [{
+        "uri": "css/styles.css"
+      }]
+    },
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",

@@ -1,7 +1,9 @@
 <mvc:View 
   controllerName="Lab_10.Lab_10.controller.Object"
   xmlns="sap.m"
-  xmlns:mvc="sap.ui.core.mvc">
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:controls="Lab_10.Lab_10.controller.controls"
+  class="ui5AvatarInfo">
 
   <Page >
     <customHeader>
@@ -19,6 +21,18 @@
         </contentLeft>
       </Bar>
     </customHeader>
+    <content>
+      <VBox class="sapUiLargeMargin">
+        <controls:AvatarInfo
+          src="{CreatedByAvatar}"
+          text="{CreatedByFullName}"
+          displaySize="L"
+          textAlign="Left"
+          maxLines="1"
+          press=".onAvatarPress"
+        />
+      </VBox>
+    </content>
   </Page>
 
 </mvc:View>
