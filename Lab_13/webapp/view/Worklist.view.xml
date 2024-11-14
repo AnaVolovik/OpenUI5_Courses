@@ -1,72 +1,89 @@
 <mvc:View
   controllerName="Lab_13.Lab_13.controller.Worklist"
   xmlns="sap.m"
-  xmlns:mvc="sap.ui.core.mvc">
+  xmlns:f="sap.f"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:table="sap.ui.table"
+  xmlns:s006="jblibs.s006">
 
-  <Page>
-    <customHeader>
-    
-    </customHeader>
+  <f:DynamicPage>
+    <f:header>
+      <f:DynamicPageHeader pinnable="false">
+        
+      </f:DynamicPageHeader>
+    </f:header>
 
-    <content>
-      <Table
-        id="table"
-        backgroundDesign="Translucent"
-        items="{
-            path: '/zjblessons_base_Items'
-          }" >
+    <f:content>
+      <NavContainer height="100%" width="100%">
+        <table:Table
+          id="table"
+          rows="{/zjblessons_base_Items}">
 
-        <columns>
-          <Column>
-            <Text text="{i18n>HeaderID}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>MaterialID}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>GroupID}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>SubGroupID}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>Quantity}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>Price}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>Created}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>CreatedBy}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>Modified}"/>
-          </Column>
-          <Column>
-            <Text text="{i18n>ModifiedBy}"/>
-          </Column>
-        </columns>
-
-        <items>
-          <ColumnListItem >
-            <cells>
-              <Text text="{HeaderID}" />
-              <Text text="{MaterialID}" />
-              <Text text="{GroupID}" />
-              <Text text="{SubGroupID}" />
-              <Text text="{Quantity}" />
-              <Text text="{Price}" />
-              <Text text="{Created}" />
-              <Text text="{CreatedBy}" />
-              <Text text="{Modified}" />
-              <Text text="{ModifiedBy}" />
-            </cells>
-          </ColumnListItem>
-        </items>
-      </Table>
-    </content>
-  </Page>
+          <table:columns>
+            <table:Column>
+              <Label text="{i18n>HeaderID}"/>
+              <table:template>
+                <Text text="{HeaderID}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>MaterialID}"/>
+              <table:template>
+                <Text text="{MaterialID}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>GroupID}"/>
+              <table:template>
+                <Text text="{GroupID}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>SubGroupID}"/>
+              <table:template>
+                <Text text="{SubGroupID}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>Quantity}"/>
+              <table:template>
+                <Text text="{Quantity}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>Price}"/>
+              <table:template>
+                <Text text="{Price}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>Created}"/>
+              <table:template>
+                <Text text="{Created}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>CreatedBy}"/>
+              <table:template>
+                <Text text="{CreatedBy}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>Modified}"/>
+              <table:template>
+                <Text text="{Modified}" />
+              </table:template>
+            </table:Column>
+            <table:Column>
+              <Label text="{i18n>ModifiedBy}"/>
+              <table:template>
+                <Text text="{ModifiedBy}" />
+              </table:template>
+            </table:Column>
+          </table:columns>
+        </table:Table>
+      </NavContainer>
+    </f:content>
+  </f:DynamicPage>
 
 </mvc:View>
