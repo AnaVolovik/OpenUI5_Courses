@@ -46,8 +46,14 @@
       "async": true,
       "id": "app"
     },
+    "resourceRoots": {
+      "jblibs": "../../../../../../jetCloud/apps/jbcommon/zjblibs/js/v20004/"
+    },
     "dependencies": {
-      "minUI5Version": "1.42.0"
+      "minUI5Version": "1.42.0",
+      "libs": {
+        "jblibs": {}
+      }
     },
     "contentDensities": {
       "compact": true,
