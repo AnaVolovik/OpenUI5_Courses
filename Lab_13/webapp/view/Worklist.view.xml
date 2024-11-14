@@ -3,4 +3,70 @@
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
 
+  <Page>
+    <customHeader>
+    
+    </customHeader>
+
+    <content>
+      <Table
+        id="table"
+        backgroundDesign="Translucent"
+        items="{
+            path: '/zjblessons_base_Items'
+          }" >
+
+        <columns>
+          <Column>
+            <Text text="{i18n>HeaderID}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>MaterialID}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>GroupID}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>SubGroupID}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>Quantity}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>Price}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>Created}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>CreatedBy}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>Modified}"/>
+          </Column>
+          <Column>
+            <Text text="{i18n>ModifiedBy}"/>
+          </Column>
+        </columns>
+
+        <items>
+          <ColumnListItem >
+            <cells>
+              <Text text="{HeaderID}" />
+              <Text text="{MaterialID}" />
+              <Text text="{GroupID}" />
+              <Text text="{SubGroupID}" />
+              <Text text="{Quantity}" />
+              <Text text="{Price}" />
+              <Text text="{Created}" />
+              <Text text="{CreatedBy}" />
+              <Text text="{Modified}" />
+              <Text text="{ModifiedBy}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+
 </mvc:View>
