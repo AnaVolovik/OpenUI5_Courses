@@ -6,7 +6,13 @@
   xmlns:table="sap.ui.table"
   xmlns:s006="jblibs.s006">
 
-  <f:DynamicPage>
+  <f:DynamicPage
+    id="dynamicPage"
+    fitContent="true"
+    class="sapUiNoContentPadding jbFilterBarHeaderNoPadding"
+    headerPinned="false"
+    preserveHeaderStateOnScroll="false">
+    
     <f:header>
       <f:DynamicPageHeader pinnable="false">
         
