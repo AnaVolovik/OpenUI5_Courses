@@ -1,9 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "Lab_13/Lab_13/model/models",
     "Lab_13/Lab_13/controller/ErrorHandler"
-  ], function (UIComponent, Device, models, ErrorHandler) {
+  ], function (UIComponent, Device, ErrorHandler) {
     "use strict";
 
     return UIComponent.extend("Lab_13.Lab_13.Component", {
