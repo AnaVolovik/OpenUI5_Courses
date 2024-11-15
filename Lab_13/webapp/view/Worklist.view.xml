@@ -38,7 +38,6 @@
                 id="btnTable"
                 URLAlias="zjblessons_base_Items"
                 URLfilter="true"
-
                 icon="sap-icon://action-settings"
                 type="Transparent"
                 change="prepareSelect"
@@ -64,65 +63,63 @@
           selectionBehavior="Row">
 
           <table:columns>
-            <table:Column id="HeaderID">
+            <table:Column id="HeaderID" sortProperty="HeaderID">
               <Label text="{i18n>HeaderID}"/>
               <table:template>
                 <Text text="{HeaderID}" />
               </table:template>
             </table:Column>
-            <table:Column id="MaterialID">
+            <table:Column id="MaterialID" sortProperty="MaterialID">
               <Label text="{i18n>MaterialID}"/>
               <table:template>
                 <Text text="{MaterialID}" />
               </table:template>
             </table:Column>
-            <table:Column id="GroupID">
+            <table:Column id="GroupID" sortProperty="GroupID">
               <Label text="{i18n>GroupID}"/>
               <table:template>
                 <Text text="{GroupID}" />
               </table:template>
             </table:Column>
-            <table:Column id="SubGroupID">
+            <table:Column id="SubGroupID" sortProperty="SubGroupID">
               <Label text="{i18n>SubGroupID}"/>
               <table:template>
                 <Text text="{SubGroupID}" />
               </table:template>
             </table:Column>
-            <table:Column id="Quantity">
+            <table:Column id="Quantity" sortProperty="Quantity">
               <Label text="{i18n>Quantity}"/>
               <table:template>
                 <Text text="{Quantity}" />
               </table:template>
             </table:Column>
-            <table:Column id="Price">
+            <table:Column id="Price" sortProperty="Price">
               <Label text="{i18n>Price}"/>
               <table:template>
                 <Text text="{Price}" />
               </table:template>
             </table:Column>
-            <table:Column id="Created">
+            <table:Column id="Created" sortProperty="Created">
               <Label text="{i18n>Created}"/>
               <table:template>
                 <Text text="{Created}" />
               </table:template>
             </table:Column>
-            <table:Column id="CreatedBy">
+            <table:Column id="CreatedBy" sortProperty="CreatedBy">
               <Label text="{i18n>CreatedBy}"/>
               <table:template>
-                <!-- <Text text="{CreatedBy}" /> -->
                 <s000:AvatarAndLink text="{CreatedByFullName}" clickable="text" imageURL="{CreatedByAvatar}" size="XXS" />
               </table:template>
             </table:Column>
-            <table:Column id="Modified">
+            <table:Column id="Modified" sortProperty="Modified">
               <Label text="{i18n>Modified}"/>
               <table:template>
                 <Text text="{Modified}" />
               </table:template>
             </table:Column>
-            <table:Column id="ModifiedBy">
+            <table:Column id="ModifiedBy" sortProperty="ModifiedBy">
               <Label text="{i18n>ModifiedBy}"/>
               <table:template>
-                <!-- <Text text="{ModifiedBy}" /> -->
                 <s000:AvatarAndLink text="{ModifiedByFullName}" clickable="text" imageURL="{ModifiedByAvatar}" size="XXS" />
               </table:template>
             </table:Column>

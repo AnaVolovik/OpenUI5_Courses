@@ -86,7 +86,7 @@ sap.ui.define([
             "sortProperty": "SubGroupID",
             "visible": true,
             "type": "text",
-            // "select": "SubGroupID",
+            "select": "SubGroupID",
             "text": "{SubGroupID}"
           },
           "Filter": {
@@ -155,6 +155,7 @@ sap.ui.define([
           "Column": {
             "order": 13,
             "sortProperty": "Created",
+            "sortOrder": 1,
             "sort": "desc",
             "visible": true,
             "type": "date",
