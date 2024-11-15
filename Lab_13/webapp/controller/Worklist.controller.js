@@ -112,7 +112,8 @@ sap.ui.define([
             "visible": true,
             "type": "number",
             "select": "Quantity",
-            "text": "{Quantity}"
+            "text": "{Quantity}",
+            "emphasized": false
           },
           "Filter": {
             "order": 10,
@@ -136,7 +137,8 @@ sap.ui.define([
             "visible": true,
             "type": "number",
             "select": "Price",
-            "text": "{Price}"
+            "text": "{Price}",
+            "emphasized": false
           },
           "Filter": {
             "order": 12,

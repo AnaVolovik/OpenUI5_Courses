@@ -108,7 +108,7 @@
             <table:Column id="CreatedBy" sortProperty="CreatedBy" width="12rem">
               <Label text="{i18n>CreatedBy}"/>
               <table:template>
-                <s000:AvatarAndLink text="{CreatedByFullName}" clickable="text" icon="{parts:['CreatedByAvatar'], formatter:'.formatter.checkIcon'}" size="XXS" />
+                <s000:AvatarAndLink text="{CreatedByFullName}" clickable="text" icon="{parts: ['CreatedByAvatar', 'CreatedByFullName'], formatter: '.formatter.checkIcon'}" iconColor="Positive" size="XXS" />
               </table:template>
             </table:Column>
             <table:Column id="Modified" sortProperty="Modified">
@@ -120,7 +120,7 @@
             <table:Column id="ModifiedBy" sortProperty="ModifiedBy" width="12rem">
               <Label text="{i18n>ModifiedBy}"/>
               <table:template>
-                <s000:AvatarAndLink text="{ModifiedByFullName}" clickable="text" icon="{parts:['ModifiedByAvatar'], formatter:'.formatter.checkIcon'}" size="XXS" />
+                <s000:AvatarAndLink text="{ModifiedByFullName}" clickable="text" icon="{parts:['ModifiedByAvatar', 'ModifiedByFullName'], formatter:'.formatter.checkIcon'}" iconColor="Positive" size="XXS" />
               </table:template>
             </table:Column>
           </table:columns>
