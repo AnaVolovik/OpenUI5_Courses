@@ -1,16 +1,13 @@
-sap.ui.define([
-  ] , function () {
-    "use strict";
+sap.ui.define([], function () {
+  "use strict";
 
-    return {
-      numberUnit : function (sValue) {
-        if (!sValue) {
-          return "";
-        }
-        return parseFloat(sValue).toFixed(2);
+  return {
+    checkIcon: function (createdByAvatar) {
+      if (createdByAvatar && createdByAvatar.trim() !== "") {
+        return createdByAvatar;
       }
 
-    };
-
-  }
-);
+      return "sap-icon://customer";
+    }
+  };
+});

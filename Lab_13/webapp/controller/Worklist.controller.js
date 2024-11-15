@@ -1,10 +1,12 @@
 sap.ui.define([
   "Lab_13/Lab_13/controller/BaseController",
-  "sap/ui/model/json/JSONModel"
-], function (BaseController, JSONModel) {
+  "sap/ui/model/json/JSONModel",
+  "Lab_13/Lab_13/model/Formatter"
+], function (BaseController, JSONModel, Formatter) {
   "use strict";
 
   return BaseController.extend("Lab_13.Lab_13.controller.Worklist", {
+    formatter: Formatter,
 
     jsonAnnotation: new JSONModel({
       RequestAtLeast: "",
@@ -188,11 +190,11 @@ sap.ui.define([
             "order": 16,
             "mode": "MultiSelect",
             "filter": "CreatedBy",
-            "text": "CreatedBy",
+            "text": "CreatedByFullName",
             "sort": "CreatedBy",
-            "image": "",
+            "image": "CreatedByAvatar",
             "key": "CreatedBy",
-            "entitySet": "jbcommon_auth_CreatedBy",
+            "entitySet": "zjblessons_base_Items",
             "visible": true,
             "hidden": false
           }
@@ -235,11 +237,11 @@ sap.ui.define([
             "order": 20,
             "mode": "MultiSelect",
             "filter": "ModifiedBy",
-            "text": "ModifiedBy",
+            "text": "ModifiedByFullName",
             "sort": "ModifiedBy",
-            "image": "",
+            "image": "ModifiedByAvatar",
             "key": "ModifiedBy",
-            "entitySet": "jbcommon_auth_ModifiedBy",
+            "entitySet": "zjblessons_base_Items",
             "visible": true,
             "hidden": false
           }
