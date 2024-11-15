@@ -4,6 +4,7 @@
   xmlns:f="sap.f"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:table="sap.ui.table"
+  xmlns:s000="jblibs.s000"
   xmlns:s006="jblibs.s006">
 
   <f:DynamicPage
@@ -12,10 +13,40 @@
     class="sapUiNoContentPadding jbFilterBarHeaderNoPadding"
     headerPinned="false"
     preserveHeaderStateOnScroll="false">
-    
+
     <f:header>
       <f:DynamicPageHeader pinnable="false">
-        
+        <s006:FilterBar
+          id="filterBar"
+          URLAlias="zjblessons_base_Items"
+          firstLine="HeaderID, Created"
+          URLfilter="true"
+          liveMode="true"
+          btnShowHide="true"
+          btnShowHidePressed="true"
+          entityData="zjblessons_base_Items"
+          SearchFields="HeaderID, MaterialID, GroupID, CreatedBy, ModifiedBy"
+          ParametersModel="annotation"
+          change="onPressFilterBarChange"
+          labelPlacement="placeholder"
+          alignControls="Start"
+          btnMode="standard"
+          secondaryControlID="btnTable"
+          tableID="table">
+            <s006:rightToolbar>
+              <s006:BtnTableSettings
+                id="btnTable"
+                URLAlias="zjblessons_base_Items"
+                URLfilter="true"
+
+                icon="sap-icon://action-settings"
+                type="Transparent"
+                change="prepareSelect"
+                tableID="table"
+                ParametersModel="annotation"
+                widthColumns="15rem"/>
+            </s006:rightToolbar>
+        </s006:FilterBar>
       </f:DynamicPageHeader>
     </f:header>
 
@@ -23,67 +54,76 @@
       <NavContainer height="100%" width="100%">
         <table:Table
           id="table"
-          rows="{/zjblessons_base_Items}">
+          rows="{/zjblessons_base_Items}"
+          visibleRowCountMode="Auto"
+          minAutoRowCount="1"
+          enableBusyIndicator="true"
+          busyIndicatorDelay="0"
+          threshold="160"
+          selectionMode="None"
+          selectionBehavior="Row">
 
           <table:columns>
-            <table:Column>
+            <table:Column id="HeaderID">
               <Label text="{i18n>HeaderID}"/>
               <table:template>
                 <Text text="{HeaderID}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="MaterialID">
               <Label text="{i18n>MaterialID}"/>
               <table:template>
                 <Text text="{MaterialID}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="GroupID">
               <Label text="{i18n>GroupID}"/>
               <table:template>
                 <Text text="{GroupID}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="SubGroupID">
               <Label text="{i18n>SubGroupID}"/>
               <table:template>
                 <Text text="{SubGroupID}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="Quantity">
               <Label text="{i18n>Quantity}"/>
               <table:template>
                 <Text text="{Quantity}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="Price">
               <Label text="{i18n>Price}"/>
               <table:template>
                 <Text text="{Price}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="Created">
               <Label text="{i18n>Created}"/>
               <table:template>
                 <Text text="{Created}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="CreatedBy">
               <Label text="{i18n>CreatedBy}"/>
               <table:template>
-                <Text text="{CreatedBy}" />
+                <!-- <Text text="{CreatedBy}" /> -->
+                <s000:AvatarAndLink text="{CreatedByFullName}" clickable="text" imageURL="{CreatedByAvatar}" size="XXS" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="Modified">
               <Label text="{i18n>Modified}"/>
               <table:template>
                 <Text text="{Modified}" />
               </table:template>
             </table:Column>
-            <table:Column>
+            <table:Column id="ModifiedBy">
               <Label text="{i18n>ModifiedBy}"/>
               <table:template>
-                <Text text="{ModifiedBy}" />
+                <!-- <Text text="{ModifiedBy}" /> -->
+                <s000:AvatarAndLink text="{ModifiedByFullName}" clickable="text" imageURL="{ModifiedByAvatar}" size="XXS" />
               </table:template>
             </table:Column>
           </table:columns>
