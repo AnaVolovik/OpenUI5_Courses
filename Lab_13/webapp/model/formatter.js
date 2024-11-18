@@ -29,6 +29,16 @@ sap.ui.define(["sap/ui/core/format/DateFormat"], function (DateFormat) {
           return oDateFormat.format(oDate);
       }
       return "";
+    },
+
+    formatDateTime: function (oDate) {
+      if (oDate) {
+          const oDateTimeFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+              style: "short"
+          });
+          return oDateTimeFormat.format(oDate);
+      }
+      return "";
     }
   };
 });

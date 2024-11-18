@@ -24,7 +24,6 @@
           liveMode="true"
           btnShowHide="true"
           btnShowHidePressed="true"
-          btnFilterSettings="true"
           entityData="zjblessons_base_Items"
           ParametersModel="annotation"
           change="onPressFilterBarChange"
@@ -125,7 +124,7 @@
               <table:template>
                 <Text text="{
                   path: 'Modified',
-                  formatter: '.formatter.formatDate'}"
+                  formatter: '.formatter.formatDateTime'}"
                 />
               </table:template>
             </table:Column>
