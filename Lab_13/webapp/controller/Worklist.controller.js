@@ -23,7 +23,7 @@ sap.ui.define([
             "text": "{HeaderID}"
           },
           "Filter": {
-            "order": 2,
+            "order": 1,
             "mode": "SingleSelectMaster",
             "filter": "HeaderID",
             "text": "HeaderID",
@@ -38,7 +38,7 @@ sap.ui.define([
           "id": "MaterialID",
           "label": "{i18n>MaterialID}",
           "Column": {
-            "order": 3,
+            "order": 2,
             "sortProperty": "MaterialID",
             "visible": true,
             "type": "text",
@@ -46,7 +46,7 @@ sap.ui.define([
             "text": "{MaterialID}"
           },
           "Filter": {
-            "order": 4,
+            "order": 2,
             "mode": "MultiSelect",
             "filter": "MaterialID",
             "text": "MaterialID",
@@ -61,7 +61,7 @@ sap.ui.define([
           "id": "GroupID",
           "label": "{i18n>GroupID}",
           "Column": {
-            "order": 5,
+            "order": 3,
             "sortProperty": "GroupID",
             "visible": true,
             "type": "text",
@@ -69,7 +69,7 @@ sap.ui.define([
             "text": "{GroupID}"
           },
           "Filter": {
-            "order": 6,
+            "order": 3,
             "mode": "MultiSelect",
             "filter": "GroupID",
             "text": "GroupID",
@@ -84,7 +84,7 @@ sap.ui.define([
           "id": "SubGroupID",
           "label": "{i18n>SubGroupID}",
           "Column": {
-            "order": 7,
+            "order": 4,
             "sortProperty": "SubGroupID",
             "visible": true,
             "type": "text",
@@ -92,7 +92,7 @@ sap.ui.define([
             "text": "{SubGroupID}"
           },
           "Filter": {
-            "order": 8,
+            "order": 4,
             "mode": "MultiSelect",
             "filter": "SubGroupID",
             "text": "SubGroupID",
@@ -107,16 +107,16 @@ sap.ui.define([
           "id": "Quantity",
           "label": "{i18n>Quantity}",
           "Column": {
-            "order": 9,
+            "order": 5,
             "sortProperty": "Quantity",
             "visible": true,
             "type": "number",
             "select": "Quantity",
-            "text": "{Quantity}",
+            "number": "{Quantity}",
             "emphasized": false
           },
           "Filter": {
-            "order": 10,
+            "order": 5,
             "mode": "SearchField",
             "filter": "Quantity",
             "text": "Quantity",
@@ -132,16 +132,16 @@ sap.ui.define([
           "id": "Price",
           "label": "{i18n>Price}",
           "Column": {
-            "order": 11,
+            "order": 6,
             "sortProperty": "Price",
             "visible": true,
             "type": "number",
             "select": "Price",
-            "text": "{Price}",
+            "number": "{Price}",
             "emphasized": false
           },
           "Filter": {
-            "order": 12,
+            "order": 6,
             "mode": "SearchField",
             "filter": "Price",
             "text": "Price",
@@ -157,7 +157,7 @@ sap.ui.define([
           "id": "Created",
           "label": "{i18n>Created}",
           "Column": {
-            "order": 13,
+            "order": 7,
             "sortProperty": "Created",
             "sortOrder": 1,
             "sort": "desc",
@@ -167,7 +167,7 @@ sap.ui.define([
             "text": "{Created}"
           },
           "Filter": {
-            "order": 14,
+            "order": 7,
             "visible": true,
             "hidden": false,
             "mode": "DateField",
@@ -182,21 +182,21 @@ sap.ui.define([
           "id": "CreatedBy",
           "label": "{i18n>CreatedBy}",
           "Column": {
-            "order": 15,
-            "sortProperty": "CreatedBy",
+            "order": 8,
+            "sortProperty": "CreatedByFullName",
             "visible": true,
             "type": "avatarAndLink",
             "select": "CreatedByAvatar, CreatedByFullName",
           },
           "Filter": {
-            "order": 16,
+            "order": 8,
             "mode": "MultiSelect",
             "filter": "CreatedBy",
             "text": "CreatedByFullName",
-            "sort": "CreatedBy",
+            "sort": "CreatedByFullName",
             "image": "CreatedByAvatar",
             "key": "CreatedBy",
-            "entitySet": "zjblessons_base_Items",
+            "entitySet": "jbcommon_auth_CreatedBy",
             "visible": true,
             "hidden": false
           }
@@ -205,7 +205,7 @@ sap.ui.define([
           "id": "Modified",
           "label": "{i18n>Modified}",
           "Column": {
-            "order": 17,
+            "order": 9,
             "sortProperty": "Modified",
             "sort": "desc",
             "visible": true,
@@ -214,7 +214,7 @@ sap.ui.define([
             "text": "{Modified}"
           },
           "Filter": {
-            "order": 18,
+            "order": 9,
             "visible": true,
             "hidden": false,
             "mode": "DateField",
@@ -229,21 +229,21 @@ sap.ui.define([
           "id": "ModifiedBy",
           "label": "{i18n>ModifiedBy}",
           "Column": {
-            "order": 19,
-            "sortProperty": "ModifiedBy",
+            "order": 10,
+            "sortProperty": "ModifiedByFullName",
             "visible": true,
             "type": "avatarAndLink",
             "select": "ModifiedByAvatar, ModifiedByFullName",
           },
           "Filter": {
-            "order": 20,
+            "order": 10,
             "mode": "MultiSelect",
             "filter": "ModifiedBy",
             "text": "ModifiedByFullName",
-            "sort": "ModifiedBy",
+            "sort": "ModifiedByFullName",
             "image": "ModifiedByAvatar",
             "key": "ModifiedBy",
-            "entitySet": "zjblessons_base_Items",
+            "entitySet": "jbcommon_auth_ModifiedBy",
             "visible": true,
             "hidden": false
           }
@@ -258,10 +258,6 @@ sap.ui.define([
       this.setModel(this.jsonAnnotation, "annotation");
     },
 
-    onPressRefresh:function() {
-      this.byId('table').getBinding('rows').refresh();
-    },
-
     prepareSelect: function (oEvent) {
       this.aSorter = oEvent.getParameter("aSorts");
       this.sSelect = oEvent.getParameter("sSelect");
@@ -269,7 +265,7 @@ sap.ui.define([
       this.callBindTable();
     },
 
-    callBindTable: function (sPath) {
+    callBindTable: function () {
       if (this.sSelect && this.aFilters) {
       let sRequestAtLeast = this.getModel('annotation').getData().RequestAtLeast;
         this.byId("table").bindRows({
@@ -288,8 +284,7 @@ sap.ui.define([
       this.aFilters = oEvent.getParameter("OdataFilters");
 
       this.callBindTable();
-    }
-
+    },
   });
 }
 );

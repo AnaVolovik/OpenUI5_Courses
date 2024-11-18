@@ -24,8 +24,8 @@
           liveMode="true"
           btnShowHide="true"
           btnShowHidePressed="true"
+          btnFilterSettings="true"
           entityData="zjblessons_base_Items"
-          SearchFields="HeaderID, MaterialID, GroupID, CreatedBy, ModifiedBy"
           ParametersModel="annotation"
           change="onPressFilterBarChange"
           labelPlacement="placeholder"
@@ -102,10 +102,13 @@
             <table:Column id="Created" sortProperty="Created">
               <Label text="{i18n>Created}"/>
               <table:template>
-                <Text text="{Created}" />
+                <Text text="{
+                  path: 'Created',
+                  formatter: '.formatter.formatDate'}"
+                />
               </table:template>
             </table:Column>
-            <table:Column id="CreatedBy" sortProperty="CreatedBy" width="12rem">
+            <table:Column id="CreatedBy" sortProperty="CreatedByFullName" width="12rem">
               <Label text="{i18n>CreatedBy}"/>
               <table:template>
                 <s000:AvatarAndLink
@@ -120,17 +123,20 @@
             <table:Column id="Modified" sortProperty="Modified">
               <Label text="{i18n>Modified}"/>
               <table:template>
-                <Text text="{Modified}" />
+                <Text text="{
+                  path: 'Modified',
+                  formatter: '.formatter.formatDate'}"
+                />
               </table:template>
             </table:Column>
-            <table:Column id="ModifiedBy" sortProperty="ModifiedBy" width="12rem">
+            <table:Column id="ModifiedBy" sortProperty="ModifiedByFullName" width="12rem">
               <Label text="{i18n>ModifiedBy}"/>
               <table:template>
                 <s000:AvatarAndLink
                   text="{parts: ['ModifiedByFullName'], formatter: '.formatter.checkName'}"
                   clickable="text"
                   icon="{parts:['ModifiedByAvatar', 'ModifiedByFullName'], formatter:'.formatter.checkIcon'}"
-                  iconColor="{parts: ['CreatedByFullName'], formatter: '.formatter.checkIconColor'}"
+                  iconColor="{parts: ['ModifiedByFullName'], formatter: '.formatter.checkIconColor'}"
                   size="XXS" />
               </table:template>
             </table:Column>

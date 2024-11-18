@@ -1,4 +1,4 @@
-sap.ui.define([], function () {
+sap.ui.define(["sap/ui/core/format/DateFormat"], function (DateFormat) {
   "use strict";
 
   return {
@@ -19,6 +19,16 @@ sap.ui.define([], function () {
 
     checkName: function (createdByFullName) {
       return createdByFullName && createdByFullName.trim() !== "" ? createdByFullName : "Unknown";
+    },
+
+    formatDate: function (oDate) {
+      if (oDate) {
+          const oDateFormat = DateFormat.getDateInstance({
+              style: "medium"
+          });
+          return oDateFormat.format(oDate);
+      }
+      return "";
     }
   };
 });
